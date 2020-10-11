@@ -1,0 +1,20 @@
+header.page-header {
+  position: relative;
+  text-align: center;
+  /* margin-bottom: 50px; */
+  color: #9c9c9c;
+  margin-top: 8em;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+h1.page-title {
+  font-size: 20px;
+  font-weight: 400;
+  border: 1px dashed #ddd;
+  padding: 10px 15px;
+  color: #828282;
+  margin-bottom: 30px;
+  font-family: miranafont, 'Hiragino Sans GB', STXihei, 'Microsoft YaHei',
+    SimSun, sans-serif;
+}

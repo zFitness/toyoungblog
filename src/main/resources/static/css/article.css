@@ -1,0 +1,288 @@
+@media (max-width: 605px) {
+  #centerbg {
+    height: 300px;
+  }
+}
+.article-content-title {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.article-footer {
+  padding: 20px 10px;
+  margin-top: 30px;
+  height: 65px;
+  position: relative;
+}
+
+.donate {
+  float: left;
+  line-height: 32px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border: 1px solid #2b2b2b;
+}
+
+.donate a {
+  color: #2b2b2b;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.donate_inner {
+  display: none;
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  left: 60px;
+  top: -40px;
+  background: #fff;
+  padding: 10px 10px 30px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+}
+
+.donate_inner:after,
+.donate_inner:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 45%;
+  margin-left: -8px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #e2e6ec;
+}
+
+.donate_inner li {
+  float: left;
+  height: 100px;
+}
+
+.donate_inner img {
+  width: 100px;
+}
+
+.wedonate img {
+  margin-right: 10px;
+}
+
+li.alidonate:after,
+li.wedonate:after {
+  content: '微信';
+  text-align: center;
+  display: block;
+  bottom: 16px;
+  position: relative;
+  font-size: 13px;
+  margin-left: -4px;
+  color: #8a8a8a;
+}
+
+/* 标签 */
+.article-tags {
+  margin: 7px 0 0 20px;
+  float: left;
+  font-size: 13px;
+  color: #b3b3b3;
+  text-transform: uppercase;
+  font-family: din, 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
+}
+
+.article-tags a {
+  color: #b3b3b3;
+  margin-right: 5px;
+}
+
+/* 版权提示 */
+.open-message {
+  margin: 50px 0;
+  position: relative;
+  background: #2b2b2b;
+  padding: 10px 30px;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* 下一篇 */
+.post-squares {
+  overflow: hidden;
+  width: 100%;
+  margin: 55px 0;
+  background: #000;
+}
+
+.post-squares.nextprev .previous {
+  text-align: left;
+}
+.post-squares .half {
+  width: 50%;
+  float: left;
+}
+
+.post-squares.nextprev .next {
+  text-align: right;
+}
+
+.post-squares.nextprev a,
+.post-squares.nextprev article {
+  height: 150px;
+  padding: 55px 40px;
+  text-align: left;
+  width: 100%;
+}
+
+.post-squares a,
+.post-squares article {
+  position: relative;
+  display: block;
+  float: left;
+  overflow: hidden;
+  height: 100%;
+  padding: 55px 25px;
+  text-align: center;
+}
+
+.post-squares .background {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  background-size: cover;
+  -webkit-transition: opacity 0.15s ease-out;
+  -moz-transition: opacity 0.15s ease-out;
+  transition: opacity 0.15s ease-out;
+}
+
+.post-squares.nextprev .previous .label {
+  top: 40px;
+  left: 40px;
+}
+
+.post-squares.nextprev .label {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+}
+.post-squares .label {
+  font-family: 'microsoft jhenghei', Arial, Sans-Serif;
+  font-size: 13px;
+  display: block;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.post-squares.nextprev .previous .info {
+  bottom: 40px;
+  left: 40px;
+}
+
+.post-squares.nextprev .info {
+  position: absolute;
+  width: 70%;
+}
+
+.post-squares .info {
+  position: relative;
+  z-index: 100;
+}
+
+.post-squares.nextprev .next h3,
+.post-squares.nextprev .previous h3 {
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.post-squares h3 {
+  font-family: 'microsoft jhenghei', Arial, Sans-Serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 30px;
+  margin: 20px 0;
+  color: #fff;
+}
+
+.post-squares.nextprev .previous hr {
+  float: left;
+  margin: 0;
+}
+.post-squares hr {
+  width: 15%;
+  height: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.post-squares.nextprev .next .info {
+  right: 40px;
+  bottom: 40px;
+}
+.post-squares.nextprev .next .info {
+  text-align: right;
+}
+.post-squares.nextprev .info {
+  position: absolute;
+  width: 70%;
+}
+.post-squares .info {
+  position: relative;
+  z-index: 100;
+}
+
+.post-squares.nextprev a,
+.post-squares.nextprev article {
+  height: 150px;
+  padding: 55px 40px;
+  text-align: left;
+  width: 100%;
+}
+.post-squares a,
+.post-squares article {
+  position: relative;
+  display: block;
+  float: left;
+  overflow: hidden;
+  height: 100%;
+  padding: 55px 25px;
+  text-align: center;
+}
+
+.post-squares.nextprev .next .label {
+  top: 40px;
+  right: 40px;
+}
+.post-squares.nextprev .label {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+}
+.post-squares .label {
+  font-family: 'microsoft jhenghei', Arial, Sans-Serif;
+  font-size: 13px;
+  display: block;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.post-squares a:hover > .background,
+.post-squares article:hover > .background {
+  opacity: 0.6;
+}
+
+@media (max-width: 760px) {
+  .post-squares .half {
+    float: none;
+    width: 100%;
+  }
+}
