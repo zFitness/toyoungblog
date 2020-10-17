@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zheng.blog.dao.XzArticlesDao">
+
+    <resultMap type="pers.zheng.blog.entity.XzArticles" id="XzArticlesMap">
+        <result property="articleId" column="article_id" jdbcType="INTEGER"/>
+        <result property="articleContent" column="article_content" jdbcType="VARCHAR"/>
+        <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>
+        <result property="articleViewCount" column="article_view_count" jdbcType="OTHER"/>
+        <result property="articleLikeCount" column="article_like_count" jdbcType="OTHER"/>
+        <result property="articleDate" column="article_date" jdbcType="TIMESTAMP"/>
+        <result property="articleCommentCount" column="article_comment_count" jdbcType="OTHER"/>
+    </resultMap>
+
+    <select id="getArticleItem" resultType="pers.zheng.blog.vo.ArticleItemVo">
+        SELECT
+            article_id,
+            article_title,
+            article_view_count,
+            article_comment_count,
+            article_summary,
+            article_date
+        FROM
+            xz_articles
+    </select>
+
+</mapper>

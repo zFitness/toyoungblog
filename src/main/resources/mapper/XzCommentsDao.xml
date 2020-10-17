@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zheng.blog.dao.XzCommentsDao">
+
+    <resultMap type="pers.zheng.blog.entity.XzComments" id="XzCommentsMap">
+        <result property="commentId" column="comment_id" jdbcType="INTEGER"/>
+        <result property="articleId" column="article_id" jdbcType="INTEGER"/>
+        <result property="commentDate" column="comment_date" jdbcType="TIMESTAMP"/>
+        <result property="commentContent" column="comment_content" jdbcType="VARCHAR"/>
+        <result property="parentCommentId" column="parent_comment_id" jdbcType="INTEGER"/>
+        <result property="commentUserName" column="comment_user_name" jdbcType="VARCHAR"/>
+        <result property="commentUserEmail" column="comment_user_email" jdbcType="VARCHAR"/>
+        <result property="commentUserUrl" column="comment_user_url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="XzCommentsMap">
+        select
+          comment_id, article_id, comment_date, comment_content, parent_comment_id, comment_user_name, comment_user_email, comment_user_url
+        from blog.xz_comments
+        where comment_id = #{commentId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="XzCommentsMap">
+        select
+          comment_id, article_id, comment_date, comment_content, parent_comment_id, comment_user_name, comment_user_email, comment_user_url
+        from blog.xz_comments
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="XzCommentsMap">
+        select
+        comment_id, article_id, comment_date, comment_content, parent_comment_id, comment_user_name, comment_user_email,
+        comment_user_url
+        from blog.xz_comments
+        <where>
+            <if test="commentId != null">
+                and comment_id = #{commentId}
+            </if>
+            <if test="articleId != null">
+                and article_id = #{articleId}
+            </if>
+            <if test="commentDate != null">
+                and comment_date = #{commentDate}
+            </if>
+            <if test="commentContent != null and commentContent != ''">
+                and comment_content = #{commentContent}
+            </if>
+            <if test="parentCommentId != null">
+                and parent_comment_id = #{parentCommentId}
+            </if>
+            <if test="commentUserName != null and commentUserName != ''">
+                and comment_user_name = #{commentUserName}
+            </if>
+            <if test="commentUserEmail != null and commentUserEmail != ''">
+                and comment_user_email = #{commentUserEmail}
+            </if>
+            <if test="commentUserUrl != null and commentUserUrl != ''">
+                and comment_user_url = #{commentUserUrl}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="commentId" useGeneratedKeys="true">
+        insert into blog.xz_comments(article_id, comment_date, comment_content, parent_comment_id, comment_user_name, comment_user_email, comment_user_url)
+        values (#{articleId}, #{commentDate}, #{commentContent}, #{parentCommentId}, #{commentUserName}, #{commentUserEmail}, #{commentUserUrl})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="commentId" useGeneratedKeys="true">
+        insert into blog.xz_comments(article_id, comment_date, comment_content, parent_comment_id, comment_user_name,
+        comment_user_email, comment_user_url)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.articleId}, #{entity.commentDate}, #{entity.commentContent}, #{entity.parentCommentId},
+            #{entity.commentUserName}, #{entity.commentUserEmail}, #{entity.commentUserUrl})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="commentId" useGeneratedKeys="true">
+        insert into blog.xz_comments(article_id, comment_date, comment_content, parent_comment_id, comment_user_name,
+        comment_user_email, comment_user_url)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.articleId}, #{entity.commentDate}, #{entity.commentContent}, #{entity.parentCommentId},
+            #{entity.commentUserName}, #{entity.commentUserEmail}, #{entity.commentUserUrl})
+        </foreach>
+        on duplicate key update
+        article_id = values(article_id) , comment_date = values(comment_date) , comment_content =
+        values(comment_content) , parent_comment_id = values(parent_comment_id) , comment_user_name =
+        values(comment_user_name) , comment_user_email = values(comment_user_email) , comment_user_url =
+        values(comment_user_url)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update blog.xz_comments
+        <set>
+            <if test="articleId != null">
+                article_id = #{articleId},
+            </if>
+            <if test="commentDate != null">
+                comment_date = #{commentDate},
+            </if>
+            <if test="commentContent != null and commentContent != ''">
+                comment_content = #{commentContent},
+            </if>
+            <if test="parentCommentId != null">
+                parent_comment_id = #{parentCommentId},
+            </if>
+            <if test="commentUserName != null and commentUserName != ''">
+                comment_user_name = #{commentUserName},
+            </if>
+            <if test="commentUserEmail != null and commentUserEmail != ''">
+                comment_user_email = #{commentUserEmail},
+            </if>
+            <if test="commentUserUrl != null and commentUserUrl != ''">
+                comment_user_url = #{commentUserUrl},
+            </if>
+        </set>
+        where comment_id = #{commentId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from blog.xz_comments where comment_id = #{commentId}
+    </delete>
+
+</mapper>

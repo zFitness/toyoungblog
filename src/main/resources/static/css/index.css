@@ -1,5 +1,31 @@
+.notice {
+  padding: 20px;
+  font-family: miranafont, 'Hiragino Sans GB', STXihei, 'Microsoft YaHei',
+    SimSun, sans-serif;
+  color: #505050;
+  position: relative;
+  margin-top: -30px;
+  /* margin-bottom: 60px; */
+  background: #fbfbfb;
+  border-radius: 3px;
+}
 
+/* 头部背景部分 */
+.headertop {
+  position: relative;
+  overflow: hidden;
+}
 
+#centerbg {
+  width: 100%;
+  z-index: 0;
+  height: 550px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -1;
+}
 
 .slant-left {
   background: #fff;
@@ -82,7 +108,16 @@
   background: #fff;
 }
 
+/* 内容区 */
+.content {
+  max-width: 800px;
+  padding: 0 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 13em;
+}
 
+/* 推荐 */
 .contetn-advice-title {
   color: #757575;
   font-size: 16px;
@@ -90,6 +125,7 @@
   border-bottom: 1px dashed #ececec;
 }
 
+/* 文章 */
 .article {
   position: relative;
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div class="article" th:fragment="article-item(articleTitle)">
+      <h1 class="article-title">
+        <a href="./article.html" th:text="${articleTitle}"> 常用技巧 </a>
+      </h1>
+
+      <div class="article-time">
+                  <span
+                          class="glyphicon glyphicon-time"
+                          aria-hidden="true"
+                  ></span>
+        2020-22-11
+      </div>
+      <p>
+        Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目；Git
+        是 Linus Torvalds 为了帮助管理 L
+      </p>
+      <div class="article-info">
+        <div class="article-info-read" style="margin-right: 20px">
+                    <span
+                            class="glyphicon glyphicon-eye-open"
+                            aria-hidden="true"
+                    ></span>
+          10阅读
+        </div>
+        <div class="">
+                    <span
+                            class="glyphicon glyphicon-comment"
+                            aria-hidden="true"
+                    ></span>
+          10评论
+        </div>
+      </div>
+      <hr/>
+    </div>
+  </body>
+</html>

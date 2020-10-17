@@ -1,8 +1,26 @@
+/* 头部背景部分 */
+.headertop {
+  position: relative;
+  overflow: hidden;
+}
+
+#centerbg {
+  width: 100%;
+  z-index: 0;
+  height: 550px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -1;
+}
+
 @media (max-width: 605px) {
   #centerbg {
     height: 300px;
   }
 }
+
 .article-content-title {
   position: absolute;
   top: 40%;
@@ -11,6 +29,16 @@
   text-align: center;
 }
 
+/* 文章内容 */
+.content {
+  max-width: 800px;
+  padding: 0 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 13em;
+}
+
+/* 文章标签，打赏 */
 .article-footer {
   padding: 20px 10px;
   margin-top: 30px;
@@ -226,7 +254,7 @@ li.wedonate:after {
 
 .post-squares.nextprev .next .info {
   right: 40px;
-  bottom: 40px;
+  bottom: 20px;
 }
 .post-squares.nextprev .next .info {
   text-align: right;

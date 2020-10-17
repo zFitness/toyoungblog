@@ -8,3 +8,13 @@ spring:
     cache: false  #是否使用缓存
     mode: HTML  #严格的HTML语法模式
     suffix: .html  #后缀名
+
+    # 数据源
+  datasource:
+    # 8.0 的驱动使用cj的那个驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库地址， useSSL: 不使用安全套接字   serverTimeZone: 时区
+    # 8.0 以上的驱动写法如下
+    url: jdbc:mysql://localhost:3306/blog?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 131452

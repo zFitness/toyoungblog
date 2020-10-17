@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zheng.blog.dao.XzUsersDao">
+
+    <resultMap type="pers.zheng.blog.entity.XzUsers" id="XzUsersMap">
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="userPassword" column="user_password" jdbcType="VARCHAR"/>
+        <result property="userEmail" column="user_email" jdbcType="VARCHAR"/>
+        <result property="userNickname" column="user_nickname" jdbcType="VARCHAR"/>
+        <result property="userProfilePhoto" column="user_profile_photo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="XzUsersMap">
+        select
+          user_id, user_name, user_password, user_email, user_nickname, user_profile_photo
+        from blog.xz_users
+        where user_id = #{userId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="XzUsersMap">
+        select
+          user_id, user_name, user_password, user_email, user_nickname, user_profile_photo
+        from blog.xz_users
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="XzUsersMap">
+        select
+        user_id, user_name, user_password, user_email, user_nickname, user_profile_photo
+        from blog.xz_users
+        <where>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                and user_password = #{userPassword}
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                and user_email = #{userEmail}
+            </if>
+            <if test="userNickname != null and userNickname != ''">
+                and user_nickname = #{userNickname}
+            </if>
+            <if test="userProfilePhoto != null and userProfilePhoto != ''">
+                and user_profile_photo = #{userProfilePhoto}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="userId" useGeneratedKeys="true">
+        insert into blog.xz_users(user_name, user_password, user_email, user_nickname, user_profile_photo)
+        values (#{userName}, #{userPassword}, #{userEmail}, #{userNickname}, #{userProfilePhoto})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="userId" useGeneratedKeys="true">
+        insert into blog.xz_users(user_name, user_password, user_email, user_nickname, user_profile_photo)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userName}, #{entity.userPassword}, #{entity.userEmail}, #{entity.userNickname},
+            #{entity.userProfilePhoto})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="userId" useGeneratedKeys="true">
+        insert into blog.xz_users(user_name, user_password, user_email, user_nickname, user_profile_photo)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userName}, #{entity.userPassword}, #{entity.userEmail}, #{entity.userNickname},
+            #{entity.userProfilePhoto})
+        </foreach>
+        on duplicate key update
+        user_name = values(user_name) , user_password = values(user_password) , user_email = values(user_email) ,
+        user_nickname = values(user_nickname) , user_profile_photo = values(user_profile_photo)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update blog.xz_users
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                user_password = #{userPassword},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email = #{userEmail},
+            </if>
+            <if test="userNickname != null and userNickname != ''">
+                user_nickname = #{userNickname},
+            </if>
+            <if test="userProfilePhoto != null and userProfilePhoto != ''">
+                user_profile_photo = #{userProfilePhoto},
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from blog.xz_users where user_id = #{userId}
+    </delete>
+
+</mapper>

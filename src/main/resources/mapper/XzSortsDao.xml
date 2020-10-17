@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zheng.blog.dao.XzSortsDao">
+
+    <resultMap type="pers.zheng.blog.entity.XzSorts" id="XzSortsMap">
+        <result property="sortId" column="sort_id" jdbcType="INTEGER"/>
+        <result property="sortName" column="sort_name" jdbcType="VARCHAR"/>
+        <result property="sortAlias" column="sort_alias" jdbcType="VARCHAR"/>
+        <result property="sortDescription" column="sort_description" jdbcType="VARCHAR"/>
+        <result property="parentSortId" column="parent_sort_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="XzSortsMap">
+        select
+          sort_id, sort_name, sort_alias, sort_description, parent_sort_id
+        from blog.xz_sorts
+        where sort_id = #{sortId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="XzSortsMap">
+        select
+          sort_id, sort_name, sort_alias, sort_description, parent_sort_id
+        from blog.xz_sorts
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="XzSortsMap">
+        select
+        sort_id, sort_name, sort_alias, sort_description, parent_sort_id
+        from blog.xz_sorts
+        <where>
+            <if test="sortId != null">
+                and sort_id = #{sortId}
+            </if>
+            <if test="sortName != null and sortName != ''">
+                and sort_name = #{sortName}
+            </if>
+            <if test="sortAlias != null and sortAlias != ''">
+                and sort_alias = #{sortAlias}
+            </if>
+            <if test="sortDescription != null and sortDescription != ''">
+                and sort_description = #{sortDescription}
+            </if>
+            <if test="parentSortId != null">
+                and parent_sort_id = #{parentSortId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="sortId" useGeneratedKeys="true">
+        insert into blog.xz_sorts(sort_name, sort_alias, sort_description, parent_sort_id)
+        values (#{sortName}, #{sortAlias}, #{sortDescription}, #{parentSortId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="sortId" useGeneratedKeys="true">
+        insert into blog.xz_sorts(sort_name, sort_alias, sort_description, parent_sort_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.sortName}, #{entity.sortAlias}, #{entity.sortDescription}, #{entity.parentSortId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="sortId" useGeneratedKeys="true">
+        insert into blog.xz_sorts(sort_name, sort_alias, sort_description, parent_sort_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.sortName}, #{entity.sortAlias}, #{entity.sortDescription}, #{entity.parentSortId})
+        </foreach>
+        on duplicate key update
+        sort_name = values(sort_name) , sort_alias = values(sort_alias) , sort_description = values(sort_description) ,
+        parent_sort_id = values(parent_sort_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update blog.xz_sorts
+        <set>
+            <if test="sortName != null and sortName != ''">
+                sort_name = #{sortName},
+            </if>
+            <if test="sortAlias != null and sortAlias != ''">
+                sort_alias = #{sortAlias},
+            </if>
+            <if test="sortDescription != null and sortDescription != ''">
+                sort_description = #{sortDescription},
+            </if>
+            <if test="parentSortId != null">
+                parent_sort_id = #{parentSortId},
+            </if>
+        </set>
+        where sort_id = #{sortId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from blog.xz_sorts where sort_id = #{sortId}
+    </delete>
+
+</mapper>
