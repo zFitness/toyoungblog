@@ -15,6 +15,7 @@
     <script th:src="@{/static/lib/jquery/jquery-3.4.1.min.js}"></script>
     <script th:src="@{/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
     <script th:src="@{/static/js/sidebar.js}"></script>
+    <script th:src="@{/static/js/search.js}"></script>
 
     <link rel="stylesheet" th:href="@{/static/css/index.css}"/>
   </head>
@@ -24,7 +25,20 @@
     <div id="wrapper" style="left: 0">
       <!-- 侧边栏 -->
       <div th:replace="~{common/sidebar::sidebar}"></div>
-
+      <!-- 搜索页面 -->
+      <form class="js-search search-form search-form--modal" method="get" th:action="@{/search}" role="search">
+        <div class="search-form__inner">
+          <div>
+            <p class="micro mb-">
+              想要找点什么呢？
+            </p>
+            <i class="iconfont iconsearch">
+            </i><input class="text-input" type="search" name="keyword" placeholder="Search" required="">
+          </div>
+        </div>
+        <div class="search_close">
+        </div>
+      </form>
       <!-- 主体区域 -->
       <div class="main-wrapper">
         <!-- 侧边栏按钮 -->
@@ -33,6 +47,7 @@
             <i class="iconfont iconadashboardbuttonterminal"></i>
           </div>
         </div>
+
 
         <!-- 内容区的布局 -->
         <div id="dark-wrapper">

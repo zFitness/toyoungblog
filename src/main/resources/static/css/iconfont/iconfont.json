@@ -6,6 +6,13 @@
   "description": "个人主页x'm",
   "glyphs": [
     {
+      "icon_id": "11269056",
+      "name": "search 搜索 查找",
+      "font_class": "search",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
       "icon_id": "11982657",
       "name": "Home, homepage, menu",
       "font_class": "Homehomepagemenu",
