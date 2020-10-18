@@ -24,4 +24,17 @@
             xz_articles
     </select>
 
+    <select id="getArticleById" resultType="pers.zheng.blog.vo.ArticleContentVo">
+        SELECT
+            article_id,
+            article_content,
+            article_date,
+            article_like_count,
+            article_title,
+            article_comment_count,
+            article_view_count
+        FROM
+            xz_articles
+        WHERE article_id = #{articleId}
+    </select>
 </mapper>

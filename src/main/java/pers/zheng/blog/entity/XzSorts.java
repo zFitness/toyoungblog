@@ -1,5 +1,7 @@
 package pers.zheng.blog.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-10-11 23:23:03
  */
+@Data
 public class XzSorts implements Serializable {
     private static final long serialVersionUID = -88853805527558525L;
     /**
@@ -31,45 +34,5 @@ public class XzSorts implements Serializable {
      */
     private Integer parentSortId;
 
-
-    public Integer getSortId() {
-        return sortId;
-    }
-
-    public void setSortId(Integer sortId) {
-        this.sortId = sortId;
-    }
-
-    public String getSortName() {
-        return sortName;
-    }
-
-    public void setSortName(String sortName) {
-        this.sortName = sortName;
-    }
-
-    public String getSortAlias() {
-        return sortAlias;
-    }
-
-    public void setSortAlias(String sortAlias) {
-        this.sortAlias = sortAlias;
-    }
-
-    public String getSortDescription() {
-        return sortDescription;
-    }
-
-    public void setSortDescription(String sortDescription) {
-        this.sortDescription = sortDescription;
-    }
-
-    public Integer getParentSortId() {
-        return parentSortId;
-    }
-
-    public void setParentSortId(Integer parentSortId) {
-        this.parentSortId = parentSortId;
-    }
 
 }

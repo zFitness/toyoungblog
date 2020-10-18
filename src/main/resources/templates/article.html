@@ -1,79 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>侧边栏抽屉</title>
-    <link rel="stylesheet" href="css/sidebar.css" />
+
+    <link rel="stylesheet" th:href="@{/static/css/sidebar.css}"/>
     <link
-      rel="stylesheet"
-      href="./lib/bootstrap-3.3.7-dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            th:href="@{/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
     />
-    <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./css/article.css" />
-    <link rel="stylesheet" href="./css/iconfont//iconfont.css" />
-    <script src="./lib/jquery/jquery-3.4.1.min.js"></script>
-    <script src="./lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="js/sidebar.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
-    <script src="./js/donate.js"></script>
+    <link rel="stylesheet" th:href="@{/static/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/iconfont//iconfont.css}"/>
+    <script th:src="@{/static/lib/jquery/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/static/js/sidebar.js}"></script>
+    <script th:src="@{/static/js/donate.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/article.css}"/>
+
   </head>
   <body>
     <!-- 作者：袁金 -->
     <!-- 请不要用于非法行为 -->
     <div id="wrapper" style="left: 0">
       <!-- 侧边栏 -->
-      <div class="sidebar">
-        <div class="headSculpture">
-          <img src="images/headSculpture.jpg" alt="" />
-          <p>昵称：粉红色少女</p>
-        </div>
-        <div class="option">
-          <ul>
-            <li>
-              <img src="images/home.png" alt="" />
-              <p>首页</p>
-            </li>
-            <li>
-              <img src="images/works.png" alt="" />
-              <p>我的作品</p>
-            </li>
-            <li>
-              <img src="images/release.png" alt="" />
-              <p>发布作品</p>
-            </li>
-            <li>
-              <img src="images/collection.png" alt="" />
-              <p>我的收藏</p>
-            </li>
-            <li>
-              <img src="images/setup.png" alt="" />
-              <p>设置</p>
-            </li>
-            <li class="dropdown">
-              <a
-                href="#"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >更多 <span class="caret"></span
-              ></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <div th:replace="~{common/sidebar::sidebar}"></div>
 
       <!-- 主体区域 -->
       <div class="main-wrapper">
@@ -84,89 +36,38 @@
         <!-- 内容区的布局 -->
         <div id="dark-wrapper">
           <!-- 头部导航栏 -->
-          <header class="site-header">
-            <!-- 顶部NavBar -->
-            <nav class="navbar navbar-default xz-navbar-head" id="site-nav">
-              <div class="container">
-                <!-- 菜单栏 -->
-                <div
-                  class="collapse navbar-collapse navbar-right"
-                  id="bs-example-navbar-collapse-1"
-                >
-                  <ul class="nav navbar-nav">
-                    <li class="active">
-                      <a href="#"
-                        >首页 <span class="sr-only">(current)</span></a
-                      >
-                    </li>
-                    <li><a href="#">关于</a></li>
-                    <li class="dropdown">
-                      <a
-                        href="#"
-                        class="dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >更多 <span class="caret"></span
-                      ></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Search"
-                        style="border-radius: 18px"
-                      />
-                    </div>
-                    <!-- <button type="submit" class="btn btn-default">Submit</button> -->
-                  </form>
-                </div>
-              </div>
-            </nav>
-          </header>
+          <div th:replace="~{common/header::header}"></div>
 
           <!-- 背景图 -->
           <div class="headertop">
             <div
-              id="centerbg"
-              style="
+                    id="centerbg"
+                    style="
                 background-image: url(https://jensonhui.top/usr/themes/Akina/images/postbg/1.jpg);
               "
             >
               <div class="article-content-title">
-                <h1>Git是一个开源的分布</h1>
+                <h1 th:text="${article.getArticleTitle()}"></h1>
                 <span class="" style="margin-right: 20px">
                   <span
-                    class="glyphicon glyphicon-time"
-                    aria-hidden="true"
+                          class="glyphicon glyphicon-time"
+                          aria-hidden="true"
                   ></span>
-                  2020-22-11
+                  <span th:text="${#dates.format(article.getArticleDate(),'yyyy-MM-dd')}"></span>
                 </span>
                 <span class="" style="margin-right: 20px">
                   <span
-                    class="glyphicon glyphicon-eye-open"
-                    aria-hidden="true"
+                          class="glyphicon glyphicon-eye-open"
+                          aria-hidden="true"
                   ></span>
-                  10阅读
+                  <span th:text="${article.getArticleViewCount()}"></span>阅读
                 </span>
                 <span class="" style="margin-right: 20px">
                   <span
-                    class="glyphicon glyphicon-comment"
-                    aria-hidden="true"
+                          class="glyphicon glyphicon-comment"
+                          aria-hidden="true"
                   ></span>
-                  10评论
+                  <span th:text="${article.getArticleCommentCount()}"></span>评论
                 </span>
               </div>
             </div>
@@ -175,19 +76,20 @@
           <!-- 主体内容 -->
           <div class="content">
             <div class="article">
-              <div id="article-content"></div>
+              <!-- markdown转html-->
+              <div id="article-content" th:utext="${article.getArticleContentHTML()}"></div>
               <div class="article-footer">
                 <div class="donate">
                   <a id="donate-btn">赏</a>
                   <ul class="donate_inner" style="display: none">
                     <li class="wedonate">
                       <img
-                        src="https://jensonhui.top/usr/themes/Akina/images/donate/wedo.jpg"
+                              src="https://jensonhui.top/usr/themes/Akina/images/donate/wedo.jpg"
                       />
                     </li>
                     <li class="alidonate">
                       <img
-                        src="https://jensonhui.top/usr/themes/Akina/images/donate/alido.jpg"
+                              src="https://jensonhui.top/usr/themes/Akina/images/donate/alido.jpg"
                       />
                     </li>
                   </ul>
@@ -199,79 +101,48 @@
               </div>
             </div>
             <!-- 版权提示 -->
-            <div class="open-message">
-              <p>
-                声明：Jensonhui's
-                blog|版权所有，违者必究|如未注明，均为原创|本网站采用<a
-                  href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  >BY-NC-SA</a
-                >协议进行授权
-              </p>
-              <p>
-                转载：转载请注明原文链接 -
-                <a href="https://jensonhui.top/archives/19.html"
-                  >Git常用命令总结</a
-                >
-              </p>
-            </div>
+            <div th:replace="~{common/copyright::copyright}"></div>
             <!-- 下一篇文章 -->
             <section class="post-squares nextprev">
               <div class="post-nepre half previous">
                 <a href="https://jensonhui.top/archives/82.html" rel="prev"
-                  ><div
-                    class="background"
-                    style="
+                >
+                  <div
+                          class="background"
+                          style="
                       background-image: url(https://jensonhui.top/usr/themes/Akina/images/random/deu7.jpg);
                     "
                   ></div>
                   <span class="label">Previous Post</span>
                   <div class="info">
                     <h3>Js + Css3 制作一个导航条</h3>
-                    <hr /></div
-                ></a>
+                    <hr/>
+                  </div
+                  >
+                </a>
               </div>
               <div class="post-nepre half next">
                 <a href="https://jensonhui.top/archives/80.html" rel="next"
-                  ><div
-                    class="background"
-                    style="
+                >
+                  <div
+                          class="background"
+                          style="
                       background-image: url(https://jensonhui.top/usr/themes/Akina/images/random/deu3.jpg);
                     "
                   ></div>
                   <span class="label">Next Post</span>
                   <div class="info">
                     <h3>漂亮的Nav导航动效</h3>
-                    <hr /></div
-                ></a>
+                    <hr/>
+                  </div
+                  >
+                </a>
               </div>
             </section>
           </div>
 
           <!-- 底部 footer -->
-          <footer class="site-footer" style="margin-top: 10px">
-            <div class="site-footer-content">
-              Copyright © 2020 by
-              <a
-                href="https://zmblog.wang/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                >zm</a
-              >
-              . All rights reserved.
-              <div class="footertext">
-                <p>
-                  <a
-                    href="http://www.beian.miit.gov.cn/"
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                    >京ICP备18053796号-1</a
-                  >
-                </p>
-              </div>
-            </div>
-          </footer>
+          <div th:replace="~{common/footer :: footer}"></div>
         </div>
       </div>
     </div>

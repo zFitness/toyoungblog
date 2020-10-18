@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.XzArticlesDao;
 import pers.zheng.blog.entity.XzArticles;
 import pers.zheng.blog.service.XzArticlesService;
+import pers.zheng.blog.vo.ArticleContentVo;
 import pers.zheng.blog.vo.ArticleItemVo;
 
 import java.util.List;
@@ -29,5 +30,10 @@ public class XzArticlesServiceImpl implements XzArticlesService {
     @Override
     public List<ArticleItemVo> getArticleItems() {
         return xzArticlesDao.getArticleItem();
+    }
+
+    @Override
+    public ArticleContentVo getArticleById(Long articleId) {
+        return xzArticlesDao.getArticleById(articleId);
     }
 }

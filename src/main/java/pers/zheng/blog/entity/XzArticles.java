@@ -52,5 +52,5 @@ public class XzArticles implements Serializable {
     /**
      * 文章摘要
      */
-    private Long articleSummary;
+    private String articleSummary;
 }

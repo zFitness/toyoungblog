@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>侧边栏抽屉</title>
-    <link rel="stylesheet" href="/static/css/sidebar.css"/>
+    <link rel="stylesheet" th:href="@{/static/css/sidebar.css}"/>
     <link
             rel="stylesheet"
-            href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css"
+            th:href="@{/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
     />
-    <link rel="stylesheet" href="/static/css/base.css"/>
-    <link rel="stylesheet" href="/static/css/index.css"/>
-    <link rel="stylesheet" href="/static/css/iconfont/iconfont.css"/>
-    <script src="/static/lib/jquery/jquery-3.4.1.min.js"></script>
-    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="/static/js/sidebar.js"></script>
+    <link rel="stylesheet" th:href="@{/static/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/iconfont//iconfont.css}"/>
+    <script th:src="@{/static/lib/jquery/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/static/js/sidebar.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/static/css/index.css}"/>
   </head>
   <body>
     <!-- 作者：袁金 -->
@@ -47,7 +48,7 @@
               <div class="focusinfo">
                 <div class="header-tou">
                   <a
-                          href="https://jensonhui.top/"
+                          th:href="@{/}"
                           target="_blank"
                           rel="nofollow noopener noreferrer"
                   ><img src="//q.qlogo.cn/g?b=qq&amp;nk=1786128750&amp;s=160"
@@ -173,11 +174,11 @@
             <!-- 博文内容 -->
             <div class="blog">
               <h1 class="contetn-advice-title">博文</h1>
-
+              <!-- 文章列表项 -->
               <div class="article"
                    th:each="articleItem : ${articleItems}">
                 <h1 class="article-title">
-                  <a href="http://zmblog.wang"
+                  <a th:href="${'/article/' + articleItem.getArticleId()}"
                      th:text="${articleItem.articleTitle}"> </a>
                 </h1>
 

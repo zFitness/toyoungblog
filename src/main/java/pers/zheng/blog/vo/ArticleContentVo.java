@@ -1,28 +1,34 @@
 package pers.zheng.blog.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-import pers.zheng.blog.entity.XzSorts;
 
 import java.util.Date;
 
 /**
- * @ClassName ArticleSummaryVO
- * @Description 文章概要
+ * @ClassName ArticleContentVo
+ * @Description TODO
  * @Author zheng
- * @Date 2020/10/12 12:24
+ * @Date 2020/10/17 18:24
  * @Version 1.0
  */
 @Data
-public class ArticleItemVo {
+public class ArticleContentVo {
     /**
      * 文章id
      */
     @TableId(type = IdType.AUTO)
     private Long articleId;
+    /**
+     * 文章内容
+     */
+    @TableField("article_content")
+    private String articleContent;
+
+
+    private String articleContentHTML;
     /**
      * 文章标题
      */
@@ -38,7 +44,6 @@ public class ArticleItemVo {
     /**
      * 文章发布日期
      */
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date articleDate;
     /**
      * 文章评论数
@@ -49,8 +54,4 @@ public class ArticleItemVo {
      * 文章摘要
      */
     private String articleSummary;
-
-    private String articleContent;
-
-    private XzSorts sorts;
 }

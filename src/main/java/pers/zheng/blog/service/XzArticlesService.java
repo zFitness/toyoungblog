@@ -1,6 +1,7 @@
 package pers.zheng.blog.service;
 
 import pers.zheng.blog.entity.XzArticles;
+import pers.zheng.blog.vo.ArticleContentVo;
 import pers.zheng.blog.vo.ArticleItemVo;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface XzArticlesService {
     List<XzArticles> getAll();
 
     List<ArticleItemVo> getArticleItems();
+
+    ArticleContentVo getArticleById(Long articleId);
 }
