@@ -1,0 +1,27 @@
+/* 内容区 */
+.content {
+    max-width: 800px;
+    padding: 0 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 13em;
+    margin-top: 60px;
+}
+
+.content-head {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.content-head-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-origin: border-box;
+    width: 100%;
+    height: 400px;
+}
