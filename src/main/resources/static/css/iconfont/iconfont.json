@@ -6,6 +6,48 @@
   "description": "个人主页x'm",
   "glyphs": [
     {
+      "icon_id": "11982657",
+      "name": "Home, homepage, menu",
+      "font_class": "Homehomepagemenu",
+      "unicode": "e9ce",
+      "unicode_decimal": 59854
+    },
+    {
+      "icon_id": "5643514",
+      "name": "关于",
+      "font_class": "guanyu",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "5809108",
+      "name": "归档",
+      "font_class": "guidang",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "8474287",
+      "name": "link",
+      "font_class": "link",
+      "unicode": "e6bd",
+      "unicode_decimal": 59069
+    },
+    {
+      "icon_id": "13037216",
+      "name": "tag",
+      "font_class": "tag",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "14343651",
+      "name": "github",
+      "font_class": "github1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "231986",
       "name": "notice",
       "font_class": "notice",
