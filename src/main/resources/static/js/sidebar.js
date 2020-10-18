@@ -11,6 +11,7 @@ $(function () {
       $('.headSculpture p').addClass('opacity')
       $('#dark-wrapper').addClass('dark')
       $('.openNav').addClass('openNav-i-white')
+      $('.main-wrapper').css('overflow-y', 'hidden')
       setTimeout(function () {
         $('.option ul>li').addClass('li')
       }, 600)
@@ -25,6 +26,7 @@ $(function () {
         $('.option ul>li').removeClass('li')
         $('#dark-wrapper').removeClass('dark')
         $('.openNav').removeClass('openNav-i-white')
+        $('.main-wrapper').css('overflow-y', 'scroll')
       }, 300)
     }
   })
