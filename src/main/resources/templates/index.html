@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--  公共的 head 部分-->
-  <head th:replace="~{common/header::common_header(~{::title}, ~{::link}, ~{})}">
+  <!--  公共的 head 部分-->
+  <head th:replace="~{common/header::common_header(~{::title}, ~{::link}, ~{::script})}">
     <title>首页</title>
     <link rel="stylesheet" th:href="@{/static/css/index.css}"/>
+    <link rel="stylesheet" th:href="@{/static/lib/pagination/my-page.css}"/>
+    <script th:src="@{/static/lib/pagination/my-page.js}"></script>
+    <script>
+        $(document).ready(function () {
+            myPageInit({
+                pages: 100,
+                currentPage: 1,
+                element: '.my-page',
+                callback: function (page) {
+                    console.log("当前页:", page);
+                }
+            });
+        })
+    </script>
   </head>
   <body>
     <div id="wrapper" style="left: 0">
@@ -189,7 +203,7 @@
                           class="glyphicon glyphicon-time"
                           aria-hidden="true"
                   ></span>
-                  <span th:text="${#dates.format(articleItem.articleDate,'yyyy-MM-dd')}"></span>
+                  <span th:text="${#dates.format(articleItem.articleDate,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </div>
                 <p th:text="${articleItem.articleSummary}">
                 </p>
@@ -208,11 +222,15 @@
                     ></span>
                     <span th:text="${articleItem.articleCommentCount}"></span>评论
                   </div>
-                  <!-- <div class="article-info-more">
-      <a>...</a>
-    </div> -->
+<!--                  <div class="article-info-more">-->
+<!--                    <a>...</a>-->
+<!--                  </div>-->
                 </div>
-                <hr/>
+              </div>
+            </div>
+
+            <div style="text-align: center;">
+              <div class="my-page">
               </div>
             </div>
           </div>

@@ -26,6 +26,15 @@
     margin-bottom: 0px;
 }
 
+/*分页*/
+.page-navigation-wrapper {
+    width: 100%;
+}
+
+.page-navigation-wrapper nav {
+    text-align: center;
+}
+
 /* 底部 footer */
 .site-footer {
     padding: 2%;
