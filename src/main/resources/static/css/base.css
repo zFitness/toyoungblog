@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+
 /* 头部导航栏 */
 .site-header {
     width: 100%;
@@ -110,7 +111,7 @@
 }
 
 .search-form i {
-    font-size: 32px!important;
+    font-size: 32px !important;
     font-size: 2rem;
     line-height: 0.4;
     color: #ddd;

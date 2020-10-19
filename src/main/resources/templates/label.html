@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>侧边栏抽屉</title>
-    <link rel="stylesheet" th:href="@{/static/css/sidebar.css}"/>
-    <link
-            rel="stylesheet"
-            th:href="@{/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
-    />
-    <link rel="stylesheet" th:href="@{/static/css/base.css}"/>
-    <link rel="stylesheet" th:href="@{/static/css/iconfont//iconfont.css}"/>
-    <script th:src="@{/static/lib/jquery/jquery-3.4.1.min.js}"></script>
-    <script th:src="@{/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
-    <script th:src="@{/static/js/sidebar.js}"></script>
-    <script th:src="@{/static/js/search.js}"></script>
-
+  <head th:replace="~{common/header::common_header(~{::title}, ~{::link},~{})}">
+    <title>标签</title>
     <link rel="stylesheet" th:href="@{/static/css/label.css}"/>
   </head>
+
+
   <body>
 
     <div id="wrapper" style="left: 0">
@@ -51,7 +38,7 @@
         <!-- 内容区的布局 -->
         <div id="dark-wrapper">
           <!-- 头部导航栏 -->
-          <div th:replace="~{common/header::header}"></div>
+          <div th:replace="~{common/headbar::header}"></div>
           <!-- 背景图 -->
           <div class="headertop">
             <div
