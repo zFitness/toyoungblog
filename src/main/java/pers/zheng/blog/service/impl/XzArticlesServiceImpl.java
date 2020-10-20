@@ -46,4 +46,10 @@ public class XzArticlesServiceImpl implements XzArticlesService {
         Page<ArticleItemVo> page = new Page<>(p, size);
         return xzArticlesDao.getArticleItemByLabel(page, 1, labelId);
     }
+
+    @Override
+    public IPage<ArticleItemVo> getArticleItemsByName(int p, int size, String keyword) {
+        Page<ArticleItemVo> page = new Page<>(p, size);
+        return xzArticlesDao.getArticleItemsByName(page, 1, keyword);
+    }
 }

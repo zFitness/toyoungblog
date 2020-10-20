@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{common/header::common_header(~{::title}, ~{::link},~{::script})}">
+    <title>标签</title>
+    <link rel="stylesheet" th:href="@{/static/css/label.css}"/>
+    <link rel="stylesheet" th:href="@{/static/lib/pagination/my-page.css}"/>
+    <script th:src="@{/static/lib/pagination/my-page.js}"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function () {
+            myPageInit({
+                pages: [[${articleItems.getPages()}]],
+                currentPage: [[${articleItems.getCurrent()}]],
+                element: '.my-page',
+                callback: function (page) {
+                    console.log(page)
+                    if (page != [[${articleItems.getCurrent()}]]) {
+                        location.href = [[${#httpServletRequest.getContextPath()}]]
+                            + "/article/search?keyword=" + [[${keyword}]]
+                            + "&p=" + page;
+                    }
+                }
+            });
+        })
+        /*]]>*/
+    </script>
+  </head>
+
+
+  <body>
+
+    <div id="wrapper" style="left: 0">
+      <!-- 侧边栏 -->
+      <div th:replace="~{common/sidebar::sidebar}"></div>
+      <!-- 搜索页面 -->
+      <form class="js-search search-form search-form--modal" method="get" th:action="@{/search}" role="search">
+        <div class="search-form__inner">
+          <div>
+            <p class="micro mb-">
+              想要找点什么呢？
+            </p>
+            <i class="iconfont iconsearch">
+            </i><input class="text-input" type="search" name="keyword" placeholder="Search" required="">
+          </div>
+        </div>
+        <div class="search_close">
+        </div>
+      </form>
+      <!-- 主体区域 -->
+      <div class="main-wrapper">
+        <!-- 侧边栏按钮 -->
+        <div>
+          <div class="openNav">
+            <i class="iconfont iconadashboardbuttonterminal"></i>
+          </div>
+        </div>
+
+
+        <!-- 内容区的布局 -->
+        <div id="dark-wrapper">
+          <!-- 头部导航栏 -->
+          <div th:replace="~{common/headbar::header}"></div>
+
+          <!-- 主题内容 -->
+          <div class="content">
+            <div class="tag-title">
+              <h1>搜索结果: 标签
+                “<span th:text="${keyword}"></span>”下的文章</h1>
+            </div>
+            <!-- 博文内容 -->
+            <div class="blog">
+              <div class="article"
+                   th:each="articleItem : ${articleItems.getRecords()}">
+                <h1 class="article-title">
+                  <a th:href="${'/article/' + articleItem.getArticleId()}"
+                     th:text="${articleItem.articleTitle}"> </a>
+                </h1>
+
+                <div class="article-time">
+                  <span
+                          class="glyphicon glyphicon-time"
+                          aria-hidden="true"
+                  ></span>
+                  <span th:text="${#dates.format(articleItem.articleDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                </div>
+                <p th:text="${articleItem.articleSummary}">
+                </p>
+                <div class="article-info">
+                  <div class="article-info-read" style="margin-right: 20px">
+                    <span
+                            class="glyphicon glyphicon-eye-open"
+                            aria-hidden="true"
+                    ></span>
+                    <span th:text="${articleItem.articleViewCount}"></span>阅读
+                  </div>
+                  <div class="" style="margin-right: 20px">
+                    <span
+                            class="glyphicon glyphicon-comment"
+                            aria-hidden="true"
+                    ></span>
+                    <span th:text="${articleItem.articleCommentCount}"></span>评论
+                  </div>
+                  <!--                  <div class="article-info-more">-->
+                  <!--                    <a>...</a>-->
+                  <!--                  </div>-->
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: center;">
+              <div class="my-page">
+              </div>
+            </div>
+          </div>
+          <!-- 底部 footer -->
+          <div th:replace="~{common/footer :: footer}"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

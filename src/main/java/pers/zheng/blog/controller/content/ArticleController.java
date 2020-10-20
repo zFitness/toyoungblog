@@ -1,5 +1,6 @@
 package pers.zheng.blog.controller.content;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.vladsch.flexmark.ext.tables.TablesExtension;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
@@ -11,10 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pers.zheng.blog.service.XzArticlesService;
 import pers.zheng.blog.vo.ArticleContentVo;
+import pers.zheng.blog.vo.ArticleItemVo;
 
 import java.util.Arrays;
 
@@ -39,7 +40,7 @@ public class ArticleController {
         // markdown to image
         MutableDataSet options = new MutableDataSet();
         options.setFrom(ParserEmulationProfile.MARKDOWN);
-        options.set(Parser.EXTENSIONS, Arrays.asList(new Extension[] { TablesExtension.create()}));
+        options.set(Parser.EXTENSIONS, Arrays.asList(new Extension[]{TablesExtension.create()}));
         Parser parser = Parser.builder(options).build();
         HtmlRenderer renderer = HtmlRenderer.builder(options).build();
 
@@ -48,5 +49,17 @@ public class ArticleController {
         log.info(articleContentVO.getArticleContentHTML());
         model.addAttribute("article", articleContentVO);
         return "article";
+    }
+
+    @GetMapping("/article/search")
+    public String search(Model model,
+                         @RequestParam("keyword") String keyword,
+                         @RequestParam(value = "p", defaultValue = "1", required = false) int p) {
+        IPage<ArticleItemVo> articleItems = articlesService.getArticleItemsByName(p, 10, keyword);
+        log.info(articleItems.getRecords().toString());
+        log.info(articleItems.getCurrent() + "");
+        model.addAttribute("articleItems", articleItems);
+        model.addAttribute("keyword", keyword);
+        return "search";
     }
 }

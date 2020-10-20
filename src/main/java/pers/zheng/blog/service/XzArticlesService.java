@@ -21,4 +21,6 @@ public interface XzArticlesService {
     ArticleContentVo getArticleById(Long articleId);
 
     IPage<ArticleItemVo> getArticleItemsByLabel(int p, Integer labelId, int size);
+
+    IPage<ArticleItemVo> getArticleItemsByName(int p, int size, String keyword);
 }
