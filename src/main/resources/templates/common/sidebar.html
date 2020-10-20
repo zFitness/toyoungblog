@@ -3,30 +3,35 @@
   <body>
     <div class="sidebar" th:fragment="sidebar">
       <div class="headSculpture">
-        <img src="/static/images/headSculpture.jpg" alt=""/>
-        <p>昵称：粉红色少女</p>
+        <img src="http://q.qlogo.cn/g?b=qq&nk=1786128750&s=160" alt=""/>
+        <p>昵称：xzF</p>
+      </div>
+      <div class="search-form-mov">
+        <input type="text" class="form-control" placeholder="搜索" aria-describedby="basic-addon2">
       </div>
       <div class="option">
         <ul>
           <li>
-            <img src="/static/images/home.png" alt=""/>
-            <p>首页</p>
+            <a th:href="@{/}">
+              <p>
+                <i class="iconfont iconHomehomepagemenu"></i>
+                首页</p>
+            </a>
           </li>
           <li>
-            <img src="/static/images/works.png" alt=""/>
-            <p>我的作品</p>
+            <a th:href="@{/labels}">
+              <p><i class="iconfont icontag"></i>标签</p>
+            </a>
           </li>
           <li>
-            <img src="/static/images/release.png" alt=""/>
-            <p>发布作品</p>
+            <a th:href="@{/links}">
+              <p><i class="iconfont iconlink"></i>友链</p>
+            </a>
           </li>
           <li>
-            <img src="/static/images/collection.png" alt=""/>
-            <p>我的收藏</p>
-          </li>
-          <li>
-            <img src="/static/images/setup.png" alt=""/>
-            <p>设置</p>
+            <a th:href="@{/about}">
+              <p><i class="iconfont iconguanyu"></i>关于</p>
+            </a>
           </li>
           <li class="dropdown">
             <a
@@ -36,16 +41,18 @@
                     role="button"
                     aria-haspopup="true"
                     aria-expanded="false"
-            >更多 <span class="caret"></span
-            ></a>
+            >
+              <p><i class="iconfont iconguanyu"></i>更多<span class="caret"></span></p>
+
+            </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="#">开源项目</a></li>
+              <li><a href="#">后端</a></li>
+              <li><a href="#">安卓</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a href="#">数据库</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><a href="#">心得</a></li>
             </ul>
           </li>
         </ul>
