@@ -40,4 +40,10 @@ public class XzArticlesServiceImpl implements XzArticlesService {
     public ArticleContentVo getArticleById(Long articleId) {
         return xzArticlesDao.getArticleById(articleId);
     }
+
+    @Override
+    public IPage<ArticleItemVo> getArticleItemsByLabel(int p, Integer labelId, int size) {
+        Page<ArticleItemVo> page = new Page<>(p, size);
+        return xzArticlesDao.getArticleItemByLabel(page, 1, labelId);
+    }
 }

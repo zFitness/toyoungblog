@@ -23,4 +23,6 @@ public interface XzArticlesDao extends BaseMapper<XzArticles> {
     IPage<ArticleItemVo> getArticleItem(Page<?> page, Integer state);
 
     ArticleContentVo getArticleById(Long articleId);
+
+    IPage<ArticleItemVo> getArticleItemByLabel(Page<ArticleItemVo> page, int state, int labelId);
 }

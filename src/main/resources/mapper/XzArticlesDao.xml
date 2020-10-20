@@ -39,4 +39,24 @@
             xz_articles
         WHERE article_id = #{articleId}
     </select>
+
+    <select id="getArticleItemByLabel" resultType="pers.zheng.blog.vo.ArticleItemVo">
+        SELECT
+            a.article_id,
+            a.article_title,
+            a.article_view_count,
+            a.article_comment_count,
+            a.article_summary,
+            a.article_date
+        FROM
+            xz_articles a
+        JOIN
+            xz_article_label b
+        on
+            a.article_id = b.article_id
+        WHERE
+	        b.label_id = #{labelId}
+	    AND
+	        a.article_status = #{state}
+    </select>
 </mapper>
