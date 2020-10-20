@@ -47,9 +47,11 @@
             </div>
             <!-- 博文内容 -->
             <div class="blog">
-              <div class="article">
+              <div class="article"
+                   th:each="articleItem : ${articleItems}">
                 <h1 class="article-title">
-                  <a href="./article.html"> 常用技巧 </a>
+                  <a th:href="${'/article/' + articleItem.getArticleId()}"
+                     th:text="${articleItem.articleTitle}"> </a>
                 </h1>
 
                 <div class="article-time">
@@ -57,11 +59,9 @@
                           class="glyphicon glyphicon-time"
                           aria-hidden="true"
                   ></span>
-                  2020-22-11
+                  <span th:text="${#dates.format(articleItem.articleDate,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </div>
-                <p>
-                  Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目；Git
-                  是 Linus Torvalds 为了帮助管理 L
+                <p th:text="${articleItem.articleSummary}">
                 </p>
                 <div class="article-info">
                   <div class="article-info-read" style="margin-right: 20px">
@@ -69,54 +69,19 @@
                             class="glyphicon glyphicon-eye-open"
                             aria-hidden="true"
                     ></span>
-                    10阅读
-                  </div>
-                  <div class="">
-                    <span
-                            class="glyphicon glyphicon-comment"
-                            aria-hidden="true"
-                    ></span>
-                    10评论
-                  </div>
-                </div>
-                <hr/>
-              </div>
-              <div class="article">
-                <h1 class="article-title">
-                  <a href="http://zmblog.wang"> 常用技巧 </a>
-                </h1>
-
-                <div class="article-time">
-                  <span
-                          class="glyphicon glyphicon-time"
-                          aria-hidden="true"
-                  ></span>
-                  2020-22-11
-                </div>
-                <p>
-                  Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目；Git
-                  是 Linus Torvalds 为了帮助管理 L
-                </p>
-                <div class="article-info">
-                  <div class="article-info-read" style="margin-right: 20px">
-                    <span
-                            class="glyphicon glyphicon-eye-open"
-                            aria-hidden="true"
-                    ></span>
-                    10阅读
+                    <span th:text="${articleItem.articleViewCount}"></span>阅读
                   </div>
                   <div class="" style="margin-right: 20px">
                     <span
                             class="glyphicon glyphicon-comment"
                             aria-hidden="true"
                     ></span>
-                    10评论
+                    <span th:text="${articleItem.articleCommentCount}"></span>评论
                   </div>
-                  <!-- <div class="article-info-more">
-      <a>...</a>
-    </div> -->
+                  <!--                  <div class="article-info-more">-->
+                  <!--                    <a>...</a>-->
+                  <!--                  </div>-->
                 </div>
-                <hr/>
               </div>
             </div>
           </div>

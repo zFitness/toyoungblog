@@ -1,5 +1,7 @@
 package pers.zheng.blog.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.XzArticlesDao;
@@ -28,9 +30,11 @@ public class XzArticlesServiceImpl implements XzArticlesService {
     }
 
     @Override
-    public List<ArticleItemVo> getArticleItems() {
-        return xzArticlesDao.getArticleItem();
+    public IPage<ArticleItemVo> getArticleItems(int p, int size) {
+        Page<ArticleItemVo> page = new Page<>(p, size);
+        return xzArticlesDao.getArticleItem(page, 1);
     }
+
 
     @Override
     public ArticleContentVo getArticleById(Long articleId) {

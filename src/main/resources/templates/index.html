@@ -6,17 +6,23 @@
     <link rel="stylesheet" th:href="@{/static/css/index.css}"/>
     <link rel="stylesheet" th:href="@{/static/lib/pagination/my-page.css}"/>
     <script th:src="@{/static/lib/pagination/my-page.js}"></script>
-    <script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
         $(document).ready(function () {
             myPageInit({
-                pages: 10,
-                currentPage: 1,
+                pages: [[${articleItems.getPages()}]],
+                currentPage: [[${articleItems.getCurrent()}]],
                 element: '.my-page',
                 callback: function (page) {
-                    console.log("当前页:", page);
+                    console.log(page)
+                    if (page != [[${articleItems.getCurrent()}]]) {
+                        location.href = [[${#httpServletRequest.getContextPath()}]] + "/?p=" + page;
+                    }
                 }
             });
         })
+        /*]]>*/
+
     </script>
   </head>
   <body>
@@ -192,7 +198,7 @@
               <h1 class="contetn-advice-title">博文</h1>
               <!-- 文章列表项 -->
               <div class="article"
-                   th:each="articleItem : ${articleItems}">
+                   th:each="articleItem : ${articleItems.getRecords()}">
                 <h1 class="article-title">
                   <a th:href="${'/article/' + articleItem.getArticleId()}"
                      th:text="${articleItem.articleTitle}"> </a>

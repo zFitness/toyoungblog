@@ -1,6 +1,8 @@
 package pers.zheng.blog.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import pers.zheng.blog.entity.XzArticles;
@@ -18,7 +20,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface XzArticlesDao extends BaseMapper<XzArticles> {
-    List<ArticleItemVo> getArticleItem();
+    IPage<ArticleItemVo> getArticleItem(Page<?> page, Integer state);
 
     ArticleContentVo getArticleById(Long articleId);
 }

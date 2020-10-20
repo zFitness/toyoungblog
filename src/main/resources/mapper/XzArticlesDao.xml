@@ -22,6 +22,8 @@
             article_date
         FROM
             xz_articles
+        WHERE
+            article_status = #{state}
     </select>
 
     <select id="getArticleById" resultType="pers.zheng.blog.vo.ArticleContentVo">
