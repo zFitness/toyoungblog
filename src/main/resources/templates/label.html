@@ -1,8 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{common/header::common_header(~{::title}, ~{::link},~{})}">
+  <head th:replace="~{common/header::common_header(~{::title}, ~{::link},~{::script})}">
     <title>标签</title>
     <link rel="stylesheet" th:href="@{/static/css/label.css}"/>
+    <link rel="stylesheet" th:href="@{/static/lib/pagination/my-page.css}"/>
+    <script th:src="@{/static/lib/pagination/my-page.js}"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function () {
+            myPageInit({
+                pages: [[${articleItems.getPages()}]],
+                currentPage: [[${articleItems.getCurrent()}]],
+                element: '.my-page',
+                callback: function (page) {
+                    console.log(page)
+                    if (page != [[${articleItems.getCurrent()}]]) {
+                        location.href = [[${#httpServletRequest.getContextPath()}]] + "/?p=" + page;
+                    }
+                }
+            });
+        })
+        /*]]>*/
+    </script>
   </head>
 
 
@@ -43,12 +62,13 @@
           <!-- 主题内容 -->
           <div class="content">
             <div class="tag-title">
-              <h1>搜索结果: 标签“Web”下的文章</h1>
+              <h1>搜索结果: 标签
+                “<span th:text="${labelName}"></span>”下的文章</h1>
             </div>
             <!-- 博文内容 -->
             <div class="blog">
               <div class="article"
-                   th:each="articleItem : ${articleItems}">
+                   th:each="articleItem : ${articleItems.getRecords()}">
                 <h1 class="article-title">
                   <a th:href="${'/article/' + articleItem.getArticleId()}"
                      th:text="${articleItem.articleTitle}"> </a>
@@ -82,6 +102,11 @@
                   <!--                    <a>...</a>-->
                   <!--                  </div>-->
                 </div>
+              </div>
+            </div>
+
+            <div style="text-align: center;">
+              <div class="my-page">
               </div>
             </div>
           </div>

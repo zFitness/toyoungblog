@@ -1,0 +1,42 @@
+body {
+    background-image: url("https://view.moezx.cc/images/2018/01/24/kyotoanimation.png");
+}
+
+
+/* 内容区 */
+.content {
+    max-width: 800px;
+    padding: 0 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 13em;
+    padding-top: 60px;
+    background-color: #fff;
+}
+
+.content-head {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.content-head-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-origin: border-box;
+    width: 100%;
+    height: 400px;
+}
+
+
+#article-content p {
+    font-size: 15px;
+    font-family: miranafont, 'Hiragino Sans GB', STXihei, 'Microsoft YaHei',
+    SimSun, sans-serif;
+    color: #6f6f6f;
+    letter-spacing: 1px;
+}
