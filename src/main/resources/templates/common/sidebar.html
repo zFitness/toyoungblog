@@ -6,9 +6,9 @@
         <img src="http://q.qlogo.cn/g?b=qq&nk=1786128750&s=160" alt=""/>
         <p>昵称：xzF</p>
       </div>
-      <div class="search-form-mov">
-        <input type="text" class="form-control" placeholder="搜索" aria-describedby="basic-addon2">
-      </div>
+      <form class="search-form-mov" th:action="@{/article/search}" method="get">
+        <input type="text" class="form-control" placeholder="搜索" aria-describedby="basic-addon2" name="keyword">
+      </form>
       <div class="option">
         <ul>
           <li>
