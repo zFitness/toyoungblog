@@ -32,37 +32,17 @@
               <div class="links">
                 <h3 class="link-title"><span class="fake-title">友情链接</span></h3>
                 <ul class="link-items fontSmooth">
-                  <li class="link-item"><a class="link-item-inner effect-apollo" href="http://zmblog.wang"
-                                           title="me" target="_blank" rel="friend"><img class="lazyload"
-                                                                                        onerror="imgError(this,1)"
-                                                                                        data-src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"
-                                                                                        src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"><span
-                          class="sitename">me</span>
-                    <div class="linkdes">
-                      me
-                    </div>
-                  </a></li>
-                  <li class="link-item"><a class="link-item-inner effect-apollo" href="http://zmblog.wang"
-                                           title="me" target="_blank" rel="friend"><img class="lazyload"
-                                                                                        onerror="imgError(this,1)"
-                                                                                        data-src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"
-                                                                                        src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"><span
-                          class="sitename">me</span>
-                    <div class="linkdes">
-                      me
-                    </div>
-                  </a></li>
-                  <li class="link-item"><a class="link-item-inner effect-apollo" href="http://zmblog.wang"
-                                           title="me" target="_blank" rel="friend"><img class="lazyload"
-                                                                                        onerror="imgError(this,1)"
-                                                                                        data-src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"
-                                                                                        src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"><span
-                          class="sitename">me</span>
-                    <div class="linkdes">
-                      me
-                    </div>
-                  </a></li>
-
+                  <li class="link-item" th:each="link:${links}">
+                    <a class="link-item-inner effect-apollo" th:href="${link.getLinkUrl()}"
+                       title="me" target="_blank" rel="friend">
+                      <img class="lazyload"
+                           onerror="imgError(this,1)"
+                           th:src="${link.getLinkImage()}">
+                      <span class="sitename" th:text="${link.getLinkName()}">me</span>
+                      <div class="linkdes" th:text="${link.getLinkDescription()}">
+                      </div>
+                    </a>
+                  </li>
                 </ul>
               </div>
 
