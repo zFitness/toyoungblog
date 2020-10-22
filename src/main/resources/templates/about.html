@@ -37,7 +37,7 @@
               </div>
             </div>
             <!-- markdown转html-->
-            <div id="article-content" th:utext="${article.getArticleContentHTML()}"></div>
+            <div id="article-content" th:utext="${aboutHtml}"></div>
           </div>
           <!-- 底部 footer -->
           <div th:replace="~{common/footer :: footer}"></div>

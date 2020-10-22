@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pers.zheng.blog.entity.Option;
 import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.service.OptionService;
 import pers.zheng.blog.vo.ArticleContentVo;
 
 import java.util.Arrays;
@@ -26,11 +28,12 @@ import java.util.Arrays;
 @Controller
 public class AboutController {
     @Autowired
-    private ArticlesService articlesService;
+    private OptionService optionService;
 
     @RequestMapping("/about")
     public String index(Model model) {
-        ArticleContentVo articleContentVO = articlesService.getArticleById(1L);
+
+        Option aboutOption = optionService.getOptionByName("about");
 
         MutableDataSet options = new MutableDataSet();
         options.setFrom(ParserEmulationProfile.MARKDOWN);
@@ -38,9 +41,9 @@ public class AboutController {
         Parser parser = Parser.builder(options).build();
         HtmlRenderer renderer = HtmlRenderer.builder(options).build();
 
-        Node document = parser.parse(articleContentVO.getArticleContent());
-        articleContentVO.setArticleContentHTML(renderer.render(document));
-        model.addAttribute("article", articleContentVO);
+        Node document = parser.parse(aboutOption.getOptionValue());
+        String aboutHtml = renderer.render(document);
+        model.addAttribute("aboutHtml", aboutHtml);
         return "about";
     }
 }
