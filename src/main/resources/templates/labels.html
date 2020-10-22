@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="~{common/header::common_header(~{::title}, ~{::link}, ~{})}">
     <title>标签</title>
-    <link rel="stylesheet" th:href="@{/static/css/tags.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/labels.css}"/>
   </head>
   <body>
     <div id="wrapper" style="left: 0">
@@ -44,6 +44,15 @@
                         </a>
                         <span>5 篇</span>
               </span>
+              <span style="width: 256px; display: inline-block">
+                        <a th:href="@{/labels/docker}">
+                            docker
+                        </a>
+                        <span>5 篇</span>
+              </span>
+            </div>
+            <div>
+              <h3 class="link-title"><span class="fake-title">分类</span></h3>
               <span style="width: 256px; display: inline-block">
                         <a th:href="@{/labels/docker}">
                             docker

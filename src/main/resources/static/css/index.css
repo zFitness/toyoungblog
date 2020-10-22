@@ -1,3 +1,7 @@
+body {
+    background: url(https://view.moezx.cc/images/2018/01/24/kyotoanimation.png);
+}
+
 .notice {
     padding: 20px;
     font-family: miranafont, 'Hiragino Sans GB', STXihei, 'Microsoft YaHei',
@@ -136,6 +140,7 @@
 
 /* 文章 */
 .article {
+    background-color: #fff;
     position: relative;
     box-shadow: 0 1px 20px -6px rgba(0, 0, 0, .5);
     padding: 15px;

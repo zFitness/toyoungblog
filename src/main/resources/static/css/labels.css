@@ -40,3 +40,16 @@ body {
     color: #6f6f6f;
     letter-spacing: 1px;
 }
+
+.link-title {
+    font-weight: 400;
+    color: #6d6d6d;
+    padding-left: 0;
+    border-left: none;
+    margin: 50px 0 20px;
+}
+
+.link-title span.fake-title {
+    padding-left: 10px;
+    border-left: 3px solid orange;
+}
