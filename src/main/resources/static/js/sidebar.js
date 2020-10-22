@@ -1,4 +1,6 @@
 $(function () {
+  //判断屏幕宽度
+
   // 侧边栏弹出
   $('.openNav').click(function () {
     var left = $('#wrapper')[0].offsetLeft
