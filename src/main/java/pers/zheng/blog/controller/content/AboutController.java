@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pers.zheng.blog.service.XzArticlesService;
+import pers.zheng.blog.service.ArticlesService;
 import pers.zheng.blog.vo.ArticleContentVo;
 
 import java.util.Arrays;
@@ -26,7 +26,7 @@ import java.util.Arrays;
 @Controller
 public class AboutController {
     @Autowired
-    private XzArticlesService articlesService;
+    private ArticlesService articlesService;
 
     @RequestMapping("/about")
     public String index(Model model) {

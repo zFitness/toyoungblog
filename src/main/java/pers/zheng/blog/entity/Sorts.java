@@ -1,5 +1,6 @@
 package pers.zheng.blog.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,7 +12,8 @@ import java.io.Serializable;
  * @since 2020-10-11 23:23:03
  */
 @Data
-public class XzSorts implements Serializable {
+@TableName("ty_sorts")
+public class Sorts implements Serializable {
     private static final long serialVersionUID = -88853805527558525L;
     /**
      * 分类id

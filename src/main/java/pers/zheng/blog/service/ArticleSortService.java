@@ -1,24 +1,24 @@
 package pers.zheng.blog.service;
 
-import pers.zheng.blog.entity.XzComments;
+import pers.zheng.blog.entity.ArticleSort;
 
 import java.util.List;
 
 /**
- * (XzComments)表服务接口
+ * (XzArticleSort)表服务接口
  *
  * @author makejava
- * @since 2020-10-11 23:23:03
+ * @since 2020-10-11 23:23:02
  */
-public interface XzCommentsService {
+public interface ArticleSortService {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param commentId 主键
+     * @param id 主键
      * @return 实例对象
      */
-    XzComments queryById(Integer commentId);
+    ArticleSort queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -27,30 +27,30 @@ public interface XzCommentsService {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<XzComments> queryAllByLimit(int offset, int limit);
+    List<ArticleSort> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param xzComments 实例对象
+     * @param articleSort 实例对象
      * @return 实例对象
      */
-    XzComments insert(XzComments xzComments);
+    ArticleSort insert(ArticleSort articleSort);
 
     /**
      * 修改数据
      *
-     * @param xzComments 实例对象
+     * @param articleSort 实例对象
      * @return 实例对象
      */
-    XzComments update(XzComments xzComments);
+    ArticleSort update(ArticleSort articleSort);
 
     /**
      * 通过主键删除数据
      *
-     * @param commentId 主键
+     * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer commentId);
+    boolean deleteById(Integer id);
 
 }

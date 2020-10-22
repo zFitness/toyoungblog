@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{common/header::common_header(~{::title}, ~{::link}, ~{})}">
+    <title>关于</title>
+    <link rel="stylesheet" th:href="@{/static/css/friends.css}"/>
+  </head>
+  <body>
+    <div id="wrapper" style="left: 0">
+      <!-- 侧边栏 -->
+      <div th:replace="~{common/sidebar::sidebar}"></div>
+      <!-- 搜索页面 -->
+      <div th:replace="~{common/search-wrapper::search-wrapper}"></div>
+      <!-- 主体区域 -->
+      <div class="main-wrapper">
+        <!-- 侧边栏按钮 -->
+        <div>
+          <div class="openNav">
+            <i class="iconfont iconadashboardbuttonterminal"></i>
+          </div>
+        </div>
+
+
+        <!-- 内容区的布局 -->
+        <div id="dark-wrapper">
+          <!-- 头部导航栏 -->
+          <div th:replace="~{common/headbar::header}"></div>
+
+          <!-- 主题内容 -->
+          <div class="content">
+            <div id="primary" class="content-area">
+
+              <div class="links">
+                <h3 class="link-title"><span class="fake-title">友情链接</span></h3>
+                <ul class="link-items fontSmooth">
+                  <li class="link-item"><a class="link-item-inner effect-apollo" href="http://zmblog.wang"
+                                           title="me" target="_blank" rel="friend"><img class="lazyload"
+                                                                                        onerror="imgError(this,1)"
+                                                                                        data-src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"
+                                                                                        src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"><span
+                          class="sitename">me</span>
+                    <div class="linkdes">
+                      me
+                    </div>
+                  </a></li>
+                  <li class="link-item"><a class="link-item-inner effect-apollo" href="http://zmblog.wang"
+                                           title="me" target="_blank" rel="friend"><img class="lazyload"
+                                                                                        onerror="imgError(this,1)"
+                                                                                        data-src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"
+                                                                                        src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"><span
+                          class="sitename">me</span>
+                    <div class="linkdes">
+                      me
+                    </div>
+                  </a></li>
+                  <li class="link-item"><a class="link-item-inner effect-apollo" href="http://zmblog.wang"
+                                           title="me" target="_blank" rel="friend"><img class="lazyload"
+                                                                                        onerror="imgError(this,1)"
+                                                                                        data-src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"
+                                                                                        src="https://q1.qlogo.cn/g?b=qq&amp;nk=864381164&amp;s=640"><span
+                          class="sitename">me</span>
+                    <div class="linkdes">
+                      me
+                    </div>
+                  </a></li>
+
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <!-- 底部 footer -->
+          <div th:replace="~{common/footer :: footer}"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

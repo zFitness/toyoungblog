@@ -1,24 +1,24 @@
 package pers.zheng.blog.service;
 
-import pers.zheng.blog.entity.XzArticleSort;
+import pers.zheng.blog.entity.Sorts;
 
 import java.util.List;
 
 /**
- * (XzArticleSort)表服务接口
+ * (XzSorts)表服务接口
  *
  * @author makejava
- * @since 2020-10-11 23:23:02
+ * @since 2020-10-11 23:23:04
  */
-public interface XzArticleSortService {
+public interface SortsService {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param sortId 主键
      * @return 实例对象
      */
-    XzArticleSort queryById(Integer id);
+    Sorts queryById(Integer sortId);
 
     /**
      * 查询多条数据
@@ -27,30 +27,30 @@ public interface XzArticleSortService {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<XzArticleSort> queryAllByLimit(int offset, int limit);
+    List<Sorts> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param xzArticleSort 实例对象
+     * @param sorts 实例对象
      * @return 实例对象
      */
-    XzArticleSort insert(XzArticleSort xzArticleSort);
+    Sorts insert(Sorts sorts);
 
     /**
      * 修改数据
      *
-     * @param xzArticleSort 实例对象
+     * @param sorts 实例对象
      * @return 实例对象
      */
-    XzArticleSort update(XzArticleSort xzArticleSort);
+    Sorts update(Sorts sorts);
 
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param sortId 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
+    boolean deleteById(Integer sortId);
 
 }

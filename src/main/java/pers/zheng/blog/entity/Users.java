@@ -1,5 +1,8 @@
 package pers.zheng.blog.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +11,9 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-10-11 23:23:04
  */
-public class XzUsers implements Serializable {
+@Data
+@TableName("ty_users")
+public class Users implements Serializable {
     private static final long serialVersionUID = 704758868845611742L;
     /**
      * 用户id

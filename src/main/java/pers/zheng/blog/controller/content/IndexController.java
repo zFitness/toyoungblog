@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pers.zheng.blog.service.XzArticlesService;
+import pers.zheng.blog.service.ArticlesService;
 import pers.zheng.blog.vo.ArticleItemVo;
 
 /**
@@ -21,13 +21,13 @@ import pers.zheng.blog.vo.ArticleItemVo;
 @Controller
 public class IndexController {
     @Autowired
-    private XzArticlesService xzArticlesService;
+    private ArticlesService articlesService;
 
     @RequestMapping("/")
     public String index(Model model, @RequestParam(value = "p", defaultValue = "1", required = false) int p) {
         log.info(p + "");
         int size = 10;
-        IPage<ArticleItemVo> articleItems = xzArticlesService.getArticleItems(p, size);
+        IPage<ArticleItemVo> articleItems = articlesService.getArticleItems(p, size);
         log.info(articleItems.getRecords().toString());
         log.info(articleItems.getCurrent()+"");
         model.addAttribute("articleItems", articleItems);

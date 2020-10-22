@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pers.zheng.blog.entity.XzLabels;
-import pers.zheng.blog.service.XzArticlesService;
-import pers.zheng.blog.service.XzLabelsService;
+import pers.zheng.blog.entity.Labels;
+import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.service.LabelsService;
 import pers.zheng.blog.vo.ArticleItemVo;
 
 /**
@@ -24,10 +24,10 @@ import pers.zheng.blog.vo.ArticleItemVo;
 @RequestMapping("/labels")
 public class LabelController {
     @Autowired
-    private XzArticlesService xzArticlesService;
+    private ArticlesService articlesService;
 
     @Autowired
-    private XzLabelsService xzLabelsService;
+    private LabelsService labelsService;
 
     /**
      * @return
@@ -42,8 +42,8 @@ public class LabelController {
                                      @RequestParam(value = "p", defaultValue = "1", required = false) int p,
                                      Model model) {
         int size = 10;
-        XzLabels label = xzLabelsService.getLabelByName(labelName);
-        IPage<ArticleItemVo> articleItems = xzArticlesService.getArticleItemsByLabel(p, label.getLabelId(), size);
+        Labels label = labelsService.getLabelByName(labelName);
+        IPage<ArticleItemVo> articleItems = articlesService.getArticleItemsByLabel(p, label.getLabelId(), size);
         model.addAttribute("articleItems", articleItems);
         model.addAttribute("labelName", labelName);
         return "label";

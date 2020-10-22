@@ -11,8 +11,8 @@
     <groupId>pers.zheng</groupId>
     <artifactId>blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>blog</name>
-    <description>Demo project for Spring Boot</description>
+    <name>TooYoungblog</name>
+    <description>my blog</description>
 
     <properties>
         <java.version>1.8</java.version>

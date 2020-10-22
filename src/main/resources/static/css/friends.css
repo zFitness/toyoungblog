@@ -1,0 +1,126 @@
+body {
+    background-image: url("https://view.moezx.cc/images/2018/01/24/kyotoanimation.png");
+}
+
+
+/* 内容区 */
+.content {
+    max-width: 800px;
+    padding: 0 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 13em;
+    padding-top: 60px;
+    background-color: #fff;
+}
+
+.links {
+    margin-bottom: 80px;
+}
+
+.link-title {
+    font-weight: 400;
+    color: #6d6d6d;
+    padding-left: 0;
+    border-left: none;
+    margin: 50px 0 20px;
+}
+
+.link-title span.fake-title {
+    padding-left: 10px;
+    border-left: 3px solid orange;
+}
+
+
+.links ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    display: inline-block;
+}
+
+.links ul li {
+    width: 32%;
+    float: left;
+    border: 1px solid #ececec;
+    padding: 10px 30px;
+    margin: 4px;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border-radius: 10px;
+}
+
+a {
+    color: #e67474;
+    outline: none;
+    -webkit-transition: color .2s ease-out, border .2s ease-out, opacity .2s ease-out;
+    -moz-transition: color .2s ease-out, border .2s ease-out, opacity .2s ease-out;
+    transition: color .2s ease-out, border .2s ease-out, opacity .2s ease-out;
+}
+
+.links ul li img {
+    float: right;
+    box-shadow: inset 0 0 10px #000;
+    padding: 5px;
+    opacity: 1;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transition: all ease 1s;
+    -webkit-transition: all ease 1s;
+    -moz-transition: all ease 1s;
+    -o-transition: all ease 1s;
+    margin-top: 5px;
+    width: 65px;
+    height: 65px;
+    padding: 2px;
+    border-radius: 100%;
+}
+
+span.sitename {
+    color: orange;
+    padding-bottom: 10px;
+    display: block;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.linkdes {
+    color: #949494;
+    font-size: 13px;
+    padding: 10px 0;
+    border-top: 1px dashed #ddd;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 25px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+@media (max-width: 860px) {
+    .links ul li {
+        width: 48.6%;
+    }
+}
+
+@media (max-width: 630px) {
+    .links ul li {
+        width: 100% !important;
+    }
+
+}
+
+.links ul li:hover {
+    color: #27323a;
+    border: 1px solid orange;
+}

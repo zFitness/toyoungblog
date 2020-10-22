@@ -1,7 +1,7 @@
 package pers.zheng.blog.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import pers.zheng.blog.entity.XzArticles;
+import pers.zheng.blog.entity.Articles;
 import pers.zheng.blog.vo.ArticleContentVo;
 import pers.zheng.blog.vo.ArticleItemVo;
 
@@ -13,8 +13,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-11 23:23:02
  */
-public interface XzArticlesService {
-    List<XzArticles> getAll();
+public interface ArticlesService {
+    List<Articles> getAll();
 
     IPage<ArticleItemVo> getArticleItems(int p, int size);
 

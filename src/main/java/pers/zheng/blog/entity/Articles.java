@@ -16,7 +16,8 @@ import java.util.Date;
  * @since 2020-10-11 23:23:02
  */
 @Data
-public class XzArticles implements Serializable {
+@TableName("ty_articles")
+public class Articles implements Serializable {
     private static final long serialVersionUID = 647796731339516238L;
     /**
      * 文章id
