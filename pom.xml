@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pers.zheng</groupId>
-    <artifactId>blog</artifactId>
+    <artifactId>TooYoungblog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>TooYoungblog</name>
     <description>my blog</description>
@@ -19,6 +19,13 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.1-jre</version>
+        </dependency>
+
         <!--markdown to html-->
         <dependency>
             <groupId>com.vladsch.flexmark</groupId>
