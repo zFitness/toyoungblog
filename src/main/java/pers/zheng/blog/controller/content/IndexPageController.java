@@ -32,8 +32,6 @@ public class IndexPageController {
         for (ArticleItemVo itemVo : articleItems.getRecords()) {
             itemVo.setArticleSummary(MarkdownUtils.mdToHtml(itemVo.getArticleSummary()));
         }
-        log.info(articleItems.getRecords().toString());
-        log.info(articleItems.getCurrent()+"");
         model.addAttribute("articleItems", articleItems);
         return "index";
     }

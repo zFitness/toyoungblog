@@ -6,6 +6,48 @@
   "description": "个人主页x'm",
   "glyphs": [
     {
+      "icon_id": "6307855",
+      "name": "推荐",
+      "font_class": "tuijian",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "12579348",
+      "name": "leaf",
+      "font_class": "leaf",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "12751730",
+      "name": "热门",
+      "font_class": "remen",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "258652",
+      "name": "推荐",
+      "font_class": "tubiao302",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "10582821",
+      "name": "文章管理",
+      "font_class": "wenzhangguanli",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "11683687",
+      "name": "更多",
+      "font_class": "ziyuan",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "11269056",
       "name": "search 搜索 查找",
       "font_class": "search",
