@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/friends")
-public class FriendController {
+public class FriendPageController {
     @RequestMapping("")
     public String friends(Model model) {
         return "friend-links";

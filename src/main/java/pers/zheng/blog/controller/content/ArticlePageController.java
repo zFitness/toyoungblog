@@ -28,7 +28,7 @@ import java.util.Arrays;
  */
 @Slf4j
 @Controller
-public class ArticleController {
+public class ArticlePageController {
     @Autowired
     private ArticlesService articlesService;
 

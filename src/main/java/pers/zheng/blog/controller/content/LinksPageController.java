@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping("/links")
-public class LinksController {
+public class LinksPageController {
     @Autowired
     private LinkService linkService;
 

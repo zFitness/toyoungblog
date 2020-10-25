@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import pers.zheng.blog.dto.ArticleItemDto;
 import pers.zheng.blog.entity.Articles;
 import pers.zheng.blog.vo.ArticleContentVo;
 import pers.zheng.blog.vo.ArticleItemVo;
@@ -18,11 +19,13 @@ import pers.zheng.blog.vo.ArticleItemVo;
 @Mapper
 @Repository
 public interface ArticlesDao extends BaseMapper<Articles> {
-    IPage<ArticleItemVo> getArticleItem(Page<?> page, Integer state);
+    IPage<ArticleItemVo> getArticleItem(Page<?> page, String state);
 
     ArticleContentVo getArticleById(Long articleId);
 
     IPage<ArticleItemVo> getArticleItemByLabel(Page<ArticleItemVo> page, int state, int labelId);
 
     IPage<ArticleItemVo> getArticleItemsByName(Page<ArticleItemVo> page, int state, String keyword);
+
+    IPage<ArticleItemDto> getArticleDtoItems(Page<ArticleItemVo> page);
 }

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.ArticlesDao;
+import pers.zheng.blog.dto.ArticleItemDto;
 import pers.zheng.blog.entity.Articles;
 import pers.zheng.blog.service.ArticlesService;
 import pers.zheng.blog.vo.ArticleContentVo;
@@ -32,7 +33,13 @@ public class ArticleServiceImpl implements ArticlesService {
     @Override
     public IPage<ArticleItemVo> getArticleItems(int p, int size) {
         Page<ArticleItemVo> page = new Page<>(p, size);
-        return articlesDao.getArticleItem(page, 1);
+        return articlesDao.getArticleItem(page, "publish");
+    }
+
+    @Override
+    public IPage<ArticleItemDto> getArticleDtoItems(int p, int size) {
+        Page<ArticleItemVo> page = new Page<>(p, size);
+        return articlesDao.getArticleDtoItems(page);
     }
 
 

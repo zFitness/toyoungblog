@@ -17,13 +17,29 @@
             article_id,
             article_title,
             article_view_count,
+            article_like_count,
             article_comment_count,
             article_summary,
             article_date
         FROM
             ty_articles
         WHERE
-            article_status = #{state}
+            article_status like #{state}
+    </select>
+
+
+    <select id="getArticleDtoItems" resultType="pers.zheng.blog.dto.ArticleItemDto">
+        SELECT
+            article_id,
+            article_title,
+            article_view_count,
+            article_like_count,
+            article_comment_count,
+            article_summary,
+            article_date,
+            article_status
+        FROM
+            ty_articles
     </select>
 
     <select id="getArticleById" resultType="pers.zheng.blog.vo.ArticleContentVo">
@@ -57,7 +73,7 @@
         WHERE
 	        b.label_id = #{labelId}
 	    AND
-	        a.article_status = #{state}
+	        a.article_status like #{state}
     </select>
 
     <select id="getArticleItemsByName" resultType="pers.zheng.blog.vo.ArticleItemVo">
@@ -74,6 +90,6 @@
         WHERE
             article_title like concat('%', #{keyword}, '%')
         AND
-            article_status = #{state}
+            article_status like #{state}
     </select>
 </mapper>

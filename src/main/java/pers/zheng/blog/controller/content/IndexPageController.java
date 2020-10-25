@@ -19,7 +19,7 @@ import pers.zheng.blog.vo.ArticleItemVo;
  */
 @Slf4j
 @Controller
-public class IndexController {
+public class IndexPageController {
     @Autowired
     private ArticlesService articlesService;
 

@@ -26,7 +26,7 @@ import java.util.Arrays;
  * @Version 1.0
  */
 @Controller
-public class AboutController {
+public class AboutPageController {
     @Autowired
     private OptionService optionService;
 

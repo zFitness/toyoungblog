@@ -22,7 +22,7 @@ import pers.zheng.blog.vo.ArticleItemVo;
  */
 @Controller
 @RequestMapping("/labels")
-public class LabelController {
+public class LabelPageController {
     @Autowired
     private ArticlesService articlesService;
 
