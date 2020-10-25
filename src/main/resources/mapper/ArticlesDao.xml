@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.zheng.blog.dao.ArticlesDao">
 
-    <resultMap type="pers.zheng.blog.entity.Articles" id="XzArticlesMap">
+    <resultMap type="pers.zheng.blog.entity.Article" id="XzArticlesMap">
         <result property="articleId" column="article_id" jdbcType="INTEGER"/>
         <result property="articleContent" column="article_content" jdbcType="VARCHAR"/>
         <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>

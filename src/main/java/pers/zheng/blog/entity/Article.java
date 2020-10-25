@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @Data
 @TableName("ty_articles")
-public class Articles implements Serializable {
+public class Article implements Serializable {
     private static final long serialVersionUID = 647796731339516238L;
     /**
      * 文章id
@@ -54,4 +54,6 @@ public class Articles implements Serializable {
      * 文章摘要
      */
     private String articleSummary;
+
+    private String articleStatus;
 }

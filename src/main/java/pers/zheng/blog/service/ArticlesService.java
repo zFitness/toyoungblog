@@ -1,8 +1,9 @@
 package pers.zheng.blog.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import pers.zheng.blog.dto.ArticleDto;
 import pers.zheng.blog.dto.ArticleItemDto;
-import pers.zheng.blog.entity.Articles;
+import pers.zheng.blog.entity.Article;
 import pers.zheng.blog.vo.ArticleContentVo;
 import pers.zheng.blog.vo.ArticleItemVo;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * @since 2020-10-11 23:23:02
  */
 public interface ArticlesService {
-    List<Articles> getAll();
+    List<Article> getAll();
 
     IPage<ArticleItemVo> getArticleItems(int p, int size);
 
@@ -26,4 +27,6 @@ public interface ArticlesService {
     IPage<ArticleItemVo> getArticleItemsByLabel(int p, Integer labelId, int size);
 
     IPage<ArticleItemVo> getArticleItemsByName(int p, int size, String keyword);
+
+    int createArticle(ArticleDto article);
 }
