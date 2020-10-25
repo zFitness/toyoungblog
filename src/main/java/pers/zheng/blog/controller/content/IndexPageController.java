@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.util.MarkdownUtils;
 import pers.zheng.blog.vo.ArticleItemVo;
 
 /**
@@ -28,6 +29,9 @@ public class IndexPageController {
         log.info(p + "");
         int size = 10;
         IPage<ArticleItemVo> articleItems = articlesService.getArticleItems(p, size);
+        for (ArticleItemVo itemVo : articleItems.getRecords()) {
+            itemVo.setArticleSummary(MarkdownUtils.mdToHtml(itemVo.getArticleSummary()));
+        }
         log.info(articleItems.getRecords().toString());
         log.info(articleItems.getCurrent()+"");
         model.addAttribute("articleItems", articleItems);

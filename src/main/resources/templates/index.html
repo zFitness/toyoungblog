@@ -199,8 +199,8 @@
                   ></span>
                   <span th:text="${#dates.format(articleItem.articleDate,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </div>
-                <p th:text="${articleItem.articleSummary}">
-                </p>
+
+                <div id="article-content" th:utext="${articleItem.articleSummary}"></div>
                 <div class="article-info">
                   <div class="article-info-read" style="margin-right: 20px">
                     <span

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.util.MarkdownUtils;
 import pers.zheng.blog.vo.ArticleContentVo;
 import pers.zheng.blog.vo.ArticleItemVo;
 
@@ -35,18 +36,8 @@ public class ArticlePageController {
     @RequestMapping("/article/{articleId}")
     public String test(Model model, @PathVariable("articleId") Long articleId) {
         ArticleContentVo articleContentVO = articlesService.getArticleById(articleId);
-        log.info("lll");
-//        log.info(articleContentVO.toString());
-        // markdown to image
-        MutableDataSet options = new MutableDataSet();
-        options.setFrom(ParserEmulationProfile.MARKDOWN);
-        options.set(Parser.EXTENSIONS, Arrays.asList(new Extension[]{TablesExtension.create()}));
-        Parser parser = Parser.builder(options).build();
-        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
 
-        Node document = parser.parse(articleContentVO.getArticleContent());
-        articleContentVO.setArticleContentHTML(renderer.render(document));
-        log.info(articleContentVO.getArticleContentHTML());
+        articleContentVO.setArticleContentHTML(MarkdownUtils.mdToHtml(articleContentVO.getArticleContent()));
         model.addAttribute("article", articleContentVO);
         return "article";
     }

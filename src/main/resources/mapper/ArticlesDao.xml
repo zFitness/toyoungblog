@@ -25,6 +25,9 @@
             ty_articles
         WHERE
             article_status like #{state}
+        ORDER BY
+	        article_date
+        DESC
     </select>
 
 
@@ -40,6 +43,9 @@
             article_status
         FROM
             ty_articles
+        ORDER BY
+	        article_date
+        DESC
     </select>
 
     <select id="getArticleById" resultType="pers.zheng.blog.vo.ArticleContentVo">
@@ -74,6 +80,9 @@
 	        b.label_id = #{labelId}
 	    AND
 	        a.article_status like #{state}
+	    ORDER BY
+        	a.article_date
+        DESC
     </select>
 
     <select id="getArticleItemsByName" resultType="pers.zheng.blog.vo.ArticleItemVo">
@@ -91,5 +100,8 @@
             article_title like concat('%', #{keyword}, '%')
         AND
             article_status like #{state}
+	    ORDER BY
+        	a.article_date
+        DESC
     </select>
 </mapper>
