@@ -31,7 +31,7 @@ ul {
     border: 0;
     outline: none;
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 10px;
     transition: all 0.5s;
     cursor: pointer;
