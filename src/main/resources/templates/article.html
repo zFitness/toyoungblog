@@ -11,6 +11,19 @@
     <script src="//cdn.bootcss.com/highlightjs-line-numbers.js/1.1.0/highlightjs-line-numbers.min.js"></script>
     <script>hljs.initLineNumbersOnLoad();</script>
     <script th:src="@{/static/js/table.js}"></script>
+    <script th:src="@{/static/js/base.js}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.main-wrapper').scroll(function () {
+                if ($('.main-wrapper').scrollTop() > 500) {
+                    $('.toc-container').fadeIn();
+                } else {
+                    $('.toc-container').fadeOut();
+                }
+            })
+
+        })
+    </script>
   </head>
 
   <body>
@@ -69,6 +82,14 @@
           <!-- 主体内容 -->
           <div class="content">
             <div class="article">
+              <!--PC端：目录-->
+              <div class="toc-container" style="max-height: 600px;overflow-y: auto;"
+                   th:utext="${article.getArticleTocHTML()}">
+              </div>
+              <!-- 运动端：目录-->
+              <div class="toc-container-mob" style="max-height: 600px;overflow-y: auto;"
+                   th:utext="${article.getArticleTocHTML()}">
+              </div>
               <!-- markdown转html-->
               <div id="article-content" th:utext="${article.getArticleContentHTML()}"></div>
               <div class="article-footer">
@@ -136,6 +157,15 @@
 
           <!-- 底部 footer -->
           <div th:replace="~{common/footer :: footer}"></div>
+
+          <!-- 底部fixed的按钮，回到顶部|-->
+          <button class="m-cd-top cd-is-visible" title="Go to top">
+            <i class="iconfont icondaodingbu" aria-hidden="true"></i>
+          </button>
+
+          <button class="m-menu" title="menu">
+            <i class="iconfont iconguidang" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>

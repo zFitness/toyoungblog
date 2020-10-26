@@ -31,6 +31,8 @@ public class ArticlePageController {
         ArticleContentVo articleContentVO = articlesService.getArticleById(articleId);
         MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(articleContentVO.getArticleContent());
         articleContentVO.setArticleContentHTML(markdownEntity.toString());
+        articleContentVO.setArticleTocHTML(markdownEntity.getHtmlTOC());
+
         model.addAttribute("article", articleContentVO);
         return "article";
     }

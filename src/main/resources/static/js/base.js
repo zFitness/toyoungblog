@@ -10,4 +10,12 @@ $(document).ready(function () {
     $('.m-cd-top').click(function () {
         $('.main-wrapper').scrollTop(0)
     })
+
+    $('.m-menu').click(function () {
+        if ($('.toc-container-mob').css('display') == 'none') {
+            $('.toc-container-mob').css('display', 'block');
+        } else {
+            $('.toc-container-mob').css('display', 'none');
+        }
+    })
 })

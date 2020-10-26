@@ -29,6 +29,8 @@ public class ArticleContentVo {
 
 
     private String articleContentHTML;
+
+    private String articleTocHTML;
     /**
      * 文章标题
      */

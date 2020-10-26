@@ -25,6 +25,9 @@ public class MarkdownEntity {
     // 转换后的html文档
     private String html;
 
+    //目录
+    private String htmlTOC;
+
     public MarkdownEntity() {
     }
 
