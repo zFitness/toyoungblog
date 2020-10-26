@@ -7,7 +7,9 @@ package pers.zheng.blog.model.util;
  * @Date 2020/10/26 8:06
  * @Version 1.0
  */
+
 import lombok.Data;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -37,7 +39,7 @@ public class MarkdownEntity {
 
     @Override
     public String toString() {
-        return css + "\n<div " + parseDiv() + ">\n" + html + "\n</div>";
+        return "\n<div " + parseDiv() + ">\n" + html + "\n</div>";
     }
 
 

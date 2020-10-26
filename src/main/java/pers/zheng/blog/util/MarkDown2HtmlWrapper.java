@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MarkDown2HtmlWrapper {
 
-    private static String MD_CSS = null;
+//    private static String MD_CSS = null;
 
     private static MutableDataSet options = null;
     private static Parser parser;
@@ -37,15 +37,15 @@ public class MarkDown2HtmlWrapper {
 
     static {
         try {
-            String c = System.getProperty("user.dir");
-            File mdCss = new File("E:\\workspace2\\blog\\target\\classes\\static\\css\\markdown.css");
-            FileInputStream fis = new FileInputStream(mdCss);
-
-            BufferedReader bufferedReader =
-                    new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8));
-            List<String> collect = bufferedReader.lines().collect(Collectors.toList());
-            MD_CSS = Joiner.on("\n").join(collect);
-            MD_CSS = "<style type=\"text/css\">\n" + MD_CSS + "\n</style>\n";
+//            String c = System.getProperty("user.dir");
+//            File mdCss = new File("E:\\workspace2\\blog\\target\\classes\\static\\css\\markdown.css");
+//            FileInputStream fis = new FileInputStream(mdCss);
+//
+//            BufferedReader bufferedReader =
+//                    new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8));
+//            List<String> collect = bufferedReader.lines().collect(Collectors.toList());
+//            MD_CSS = Joiner.on("\n").join(collect);
+//            MD_CSS = "<style type=\"text/css\">\n" + MD_CSS + "\n</style>\n";
 
 
             options = new MutableDataSet();
@@ -115,7 +115,7 @@ public class MarkDown2HtmlWrapper {
     public static MarkdownEntity ofContent(String content) {
         String html = parse(content);
         MarkdownEntity entity = new MarkdownEntity();
-        entity.setCss(MD_CSS);
+//        entity.setCss(MD_CSS);
         entity.setHtml(html);
         entity.setHtmlTOC(parseTOC(content));
         entity.addDivStyle("class", "markdown-here-wrapper ");

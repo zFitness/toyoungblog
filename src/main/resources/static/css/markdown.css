@@ -124,7 +124,7 @@
 .markdown-here-wrapper h6 {
     margin: 20px 0 10px;
     padding: 0;
-    font-style: bold !important;
+    font-style: normal!important;
     color: #009688 !important;
     text-align: center !important;
     margin: 1.5em 5px !important;
@@ -191,4 +191,8 @@
     color: #eee;
     border: 1px solid #009688;
     background-color: #009688;
+}
+
+.markdown-here-wrapper img {
+    width: 100%;
 }
