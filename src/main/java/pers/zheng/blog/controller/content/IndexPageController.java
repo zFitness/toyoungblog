@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pers.zheng.blog.model.util.MarkdownEntity;
 import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 import pers.zheng.blog.util.MarkdownUtils;
-import pers.zheng.blog.vo.ArticleItemVo;
+import pers.zheng.blog.model.vo.ArticleItemVo;
 
 /**
  * @ClassName IndexController
@@ -30,7 +32,8 @@ public class IndexPageController {
         int size = 10;
         IPage<ArticleItemVo> articleItems = articlesService.getArticleItems(p, size);
         for (ArticleItemVo itemVo : articleItems.getRecords()) {
-            itemVo.setArticleSummary(MarkdownUtils.mdToHtml(itemVo.getArticleSummary()));
+            MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
+            itemVo.setArticleSummary(markdownEntity.toString());
         }
         model.addAttribute("articleItems", articleItems);
         return "index";

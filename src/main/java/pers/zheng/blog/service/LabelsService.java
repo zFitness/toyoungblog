@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.LabelsDao;
-import pers.zheng.blog.entity.Labels;
+import pers.zheng.blog.model.entity.Labels;
 
 /**
  * (XzLabels)表服务接口

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.LinksDao;
-import pers.zheng.blog.entity.Links;
+import pers.zheng.blog.model.entity.Links;
 
 import java.util.List;
 

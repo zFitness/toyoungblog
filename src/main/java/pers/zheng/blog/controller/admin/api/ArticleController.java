@@ -3,8 +3,8 @@ package pers.zheng.blog.controller.admin.api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pers.zheng.blog.dto.ArticleDto;
-import pers.zheng.blog.dto.result.Result;
+import pers.zheng.blog.model.dto.ArticleDto;
+import pers.zheng.blog.model.dto.result.Result;
 import pers.zheng.blog.service.ArticlesService;
 
 /**

@@ -1,6 +1,6 @@
 package pers.zheng.blog.service;
 
-import pers.zheng.blog.entity.Sorts;
+import pers.zheng.blog.model.entity.Sorts;
 
 import java.util.List;
 

@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pers.zheng.blog.entity.Option;
-import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.model.entity.Option;
+import pers.zheng.blog.model.util.MarkdownEntity;
 import pers.zheng.blog.service.OptionService;
-import pers.zheng.blog.vo.ArticleContentVo;
+import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 
 import java.util.Arrays;
 
@@ -35,14 +35,8 @@ public class AboutPageController {
 
         Option aboutOption = optionService.getOptionByName("about");
 
-        MutableDataSet options = new MutableDataSet();
-        options.setFrom(ParserEmulationProfile.MARKDOWN);
-        options.set(Parser.EXTENSIONS, Arrays.asList(new Extension[]{TablesExtension.create()}));
-        Parser parser = Parser.builder(options).build();
-        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
-
-        Node document = parser.parse(aboutOption.getOptionValue());
-        String aboutHtml = renderer.render(document);
+        MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(aboutOption.getOptionValue());
+        String aboutHtml = markdownEntity.toString();
         model.addAttribute("aboutHtml", aboutHtml);
         return "about";
     }

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.OptionDao;
-import pers.zheng.blog.entity.Option;
+import pers.zheng.blog.model.entity.Option;
 
 /**
  * @ClassName OptionService

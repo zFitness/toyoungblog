@@ -1,6 +1,6 @@
 package pers.zheng.blog.service;
 
-import pers.zheng.blog.entity.Users;
+import pers.zheng.blog.model.entity.Users;
 
 import java.util.List;
 

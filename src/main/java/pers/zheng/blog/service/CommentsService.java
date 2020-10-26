@@ -1,6 +1,6 @@
 package pers.zheng.blog.service;
 
-import pers.zheng.blog.entity.Comments;
+import pers.zheng.blog.model.entity.Comments;
 
 import java.util.List;
 

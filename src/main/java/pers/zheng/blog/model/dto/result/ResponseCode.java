@@ -1,4 +1,4 @@
-package pers.zheng.blog.dto.result;
+package pers.zheng.blog.model.dto.result;
 
 /**
  * 状态码枚举类

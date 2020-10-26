@@ -1,11 +1,11 @@
 package pers.zheng.blog.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import pers.zheng.blog.dto.ArticleDto;
-import pers.zheng.blog.dto.ArticleItemDto;
-import pers.zheng.blog.entity.Article;
-import pers.zheng.blog.vo.ArticleContentVo;
-import pers.zheng.blog.vo.ArticleItemVo;
+import pers.zheng.blog.model.dto.ArticleDto;
+import pers.zheng.blog.model.dto.ArticleItemDto;
+import pers.zheng.blog.model.entity.Article;
+import pers.zheng.blog.model.vo.ArticleContentVo;
+import pers.zheng.blog.model.vo.ArticleItemVo;
 
 import java.util.List;
 

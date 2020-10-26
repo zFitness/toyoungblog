@@ -1,6 +1,6 @@
 package pers.zheng.blog.service;
 
-import pers.zheng.blog.entity.ArticleLabel;
+import pers.zheng.blog.model.entity.ArticleLabel;
 
 import java.util.List;
 

@@ -1,24 +1,17 @@
 package pers.zheng.blog.controller.content;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.vladsch.flexmark.ext.tables.TablesExtension;
-import com.vladsch.flexmark.html.HtmlRenderer;
-import com.vladsch.flexmark.parser.Parser;
-import com.vladsch.flexmark.parser.ParserEmulationProfile;
-import com.vladsch.flexmark.util.ast.Node;
-import com.vladsch.flexmark.util.data.MutableDataSet;
-import com.vladsch.flexmark.util.misc.Extension;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pers.zheng.blog.model.util.MarkdownEntity;
 import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 import pers.zheng.blog.util.MarkdownUtils;
-import pers.zheng.blog.vo.ArticleContentVo;
-import pers.zheng.blog.vo.ArticleItemVo;
-
-import java.util.Arrays;
+import pers.zheng.blog.model.vo.ArticleContentVo;
+import pers.zheng.blog.model.vo.ArticleItemVo;
 
 /**
  * @ClassName ArticleController
@@ -36,8 +29,8 @@ public class ArticlePageController {
     @RequestMapping("/article/{articleId}")
     public String test(Model model, @PathVariable("articleId") Long articleId) {
         ArticleContentVo articleContentVO = articlesService.getArticleById(articleId);
-
-        articleContentVO.setArticleContentHTML(MarkdownUtils.mdToHtml(articleContentVO.getArticleContent()));
+        MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(articleContentVO.getArticleContent());
+        articleContentVO.setArticleContentHTML(markdownEntity.toString());
         model.addAttribute("article", articleContentVO);
         return "article";
     }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.zheng.blog.dao.ArticlesDao">
 
-    <resultMap type="pers.zheng.blog.entity.Article" id="XzArticlesMap">
+    <resultMap type="pers.zheng.blog.model.entity.Article" id="XzArticlesMap">
         <result property="articleId" column="article_id" jdbcType="INTEGER"/>
         <result property="articleContent" column="article_content" jdbcType="VARCHAR"/>
         <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>
@@ -12,7 +12,7 @@
         <result property="articleCommentCount" column="article_comment_count" jdbcType="OTHER"/>
     </resultMap>
 
-    <select id="getArticleItem" resultType="pers.zheng.blog.vo.ArticleItemVo">
+    <select id="getArticleItem" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
         SELECT
             article_id,
             article_title,
@@ -31,7 +31,7 @@
     </select>
 
 
-    <select id="getArticleDtoItems" resultType="pers.zheng.blog.dto.ArticleItemDto">
+    <select id="getArticleDtoItems" resultType="pers.zheng.blog.model.dto.ArticleItemDto">
         SELECT
             article_id,
             article_title,
@@ -48,7 +48,7 @@
         DESC
     </select>
 
-    <select id="getArticleById" resultType="pers.zheng.blog.vo.ArticleContentVo">
+    <select id="getArticleById" resultType="pers.zheng.blog.model.vo.ArticleContentVo">
         SELECT
             article_id,
             article_content,
@@ -62,7 +62,7 @@
         WHERE article_id = #{articleId}
     </select>
 
-    <select id="getArticleItemByLabel" resultType="pers.zheng.blog.vo.ArticleItemVo">
+    <select id="getArticleItemByLabel" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
         SELECT
             a.article_id,
             a.article_title,
@@ -85,7 +85,7 @@
         DESC
     </select>
 
-    <select id="getArticleItemsByName" resultType="pers.zheng.blog.vo.ArticleItemVo">
+    <select id="getArticleItemsByName" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
         SELECT
             article_id,
             article_content,

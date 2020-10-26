@@ -1,7 +1,7 @@
 package pers.zheng.blog.dao;
 
 import org.apache.ibatis.annotations.Param;
-import pers.zheng.blog.entity.ArticleLabel;
+import pers.zheng.blog.model.entity.ArticleLabel;
 
 import java.util.List;
 

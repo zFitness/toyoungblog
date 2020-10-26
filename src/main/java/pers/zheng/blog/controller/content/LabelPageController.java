@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pers.zheng.blog.entity.Labels;
+import pers.zheng.blog.model.entity.Labels;
 import pers.zheng.blog.service.ArticlesService;
 import pers.zheng.blog.service.LabelsService;
-import pers.zheng.blog.vo.ArticleItemVo;
+import pers.zheng.blog.model.vo.ArticleItemVo;
 
 /**
  * @ClassName LabelController

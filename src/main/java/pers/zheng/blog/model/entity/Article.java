@@ -1,21 +1,24 @@
-package pers.zheng.blog.vo;
+package pers.zheng.blog.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @ClassName ArticleContentVo
- * @Description TODO
- * @Author zheng
- * @Date 2020/10/17 18:24
- * @Version 1.0
+ * (XzArticles)实体类
+ *
+ * @author makejava
+ * @since 2020-10-11 23:23:02
  */
 @Data
-public class ArticleContentVo {
+@TableName("ty_articles")
+public class Article implements Serializable {
+    private static final long serialVersionUID = 647796731339516238L;
     /**
      * 文章id
      */
@@ -26,9 +29,6 @@ public class ArticleContentVo {
      */
     @TableField("article_content")
     private String articleContent;
-
-
-    private String articleContentHTML;
     /**
      * 文章标题
      */
@@ -54,4 +54,6 @@ public class ArticleContentVo {
      * 文章摘要
      */
     private String articleSummary;
+
+    private String articleStatus;
 }

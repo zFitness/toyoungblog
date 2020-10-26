@@ -1,6 +1,5 @@
-package pers.zheng.blog.entity;
+package pers.zheng.blog.model.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
