@@ -1,0 +1,461 @@
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+    --font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans-serif);
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/*.markdown-here-wrapper {*/
+/*    max-width: 860px;*/
+/*    margin: 0 auto;*/
+/*    padding: 20px 30px 100px;*/
+/*}*/
+
+.markdown-here-wrapper ul li {
+    list-style-type: disc;
+}
+
+.markdown-here-wrapper p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+.markdown-here-wrapper ol li {
+    padding-left: 0.5rem;
+}
+
+.markdown-here-wrapper > ul:first-child,
+.markdown-here-wrapper > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+.markdown-here-wrapper a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+.markdown-here-wrapper h1, .markdown-here-wrapper h2, .markdown-here-wrapper h3, .markdown-here-wrapper h4, .markdown-here-wrapper h5, .markdown-here-wrapper h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+
+.markdown-here-wrapper h1:hover a.anchor, .markdown-here-wrapper h2:hover a.anchor, .markdown-here-wrapper h3:hover a.anchor, .markdown-here-wrapper h4:hover a.anchor, .markdown-here-wrapper h5:hover a.anchor, .markdown-here-wrapper h6:hover a.anchor {
+    text-decoration: none;
+}
+
+/*.markdown-here-wrapper h1 tt, .markdown-here-wrapper h1 code {*/
+/*    font-size: inherit !important;*/
+/*}*/
+
+/*.markdown-here-wrapper h2 tt, .markdown-here-wrapper h2 code {*/
+/*    font-size: inherit !important;*/
+/*}*/
+
+/*.markdown-here-wrapper h3 tt, .markdown-here-wrapper h3 code {*/
+/*    font-size: inherit !important;*/
+/*}*/
+
+/*.markdown-here-wrapper h4 tt, .markdown-here-wrapper h4 code {*/
+/*    font-size: inherit !important;*/
+/*}*/
+
+/*.markdown-here-wrapper h5 tt, .markdown-here-wrapper h5 code {*/
+/*    font-size: inherit !important;*/
+/*}*/
+
+/*.markdown-here-wrapper h6 tt, .markdown-here-wrapper h6 code {*/
+/*    font-size: inherit !important;*/
+/*}*/
+
+.markdown-here-wrapper h2 a, .markdown-here-wrapper h3 a {
+    color: #34495e;
+}
+
+.markdown-here-wrapper h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+.markdown-here-wrapper h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+.markdown-here-wrapper h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+.markdown-here-wrapper h4 {
+    font-size: 1.2rem;
+}
+
+.markdown-here-wrapper h5 {
+    font-size: 1rem;
+}
+
+.markdown-here-wrapper h6 {
+    font-size: 1rem;
+    color: #777;
+}
+
+.markdown-here-wrapper p, .markdown-here-wrapper ul, .markdown-here-wrapper ol, .markdown-here-wrapper dl, .markdown-here-wrapper table {
+    margin: 0.8em 0;
+}
+
+.markdown-here-wrapper li > ol, .markdown-here-wrapper li > ul {
+    margin: 0 0;
+}
+
+.markdown-here-wrapper hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.markdown-here-wrapper a:first-child h1, .markdown-here-wrapper a:first-child h2, .markdown-here-wrapper a:first-child h3, .markdown-here-wrapper a:first-child h4, .markdown-here-wrapper a:first-child h5, .markdown-here-wrapper a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.markdown-here-wrapper h1 p, .markdown-here-wrapper h2 p, .markdown-here-wrapper h3 p, .markdown-here-wrapper h4 p, .markdown-here-wrapper h5 p, .markdown-here-wrapper h6 p {
+    margin-top: 0;
+}
+
+.markdown-here-wrapper li p.first {
+    display: inline-block;
+}
+
+.markdown-here-wrapper ul, .markdown-here-wrapper ol {
+    padding-left: 30px;
+}
+
+.markdown-here-wrapper ul:first-child, .markdown-here-wrapper ol:first-child {
+    margin-top: 0;
+}
+
+.markdown-here-wrapper ul:last-child, .markdown-here-wrapper ol:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-here-wrapper blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, 0.1);
+    margin: 0;
+    font-size: 14.5px;
+}
+
+.markdown-here-wrapper blockquote p {
+    margin: 0;
+}
+
+.markdown-here-wrapper pre code {
+    white-space: unset;
+}
+
+.markdown-here-wrapper p img {
+    width: 100%;
+}
+
+.markdown-here-wrapper table {
+    padding: 0;
+    word-break: initial;
+}
+
+.markdown-here-wrapper table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+.markdown-here-wrapper table tr:nth-child(2n), .markdown-here-wrapper thead {
+    background-color: #fafafa;
+}
+
+.markdown-here-wrapper table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+.markdown-here-wrapper table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+.markdown-here-wrapper table tr th:first-child, .markdown-here-wrapper table tr td:first-child {
+    margin-top: 0;
+}
+
+.markdown-here-wrapper table tr th:last-child, .markdown-here-wrapper table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-here-wrapper strong {
+    padding: 0 1px;
+}
+
+.markdown-here-wrapper em {
+    padding: 0 5px 0 2px;
+}
+
+.markdown-here-wrapper table thead th {
+    background-color: #f2f2f2;
+}
+
+.markdown-here-wrapper .CodeMirror-gutters {
+    border-right: none;
+}
+
+.markdown-here-wrapper .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    word-wrap: normal;
+}
+
+.markdown-here-wrapper .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}
+
+.markdown-here-wrapper code:not([class|=language]), tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}
+
+tt {
+    margin: 0 2px;
+}
+
+.markdown-here-wrapper .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}
+
+/* heighlight. */
+.markdown-here-wrapper mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+
+.markdown-here-wrapper del {
+    padding: 1px 2px;
+}
+
+.markdown-here-wrapper {
+    /** focus mode */
+}
+
+.markdown-here-wrapper .cm-s-inner .cm-link, .markdown-here-wrapper .cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.markdown-here-wrapper .cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.markdown-here-wrapper .md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    .markdown-here-wrapper html {
+        font-size: 13px;
+    }
+
+    .markdown-here-wrapper table, .markdown-here-wrapper pre {
+        page-break-inside: avoid;
+    }
+
+    .markdown-here-wrapper pre {
+        word-wrap: break-word;
+    }
+}
+
+.markdown-here-wrapper .md-fences {
+    background-color: #f8f8f8;
+}
+
+.markdown-here-wrapper .md-diagram-panel {
+    position: static !important;
+}
+
+.markdown-here-wrapper .markdown-here-wrapper pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.markdown-here-wrapper .mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+.markdown-here-wrapper .markdown-here-wrapper > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+.markdown-here-wrapper .markdown-here-wrapper > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.markdown-here-wrapper .markdown-here-wrapper > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.markdown-here-wrapper .markdown-here-wrapper > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.markdown-here-wrapper .md-image > .md-meta {
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.markdown-here-wrapper .md-tag {
+    color: inherit;
+}
+
+.markdown-here-wrapper .md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.markdown-here-wrapper .sidebar-tabs {
+    border-bottom: none;
+}
+
+.markdown-here-wrapper #typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+.markdown-here-wrapper #typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.markdown-here-wrapper #md-notification:before {
+    top: 10px;
+}
+
+.markdown-here-wrapper .on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+.markdown-here-wrapper header, .markdown-here-wrapper .context-menu, .markdown-here-wrapper .megamenu-content, .markdown-here-wrapper footer {
+    font-family: var(--font-sans-serif);
+}
+
+.markdown-here-wrapper .file-node-content:hover .file-node-icon, .markdown-here-wrapper .file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.markdown-here-wrapper .mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.markdown-here-wrapper .md-lang {
+    color: #b4654d;
+}
+
+.markdown-here-wrapper .html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
