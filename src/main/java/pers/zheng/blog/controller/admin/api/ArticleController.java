@@ -34,4 +34,38 @@ public class ArticleController {
         articlesService.createArticle(article);
         return Result.success();
     }
+
+
+    @GetMapping("{id}")
+    public Result fetchArticle(@PathVariable("id") int id) {
+        log.info("fetchArticle: " + id);
+        ArticleDto articleDto = articlesService.getArticleDtoById(id);
+
+        return Result.success(articleDto);
+    }
+
+    @PostMapping("update")
+    public Result updateArticle(@RequestBody ArticleDto articleDto) {
+        log.info("updateArticle: " + articleDto.getArticleId());
+        articlesService.updateArticle(articleDto);
+        return Result.success();
+    }
+
+
+    @PostMapping("delete")
+    public Result deleteArticleById(@RequestParam("id") int id) {
+        log.info("deleteArticle: " + id);
+        int i = articlesService.deleteArticleById(id);
+        return i == 0 ? Result.failure() : Result.success();
+    }
+
+    @PostMapping("setStatus")
+    public Result setArticleStatus(@RequestParam("articleId") int articleId,
+                                   @RequestParam("articleStatus") String articleStatus) {
+        log.info("setArticleStatus: " + articleId + " " + articleStatus);
+
+        int i = articlesService.setArticleStatus(articleId, articleStatus);
+
+        return Result.success();
+    }
 }

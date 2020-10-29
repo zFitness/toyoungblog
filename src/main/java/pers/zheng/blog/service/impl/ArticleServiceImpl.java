@@ -81,4 +81,48 @@ public class ArticleServiceImpl implements ArticlesService {
 
         return articlesDao.insert(article);
     }
+
+    @Override
+    public ArticleDto getArticleDtoById(int id) {
+        Article article = articlesDao.selectById(id);
+        ArticleDto articleDto = new ArticleDto();
+        articleDto.setArticleId(article.getArticleId());
+        articleDto.setArticleTitle(article.getArticleTitle());
+        articleDto.setArticleSummary(article.getArticleSummary());
+        articleDto.setArticleDate(article.getArticleDate());
+        articleDto.setArticleContent(article.getArticleContent());
+        articleDto.setArticleStatus(article.getArticleStatus());
+        return articleDto;
+    }
+
+    @Override
+    public int updateArticle(ArticleDto articleDto) {
+        Article article = articlesDao.selectById(articleDto.getArticleId());
+        if (article != null) {
+            article.setArticleContent(articleDto.getArticleContent());
+            article.setArticleSummary(articleDto.getArticleSummary());
+            article.setArticleTitle(articleDto.getArticleTitle());
+            article.setArticleStatus(articleDto.getArticleStatus());
+            article.setArticleDate(articleDto.getArticleDate());
+            return articlesDao.updateById(article);
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int deleteArticleById(int id) {
+        //返回影响行数
+        return articlesDao.deleteById(id);
+    }
+
+    @Override
+    public int setArticleStatus(int articleId, String articleStatus) {
+        Article article = articlesDao.selectById(articleId);
+        if (article != null) {
+            article.setArticleStatus(articleStatus);
+            return articlesDao.updateById(article);
+        }
+        return 0;
+    }
 }

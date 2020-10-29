@@ -29,4 +29,12 @@ public interface ArticlesService {
     IPage<ArticleItemVo> getArticleItemsByName(int p, int size, String keyword);
 
     int createArticle(ArticleDto article);
+
+    ArticleDto getArticleDtoById(int id);
+
+    int updateArticle(ArticleDto articleDto);
+
+    int deleteArticleById(int id);
+
+    int setArticleStatus(int articleId, String articleStatus);
 }
