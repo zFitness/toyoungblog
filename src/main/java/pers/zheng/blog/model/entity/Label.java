@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("ty_labels")
-public class Labels implements Serializable {
+public class Label implements Serializable {
     private static final long serialVersionUID = -81886925531446951L;
     /**
      * 标签id

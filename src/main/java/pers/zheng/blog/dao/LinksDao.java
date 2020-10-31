@@ -3,7 +3,7 @@ package pers.zheng.blog.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import pers.zheng.blog.model.entity.Links;
+import pers.zheng.blog.model.entity.Link;
 
 /**
  * @ClassName LinksDao
@@ -14,6 +14,6 @@ import pers.zheng.blog.model.entity.Links;
  */
 @Mapper
 @Repository
-public interface LinksDao extends BaseMapper<Links> {
+public interface LinksDao extends BaseMapper<Link> {
 
 }

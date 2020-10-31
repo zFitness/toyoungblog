@@ -7,9 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pers.zheng.blog.model.util.MarkdownEntity;
-import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.service.ArticleService;
 import pers.zheng.blog.util.MarkDown2HtmlWrapper;
-import pers.zheng.blog.util.MarkdownUtils;
 import pers.zheng.blog.model.vo.ArticleContentVo;
 import pers.zheng.blog.model.vo.ArticleItemVo;
 
@@ -24,11 +23,11 @@ import pers.zheng.blog.model.vo.ArticleItemVo;
 @Controller
 public class ArticlePageController {
     @Autowired
-    private ArticlesService articlesService;
+    private ArticleService articleService;
 
     @RequestMapping("/article/{articleId}")
     public String test(Model model, @PathVariable("articleId") Long articleId) {
-        ArticleContentVo articleContentVO = articlesService.getArticleById(articleId);
+        ArticleContentVo articleContentVO = articleService.getArticleById(articleId);
         MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(articleContentVO.getArticleContent());
         articleContentVO.setArticleContentHTML(markdownEntity.toString());
         articleContentVO.setArticleTocHTML(markdownEntity.getHtmlTOC());
@@ -41,7 +40,7 @@ public class ArticlePageController {
     public String search(Model model,
                          @RequestParam("keyword") String keyword,
                          @RequestParam(value = "p", defaultValue = "1", required = false) int p) {
-        IPage<ArticleItemVo> articleItems = articlesService.getArticleItemsByName(p, 10, keyword);
+        IPage<ArticleItemVo> articleItems = articleService.getArticleItemsByName(p, 10, keyword);
         for (ArticleItemVo itemVo : articleItems.getRecords()) {
             MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
             itemVo.setArticleSummary(markdownEntity.toString());

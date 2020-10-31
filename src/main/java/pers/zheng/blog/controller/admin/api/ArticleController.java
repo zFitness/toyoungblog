@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pers.zheng.blog.model.dto.ArticleDto;
 import pers.zheng.blog.model.dto.result.Result;
-import pers.zheng.blog.service.ArticlesService;
+import pers.zheng.blog.service.ArticleService;
 
 /**
  * @ClassName ArticleController
@@ -20,18 +20,18 @@ import pers.zheng.blog.service.ArticlesService;
 @RequestMapping("/api/admin/articles")
 public class ArticleController {
     @Autowired
-    private ArticlesService articlesService;
+    private ArticleService articleService;
 
     @GetMapping("")
     public Result list(@RequestParam("page") int page,
                        @RequestParam("limit") int limit) {
-        return Result.success(articlesService.getArticleDtoItems(page, limit));
+        return Result.success(articleService.getArticleDtoItems(page, limit));
     }
 
     @PostMapping("add")
     public Result add(@RequestBody ArticleDto article) {
         log.info(article.toString());
-        articlesService.createArticle(article);
+        articleService.createArticle(article);
         return Result.success();
     }
 
@@ -39,7 +39,7 @@ public class ArticleController {
     @GetMapping("{id}")
     public Result fetchArticle(@PathVariable("id") int id) {
         log.info("fetchArticle: " + id);
-        ArticleDto articleDto = articlesService.getArticleDtoById(id);
+        ArticleDto articleDto = articleService.getArticleDtoById(id);
 
         return Result.success(articleDto);
     }
@@ -47,7 +47,7 @@ public class ArticleController {
     @PostMapping("update")
     public Result updateArticle(@RequestBody ArticleDto articleDto) {
         log.info("updateArticle: " + articleDto.getArticleId());
-        articlesService.updateArticle(articleDto);
+        articleService.updateArticle(articleDto);
         return Result.success();
     }
 
@@ -55,7 +55,7 @@ public class ArticleController {
     @PostMapping("delete")
     public Result deleteArticleById(@RequestParam("id") int id) {
         log.info("deleteArticle: " + id);
-        int i = articlesService.deleteArticleById(id);
+        int i = articleService.deleteArticleById(id);
         return i == 0 ? Result.failure() : Result.success();
     }
 
@@ -64,7 +64,7 @@ public class ArticleController {
                                    @RequestParam("articleStatus") String articleStatus) {
         log.info("setArticleStatus: " + articleId + " " + articleStatus);
 
-        int i = articlesService.setArticleStatus(articleId, articleStatus);
+        int i = articleService.setArticleStatus(articleId, articleStatus);
 
         return Result.success();
     }

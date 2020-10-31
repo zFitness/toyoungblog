@@ -18,7 +18,7 @@ import pers.zheng.blog.model.vo.ArticleItemVo;
  */
 @Mapper
 @Repository
-public interface ArticlesDao extends BaseMapper<Article> {
+public interface ArticleDao extends BaseMapper<Article> {
     IPage<ArticleItemVo> getArticleItem(Page<?> page, String state);
 
     ArticleContentVo getArticleById(Long articleId);

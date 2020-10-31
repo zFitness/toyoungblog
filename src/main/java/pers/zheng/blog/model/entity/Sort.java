@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("ty_sorts")
-public class Sorts implements Serializable {
+public class Sort implements Serializable {
     private static final long serialVersionUID = -88853805527558525L;
     /**
      * 分类id

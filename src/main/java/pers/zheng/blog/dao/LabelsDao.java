@@ -3,7 +3,7 @@ package pers.zheng.blog.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import pers.zheng.blog.model.entity.Labels;
+import pers.zheng.blog.model.entity.Label;
 
 /**
  * (XzLabels)表数据库访问层
@@ -13,6 +13,6 @@ import pers.zheng.blog.model.entity.Labels;
  */
 @Mapper
 @Repository
-public interface LabelsDao extends BaseMapper<Labels> {
+public interface LabelsDao extends BaseMapper<Label> {
 
 }

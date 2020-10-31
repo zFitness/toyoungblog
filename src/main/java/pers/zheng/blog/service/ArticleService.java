@@ -15,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-11 23:23:02
  */
-public interface ArticlesService {
+public interface ArticleService {
     List<Article> getAll();
 
     IPage<ArticleItemVo> getArticleItems(int p, int size);

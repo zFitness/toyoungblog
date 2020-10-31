@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.LinksDao;
-import pers.zheng.blog.model.entity.Links;
+import pers.zheng.blog.model.entity.Link;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class LinkService {
     @Autowired
     private LinksDao linksDao;
 
-    public List<Links> getLinks() {
-        LambdaQueryWrapper<Links> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Links::getLinkVisible, 1);
+    public List<Link> getLinks() {
+        LambdaQueryWrapper<Link> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Link::getLinkVisible, 1);
         return linksDao.selectList(wrapper);
     }
 }

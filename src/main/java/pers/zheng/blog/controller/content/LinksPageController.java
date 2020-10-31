@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pers.zheng.blog.model.entity.Links;
+import pers.zheng.blog.model.entity.Link;
 import pers.zheng.blog.service.LinkService;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class LinksPageController {
 
     @RequestMapping("")
     public String friendLinks(Model model) {
-        List<Links> links = linkService.getLinks();
+        List<Link> links = linkService.getLinks();
         log.info(links.toString());
         model.addAttribute("links", links);
         return "friend-links";

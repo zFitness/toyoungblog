@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="~{common/header::common_header(~{::title}, ~{::link}, ~{})}">
-    <title>标签</title>
+    <title>归档</title>
     <link rel="stylesheet" th:href="@{/static/css/labels.css}"/>
   </head>
   <body>
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div>
-              <h3 class="link-title"><span class="fake-title">标签</span></h3>
+              <h3 class="link-title"><span class="fake-title">分类</span></h3>
               <span style="width: 256px; display: inline-block">
                         <a th:href="@{/labels/docker}">
                             docker
@@ -52,7 +52,7 @@
               </span>
             </div>
             <div>
-              <h3 class="link-title"><span class="fake-title">分类</span></h3>
+              <h3 class="link-title"><span class="fake-title">标签</span></h3>
               <span style="width: 256px; display: inline-block">
                         <a th:href="@{/labels/docker}">
                             docker

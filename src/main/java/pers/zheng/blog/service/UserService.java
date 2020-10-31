@@ -1,6 +1,6 @@
 package pers.zheng.blog.service;
 
-import pers.zheng.blog.model.entity.Users;
+import pers.zheng.blog.model.entity.User;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-11 23:23:04
  */
-public interface UsersService {
+public interface UserService {
 
     /**
      * 通过ID查询单条数据
@@ -18,7 +18,7 @@ public interface UsersService {
      * @param userId 主键
      * @return 实例对象
      */
-    Users queryById(Integer userId);
+    User queryById(Integer userId);
 
     /**
      * 查询多条数据
@@ -27,23 +27,23 @@ public interface UsersService {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<Users> queryAllByLimit(int offset, int limit);
+    List<User> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param users 实例对象
+     * @param user 实例对象
      * @return 实例对象
      */
-    Users insert(Users users);
+    User insert(User user);
 
     /**
      * 修改数据
      *
-     * @param users 实例对象
+     * @param user 实例对象
      * @return 实例对象
      */
-    Users update(Users users);
+    User update(User user);
 
     /**
      * 通过主键删除数据

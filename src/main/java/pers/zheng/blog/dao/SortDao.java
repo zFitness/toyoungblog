@@ -2,11 +2,8 @@ package pers.zheng.blog.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import pers.zheng.blog.model.entity.Sorts;
-
-import java.util.List;
+import pers.zheng.blog.model.entity.Sort;
 
 /**
  * (XzSorts)表数据库访问层
@@ -16,6 +13,6 @@ import java.util.List;
  */
 @Mapper
 @Repository
-public interface SortsDao extends BaseMapper<Sorts> {
+public interface SortDao extends BaseMapper<Sort> {
 
 }

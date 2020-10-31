@@ -7,18 +7,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pers.zheng.blog.dao.ArticleDao;
 import pers.zheng.blog.dao.ArticleSortDao;
-import pers.zheng.blog.dao.ArticlesDao;
-import pers.zheng.blog.dao.SortsDao;
+import pers.zheng.blog.dao.SortDao;
 import pers.zheng.blog.model.dto.ArticleDto;
 import pers.zheng.blog.model.dto.ArticleItemDto;
 import pers.zheng.blog.model.entity.Article;
 import pers.zheng.blog.model.entity.ArticleSort;
-import pers.zheng.blog.model.entity.Sorts;
-import pers.zheng.blog.service.ArticlesService;
-import pers.zheng.blog.util.MarkdownUtils;
+import pers.zheng.blog.model.entity.Sort;
 import pers.zheng.blog.model.vo.ArticleContentVo;
 import pers.zheng.blog.model.vo.ArticleItemVo;
+import pers.zheng.blog.service.ArticleService;
+import pers.zheng.blog.util.MarkdownUtils;
 
 import java.util.List;
 
@@ -31,15 +31,15 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class ArticleServiceImpl implements ArticlesService {
+public class ArticleServiceImpl implements ArticleService {
     @Autowired
-    private ArticlesDao articlesDao;
+    private ArticleDao articlesDao;
 
     @Autowired
     private ArticleSortDao articleSortDao;
 
     @Autowired
-    private SortsDao sortsDao;
+    private SortDao sortDao;
 
     @Override
     public List<Article> getAll() {
@@ -74,13 +74,13 @@ public class ArticleServiceImpl implements ArticlesService {
         LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
         ArticleSort articleSort = articleSortDao.selectOne(wrapper);
-        Sorts sorts = null;
+        Sort sort = null;
         if (articleSort != null) {
-            sorts = sortsDao.selectById(articleSort.getSortId());
+            sort = sortDao.selectById(articleSort.getSortId());
         } else {
-            sorts = sortsDao.selectById(2);
+            sort = sortDao.selectById(2);
         }
-        article.setSorts(sorts);
+        article.setSort(sort);
         return article;
     }
 
@@ -126,13 +126,13 @@ public class ArticleServiceImpl implements ArticlesService {
             LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
             wrapper.eq(ArticleSort::getArticleId, record.getArticleId());
             ArticleSort articleSort = articleSortDao.selectOne(wrapper);
-            Sorts sorts = null;
+            Sort sort = null;
             if (articleSort != null) {
-                sorts = sortsDao.selectById(articleSort.getSortId());
+                sort = sortDao.selectById(articleSort.getSortId());
             } else {
-                sorts = sortsDao.selectById(2);
+                sort = sortDao.selectById(2);
             }
-            record.setSorts(sorts);
+            record.setSort(sort);
         }
         return publishArticle;
     }
