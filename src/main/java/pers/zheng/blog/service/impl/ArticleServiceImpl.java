@@ -1,14 +1,20 @@
 package pers.zheng.blog.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.ArticlesDao;
+import pers.zheng.blog.dao.SortsDao;
 import pers.zheng.blog.model.dto.ArticleDto;
 import pers.zheng.blog.model.dto.ArticleItemDto;
 import pers.zheng.blog.model.entity.Article;
+import pers.zheng.blog.model.entity.ArticleSort;
+import pers.zheng.blog.model.entity.Sorts;
 import pers.zheng.blog.service.ArticlesService;
 import pers.zheng.blog.util.MarkdownUtils;
 import pers.zheng.blog.model.vo.ArticleContentVo;
@@ -29,6 +35,12 @@ public class ArticleServiceImpl implements ArticlesService {
     @Autowired
     private ArticlesDao articlesDao;
 
+    @Autowired
+    private ArticleSortDao articleSortDao;
+
+    @Autowired
+    private SortsDao sortsDao;
+
     @Override
     public List<Article> getAll() {
         return articlesDao.selectList(null);
@@ -36,8 +48,12 @@ public class ArticleServiceImpl implements ArticlesService {
 
     @Override
     public IPage<ArticleItemVo> getArticleItems(int p, int size) {
-        Page<ArticleItemVo> page = new Page<>(p, size);
-        return articlesDao.getArticleItem(page, "publish");
+        Page<ArticleItemVo> pageConf = new Page<>(p, size);
+        IPage<ArticleItemVo> page = articlesDao.getArticleItem(pageConf, "publish");
+        /**
+         * 添加分类
+         */
+        return setArticleItemSorts(page);
     }
 
     @Override
@@ -46,22 +62,79 @@ public class ArticleServiceImpl implements ArticlesService {
         return articlesDao.getArticleDtoItems(page);
     }
 
-
+    /**
+     * 根据id获取文章
+     *
+     * @param articleId
+     * @return
+     */
     @Override
     public ArticleContentVo getArticleById(Long articleId) {
-        return articlesDao.getArticleById(articleId);
+        ArticleContentVo article = articlesDao.getArticleById(articleId);
+        LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
+        ArticleSort articleSort = articleSortDao.selectOne(wrapper);
+        Sorts sorts = null;
+        if (articleSort != null) {
+            sorts = sortsDao.selectById(articleSort.getSortId());
+        } else {
+            sorts = sortsDao.selectById(2);
+        }
+        article.setSorts(sorts);
+        return article;
     }
 
+    /**
+     * 根据标签名查找
+     *
+     * @param p
+     * @param labelId
+     * @param size
+     * @return
+     */
     @Override
     public IPage<ArticleItemVo> getArticleItemsByLabel(int p, Integer labelId, int size) {
         Page<ArticleItemVo> page = new Page<>(p, size);
-        return articlesDao.getArticleItemByLabel(page, 1, labelId);
+        IPage<ArticleItemVo> publishArticle = articlesDao.getArticleItemByLabel(page, "publish", labelId);
+        return setArticleItemSorts(publishArticle);
     }
 
+    /**
+     * 根据文章名查找
+     *
+     * @param p
+     * @param size
+     * @param keyword
+     * @return
+     */
     @Override
     public IPage<ArticleItemVo> getArticleItemsByName(int p, int size, String keyword) {
         Page<ArticleItemVo> page = new Page<>(p, size);
-        return articlesDao.getArticleItemsByName(page, 1, keyword);
+        IPage<ArticleItemVo> publishArticle = articlesDao.getArticleItemsByName(page, "publish", keyword);
+        return setArticleItemSorts(publishArticle);
+    }
+
+    /**
+     * 给文章列表的每一项添加数据
+     *
+     * @param publishArticle
+     * @return
+     */
+    @NotNull
+    private IPage<ArticleItemVo> setArticleItemSorts(IPage<ArticleItemVo> publishArticle) {
+        for (ArticleItemVo record : publishArticle.getRecords()) {
+            LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(ArticleSort::getArticleId, record.getArticleId());
+            ArticleSort articleSort = articleSortDao.selectOne(wrapper);
+            Sorts sorts = null;
+            if (articleSort != null) {
+                sorts = sortsDao.selectById(articleSort.getSortId());
+            } else {
+                sorts = sortsDao.selectById(2);
+            }
+            record.setSorts(sorts);
+        }
+        return publishArticle;
     }
 
     @Override
@@ -73,6 +146,7 @@ public class ArticleServiceImpl implements ArticlesService {
         article.setArticleContent(articleDto.getArticleContent());
         article.setArticleDate(articleDto.getArticleDate());
         article.setArticleStatus(articleDto.getArticleStatus());
+        //如果没有填写摘要则自动生成摘要
         if (articleDto.getArticleSummary() == null || articleDto.getArticleSummary().equals("")) {
             article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
         } else {
@@ -100,7 +174,12 @@ public class ArticleServiceImpl implements ArticlesService {
         Article article = articlesDao.selectById(articleDto.getArticleId());
         if (article != null) {
             article.setArticleContent(articleDto.getArticleContent());
-            article.setArticleSummary(articleDto.getArticleSummary());
+            //如果没有填写摘要则自动生成摘要
+            if (articleDto.getArticleSummary() == null || articleDto.getArticleSummary().equals("")) {
+                article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
+            } else {
+                article.setArticleSummary(articleDto.getArticleSummary());
+            }
             article.setArticleTitle(articleDto.getArticleTitle());
             article.setArticleStatus(articleDto.getArticleStatus());
             article.setArticleDate(articleDto.getArticleDate());

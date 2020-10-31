@@ -1,5 +1,7 @@
 package pers.zheng.blog.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -19,6 +21,7 @@ public class Comments implements Serializable {
     /**
      * 评论id
      */
+    @TableId(type = IdType.AUTO)
     private Integer commentId;
     /**
      * 文章id

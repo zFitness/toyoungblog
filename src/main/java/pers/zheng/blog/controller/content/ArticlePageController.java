@@ -42,8 +42,10 @@ public class ArticlePageController {
                          @RequestParam("keyword") String keyword,
                          @RequestParam(value = "p", defaultValue = "1", required = false) int p) {
         IPage<ArticleItemVo> articleItems = articlesService.getArticleItemsByName(p, 10, keyword);
-        log.info(articleItems.getRecords().toString());
-        log.info(articleItems.getCurrent() + "");
+        for (ArticleItemVo itemVo : articleItems.getRecords()) {
+            MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
+            itemVo.setArticleSummary(markdownEntity.toString());
+        }
         model.addAttribute("articleItems", articleItems);
         model.addAttribute("keyword", keyword);
         return "search";

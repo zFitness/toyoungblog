@@ -88,12 +88,12 @@
     <select id="getArticleItemsByName" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
         SELECT
             article_id,
-            article_content,
-            article_date,
-            article_like_count,
             article_title,
+            article_view_count,
+            article_like_count,
             article_comment_count,
-            article_view_count
+            article_summary,
+            article_date
         FROM
             ty_articles
         WHERE
@@ -101,7 +101,7 @@
         AND
             article_status like #{state}
 	    ORDER BY
-        	a.article_date
+        	article_date
         DESC
     </select>
 </mapper>

@@ -1,5 +1,6 @@
 package pers.zheng.blog.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -16,7 +17,7 @@ import java.util.Date;
 @Data
 @TableName("ty_links")
 public class Links {
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer linkId;
     private String linkUrl;
     private String linkName;

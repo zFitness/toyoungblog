@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="~{common/header::common_header(~{::title}, ~{::link},~{::script})}">
-    <title>标签</title>
+    <title>搜索</title>
     <link rel="stylesheet" th:href="@{/static/css/label.css}"/>
     <link rel="stylesheet" th:href="@{/static/lib/pagination/my-page.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/markdown.css}"/>
     <script th:src="@{/static/lib/pagination/my-page.js}"></script>
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -65,28 +66,31 @@
                 </h1>
 
                 <div class="article-time">
-                  <span
-                          class="glyphicon glyphicon-time"
+                  <i
+                          class="iconfont iconTime"
                           aria-hidden="true"
-                  ></span>
+                  ></i>
                   <span th:text="${#dates.format(articleItem.articleDate,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </div>
-                <p th:text="${articleItem.articleSummary}">
-                </p>
+                <div id="article-content" th:utext="${articleItem.articleSummary}"></div>
                 <div class="article-info">
                   <div class="article-info-read" style="margin-right: 20px">
-                    <span
-                            class="glyphicon glyphicon-eye-open"
-                            aria-hidden="true"
-                    ></span>
+                    <i
+                            class="iconfont iconViews"
+                    ></i>
                     <span th:text="${articleItem.articleViewCount}"></span>阅读
                   </div>
                   <div class="" style="margin-right: 20px">
-                    <span
-                            class="glyphicon glyphicon-comment"
-                            aria-hidden="true"
-                    ></span>
+                    <i
+                            class="iconfont iconComments"
+                    ></i>
                     <span th:text="${articleItem.articleCommentCount}"></span>评论
+                  </div>
+                  <div class="" style="margin-right: 20px">
+                    <i
+                            class="iconfont iconDocument"
+                    ></i>
+                    <span th:text="${articleItem.getSorts().getSortName()}"></span>
                   </div>
                   <!--                  <div class="article-info-more">-->
                   <!--                    <a>...</a>-->

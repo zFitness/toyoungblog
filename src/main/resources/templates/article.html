@@ -55,25 +55,22 @@
               <div class="article-content-title">
                 <h1 th:text="${article.getArticleTitle()}"></h1>
                 <span class="" style="margin-right: 20px">
-                  <span
-                          class="glyphicon glyphicon-time"
-                          aria-hidden="true"
-                  ></span>
-                  <span th:text="${#dates.format(article.getArticleDate(),'yyyy-MM-dd')}"></span>
-                </span>
-                <span class="" style="margin-right: 20px">
-                  <span
-                          class="glyphicon glyphicon-eye-open"
-                          aria-hidden="true"
-                  ></span>
+                  <i
+                          class="iconfont iconViews"
+                  ></i>
                   <span th:text="${article.getArticleViewCount()}"></span>阅读
                 </span>
                 <span class="" style="margin-right: 20px">
-                  <span
-                          class="glyphicon glyphicon-comment"
-                          aria-hidden="true"
-                  ></span>
+                  <i
+                          class="iconfont iconComments"
+                  ></i>
                   <span th:text="${article.getArticleCommentCount()}"></span>评论
+                </span>
+                <span class="" style="margin-right: 20px">
+                   <i
+                           class="iconfont iconDocument"
+                   ></i>
+                    <span th:text="${article.getSorts().getSortName()}">java</span>
                 </span>
               </div>
             </div>
@@ -93,6 +90,9 @@
               <!-- markdown转html-->
               <div id="article-content" th:utext="${article.getArticleContentHTML()}"></div>
               <div class="article-footer">
+                <div class="breadcrumbs">
+                  <div itemscope="" itemtype="http://schema.org/WebPage" id="crumbs">最后更新时间：2019年10月12日</div>
+                </div>
                 <div class="donate">
                   <a id="donate-btn">赏</a>
                   <ul class="donate_inner" style="display: none">

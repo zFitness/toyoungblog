@@ -1,5 +1,7 @@
 package pers.zheng.blog.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -15,6 +17,9 @@ import java.io.Serializable;
 @TableName("ty_article_sort")
 public class ArticleSort implements Serializable {
     private static final long serialVersionUID = 997887738957334353L;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+
     /**
      * 文章id
      */
@@ -23,9 +28,6 @@ public class ArticleSort implements Serializable {
      * 分类id
      */
     private Integer sortId;
-
-    private Integer id;
-
 
 
 }

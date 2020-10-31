@@ -1,5 +1,7 @@
 package pers.zheng.blog.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -15,7 +17,7 @@ import java.io.Serializable;
 @TableName("ty_article_label")
 public class ArticleLabel implements Serializable {
     private static final long serialVersionUID = 911985186110460559L;
-
+    @TableId(type = IdType.AUTO)
     private Integer id;
     /**
      * 文章id
@@ -25,8 +27,6 @@ public class ArticleLabel implements Serializable {
      * 标签id
      */
     private Integer labelId;
-
-
 
 
 }

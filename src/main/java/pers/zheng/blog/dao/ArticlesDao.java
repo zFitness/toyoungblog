@@ -23,9 +23,9 @@ public interface ArticlesDao extends BaseMapper<Article> {
 
     ArticleContentVo getArticleById(Long articleId);
 
-    IPage<ArticleItemVo> getArticleItemByLabel(Page<ArticleItemVo> page, int state, int labelId);
+    IPage<ArticleItemVo> getArticleItemByLabel(Page<ArticleItemVo> page, String state, int labelId);
 
-    IPage<ArticleItemVo> getArticleItemsByName(Page<ArticleItemVo> page, int state, String keyword);
+    IPage<ArticleItemVo> getArticleItemsByName(Page<ArticleItemVo> page, String state, String keyword);
 
     IPage<ArticleItemDto> getArticleDtoItems(Page<ArticleItemVo> page);
 }

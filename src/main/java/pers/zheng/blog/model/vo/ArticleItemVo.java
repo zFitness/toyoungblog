@@ -51,6 +51,9 @@ public class ArticleItemVo {
 
     private String articleContent;
 
+    /**
+     * 分类
+     */
     private Sorts sorts;
 
 }

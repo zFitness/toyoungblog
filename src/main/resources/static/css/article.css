@@ -27,6 +27,7 @@
     left: 0;
     right: 0;
     text-align: center;
+    font-family: miranafont, "Hiragino Sans GB", STXihei, "Microsoft YaHei", SimSun, sans-serif;
 }
 
 /* 文章内容 */
@@ -38,12 +39,21 @@
     margin-bottom: 13em;
 }
 
+
+
 /* 文章标签，打赏 */
 .article-footer {
     padding: 20px 10px;
     margin-top: 30px;
     height: 65px;
     position: relative;
+}
+
+.breadcrumbs {
+    font-size: 14px;
+    color: #d2d2d2;
+    text-decoration: none;
+    margin-bottom: 30px;
 }
 
 .donate {
