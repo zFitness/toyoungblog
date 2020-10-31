@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="pers.zheng.blog.dao.LabelsDao">
+<mapper namespace="pers.zheng.blog.dao.LabelDao">
 
-
+    <select id="getAllLabel" resultType="pers.zheng.blog.model.vo.LabelVo">
+        SELECT
+            ty_labels.*,
+            b.article_count
+        FROM
+            ty_labels
+        RIGHT JOIN
+            (SELECT label_id, count(*) as article_count from ty_article_label GROUP BY label_id) as b
+        ON
+            ty_labels.label_id = b.label_id
+    </select>
 </mapper>

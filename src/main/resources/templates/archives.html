@@ -47,11 +47,11 @@
             </div>
             <div>
               <h3 class="link-title"><span class="fake-title">标签</span></h3>
-              <span style="width: 256px; display: inline-block">
-                        <a th:href="@{/labels/docker}">
+              <span th:each="label:${labels}" style="width: 256px; display: inline-block">
+                         <a th:href="@{'/labels/'+${label.getLabelName()}}" th:text="${label.getLabelName()}">
                             docker
                         </a>
-                        <span>5 篇</span>
+                        <span th:text="${label.getArticleCount() + '篇'}">5 篇</span>
               </span>
             </div>
           </div>
