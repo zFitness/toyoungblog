@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pers.zheng.blog.model.entity.Label;
-import pers.zheng.blog.model.entity.Sort;
 import pers.zheng.blog.model.vo.LabelVo;
 import pers.zheng.blog.model.vo.SortVo;
 import pers.zheng.blog.service.LabelService;

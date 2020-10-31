@@ -37,4 +37,6 @@ public interface ArticleService {
     int deleteArticleById(int id);
 
     int setArticleStatus(int articleId, String articleStatus);
+
+    IPage<ArticleItemVo> getArticleItemsBySort(int p, Integer sortId, int size);
 }

@@ -23,8 +23,7 @@ public class LabelService {
     public Label getLabelByName(String labelName) {
         LambdaQueryWrapper<Label> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Label::getLabelName, labelName);
-        Label label = labelDao.selectOne(queryWrapper);
-        return label;
+        return labelDao.selectOne(queryWrapper);
     }
 
     public List<LabelVo> getAllLabel() {

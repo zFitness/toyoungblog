@@ -204,4 +204,11 @@ public class ArticleServiceImpl implements ArticleService {
         }
         return 0;
     }
+
+    @Override
+    public IPage<ArticleItemVo> getArticleItemsBySort(int p, Integer sortId, int size) {
+        Page<ArticleItemVo> page = new Page<>(p, size);
+        IPage<ArticleItemVo> publishArticle = articlesDao.getArticleItemBySort(page, "publish", sortId);
+        return setArticleItemSorts(publishArticle);
+    }
 }

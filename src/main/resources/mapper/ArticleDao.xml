@@ -104,4 +104,24 @@
         	article_date
         DESC
     </select>
+
+
+    <!-- 根据分类查询-->
+    <select id="getArticleItemBySort" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+        SELECT
+            a.article_id,
+            a.article_title,
+            a.article_view_count,
+            a.article_comment_count,
+            a.article_summary,
+            a.article_date
+        FROM
+            ty_articles a
+            JOIN ty_article_sort b ON a.article_id = b.article_id
+        WHERE
+            b.sort_id = #{sortId}
+            AND a.article_status LIKE #{state}
+        ORDER BY
+            a.article_date DESC
+    </select>
 </mapper>

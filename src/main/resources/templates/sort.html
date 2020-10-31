@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="~{common/header::common_header(~{::title}, ~{::link},~{::script})}">
-    <title>标签</title>
+    <title>分类</title>
     <link rel="stylesheet" th:href="@{/static/css/label.css}"/>
     <link rel="stylesheet" th:href="@{/static/lib/pagination/my-page.css}"/>
     <link rel="stylesheet" th:href="@{/static/css/markdown.css}"/>
@@ -51,8 +51,8 @@
           <!-- 主题内容 -->
           <div class="content">
             <div class="tag-title">
-              <h1>搜索结果: 标签
-                “<span th:text="${labelName}"></span>”下的文章</h1>
+              <h1>搜索结果: 分类
+                “<span th:text="${sortName}"></span>”下的文章</h1>
             </div>
             <!-- 博文内容 -->
             <div class="blog">

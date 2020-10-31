@@ -39,7 +39,7 @@
             <div>
               <h3 class="link-title"><span class="fake-title">分类</span></h3>
               <span th:each="sort : ${sorts}" style="width: 256px; display: inline-block">
-                        <a th:href="@{'/labels/'+${sort.getSortName()}}" th:text="${sort.getSortName()}">
+                        <a th:href="@{'/sorts/'+${sort.getSortName()}}" th:text="${sort.getSortName()}">
                             docker
                         </a>
                         <span th:text="${sort.getCount() + '篇'}">5 篇</span>

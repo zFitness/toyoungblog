@@ -28,4 +28,6 @@ public interface ArticleDao extends BaseMapper<Article> {
     IPage<ArticleItemVo> getArticleItemsByName(Page<ArticleItemVo> page, String state, String keyword);
 
     IPage<ArticleItemDto> getArticleDtoItems(Page<ArticleItemVo> page);
+
+    IPage<ArticleItemVo> getArticleItemBySort(Page<ArticleItemVo> page, String state, Integer sortId);
 }
