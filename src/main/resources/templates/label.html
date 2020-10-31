@@ -51,12 +51,13 @@
           <!-- 主题内容 -->
           <div class="content">
             <div class="tag-title">
-              <h1>搜索结果: 标签
+              <h1>搜索结果: 分类
                 “<span th:text="${labelName}"></span>”下的文章</h1>
             </div>
             <!-- 博文内容 -->
             <div class="blog">
               <div class="article"
+                   th:if="${not #lists.isEmpty(articleItems)}"
                    th:each="articleItem : ${articleItems.getRecords()}">
                 <h1 class="article-title">
                   <a th:href="${'/article/' + articleItem.getArticleId()}"

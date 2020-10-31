@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pers.zheng.blog.model.entity.Sort;
+import pers.zheng.blog.model.vo.SortVo;
 import pers.zheng.blog.service.SortService;
+
+import java.util.List;
 
 /**
  * @ClassName LabelController
@@ -24,7 +28,8 @@ public class ArchivePageController {
      */
     @RequestMapping("archives")
     public String getAll(Model model) {
-
+        List<SortVo> sorts = sortsService.getAllSort();
+        model.addAttribute("sorts", sorts);
         return "archives";
     }
 }

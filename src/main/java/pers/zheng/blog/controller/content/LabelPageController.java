@@ -1,6 +1,7 @@
 package pers.zheng.blog.controller.content;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,12 +36,20 @@ public class LabelPageController {
                                      Model model) {
         int size = 10;
         Label label = labelService.getLabelByName(labelName);
-        IPage<ArticleItemVo> articleItems = articleService.getArticleItemsByLabel(p, label.getLabelId(), size);
-        for (ArticleItemVo itemVo : articleItems.getRecords()) {
-            MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
-            itemVo.setArticleSummary(markdownEntity.toString());
+        if (label == null) {
+            Page<ArticleItemVo> articleItems = new Page<>(p, 10);
+            //没有这个标签
+            model.addAttribute("articleItems", articleItems);
+        } else {
+            IPage<ArticleItemVo> articleItems = articleService.getArticleItemsByLabel(p, label.getLabelId(), size);
+            for (ArticleItemVo itemVo : articleItems.getRecords()) {
+                MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
+                itemVo.setArticleSummary(markdownEntity.toString());
+            }
+            model.addAttribute("articleItems", articleItems);
         }
-        model.addAttribute("articleItems", articleItems);
+
+
         model.addAttribute("labelName", labelName);
         return "label";
     }
