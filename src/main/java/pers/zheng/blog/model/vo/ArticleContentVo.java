@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.entity.Sort;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName ArticleContentVo
@@ -63,4 +65,9 @@ public class ArticleContentVo {
      * 分类
      */
     private Sort sort;
+
+    /**
+     * 标签
+     */
+    private List<Label> labels;
 }

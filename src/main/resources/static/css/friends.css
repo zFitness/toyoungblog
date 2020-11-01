@@ -9,7 +9,7 @@ body {
     padding: 0 10px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 13em;
+    margin-bottom: 23em;
     padding-top: 60px;
     background-color: #fff;
 }
@@ -54,7 +54,6 @@ body {
 }
 
 a {
-    color: #e67474;
     outline: none;
     -webkit-transition: color .2s ease-out, border .2s ease-out, opacity .2s ease-out;
     -moz-transition: color .2s ease-out, border .2s ease-out, opacity .2s ease-out;

@@ -4,16 +4,19 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.A;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.ArticleDao;
+import pers.zheng.blog.dao.ArticleLabelDao;
 import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.SortDao;
 import pers.zheng.blog.model.dto.ArticleDto;
 import pers.zheng.blog.model.dto.ArticleItemDto;
 import pers.zheng.blog.model.entity.Article;
 import pers.zheng.blog.model.entity.ArticleSort;
+import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.entity.Sort;
 import pers.zheng.blog.model.vo.ArticleContentVo;
 import pers.zheng.blog.model.vo.ArticleItemVo;
@@ -40,6 +43,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private SortDao sortDao;
+
+    @Autowired
+    private ArticleLabelDao articleLabelDao;
 
     @Override
     public List<Article> getAll() {
@@ -71,6 +77,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleContentVo getArticleById(Long articleId) {
         ArticleContentVo article = articlesDao.getArticleById(articleId);
+        //获得分类
         LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
         ArticleSort articleSort = articleSortDao.selectOne(wrapper);
@@ -81,6 +88,9 @@ public class ArticleServiceImpl implements ArticleService {
             sort = sortDao.selectById(2);
         }
         article.setSort(sort);
+        //获得标签
+        List<Label> labels = articleLabelDao.getLabelByArticle(article.getArticleId());
+        article.setLabels(labels);
         return article;
     }
 

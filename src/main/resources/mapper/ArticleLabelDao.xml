@@ -8,5 +8,14 @@
         <result property="labelId" column="label_id" jdbcType="INTEGER"/>
     </resultMap>
 
-
+    <select id="getLabelByArticle" resultType="pers.zheng.blog.model.entity.Label">
+        SELECT
+            ty_labels.*
+        FROM
+            ty_labels
+	    JOIN
+	        ( SELECT * FROM ty_article_label WHERE article_id = #{articleId} ) AS b
+	    ON
+	        ty_labels.label_id = b.label_id
+    </select>
 </mapper>
