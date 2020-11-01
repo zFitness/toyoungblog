@@ -1,9 +1,16 @@
 $(document).ready(function () {
     $('.main-wrapper').scroll(function () {
         if ($('.main-wrapper').scrollTop() > 100) {
+            //回到顶部按钮
             $('.m-cd-top').fadeIn();
+            if ($(document).width() >= 768) {
+                $('.site-header').addClass('site-header-hover')
+            }
         } else {
             $('.m-cd-top').fadeOut();
+            if ($(document).width() >= 768) {
+                $('.site-header').removeClass('site-header-hover')
+            }
         }
     })
 

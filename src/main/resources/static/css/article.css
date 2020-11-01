@@ -352,7 +352,7 @@ li.wedonate:after {
     transform: translateX(0);
     right: calc((100% - 950px - 250px) / 2);
     /* position: absolute!important; */
-    top: 10px;
+    top: 65px;
     /* bottom: 50%; */
     position: fixed;
     padding-top: 10px;
