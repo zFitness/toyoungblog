@@ -33,6 +33,12 @@ public class ArticlePageController {
         articleContentVO.setArticleTocHTML(markdownEntity.getHtmlTOC());
 
         model.addAttribute("article", articleContentVO);
+
+        ArticleItemVo articleItemPrev = articleService.getPrevArticleItemByArticleId(articleId);
+        ArticleItemVo articleItemNext = articleService.getNextArticleItemByArticleId(articleId);
+
+        model.addAttribute("articleItemPrev", articleItemPrev);
+        model.addAttribute("articleItemNext", articleItemNext);
         return "article";
     }
 

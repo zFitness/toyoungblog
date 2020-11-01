@@ -115,11 +115,29 @@
               </div>
             </div>
             <!-- 版权提示 -->
-            <div th:replace="~{common/copyright::copyright}"></div>
+            <div class="open-message" th:fragment="copyright">
+              <p>
+                声明：xzf's
+                blog|版权所有，违者必究|如未注明，均为原创|本网站采用<a
+                      href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+              >BY-NC-SA</a
+              >协议进行授权
+              </p>
+              <p>
+                转载：转载请注明原文链接 -
+                <a th:href="${'/article/' + article.getArticleId()}"
+                   th:text="${article.getArticleTitle()}"
+                >Git常用命令总结</a
+                >
+              </p>
+            </div>
             <!-- 下一篇文章 -->
             <section class="post-squares nextprev">
-              <div class="post-nepre half previous">
-                <a href="#" rel="prev"
+              <div class="post-nepre half previous" th:if="${not #lists.isEmpty(articleItemPrev)}"
+                   th:style="${#lists.isEmpty(articleItemNext)}?'width:100%':''">
+                <a th:href="@{'/article/' + ${articleItemPrev.getArticleId()}}" rel="prev"
                 >
                   <div
                           class="background"
@@ -129,14 +147,15 @@
                   ></div>
                   <span class="label">Previous Post</span>
                   <div class="info">
-                    <h3>Js + Css3 制作一个导航条</h3>
+                    <h3 th:text="${articleItemPrev.getArticleTitle()}">Js + Css3 制作一个导航条</h3>
                     <hr/>
                   </div
                   >
                 </a>
               </div>
-              <div class="post-nepre half next">
-                <a href="#" rel="next"
+              <div class="post-nepre half next" th:if="${not #lists.isEmpty(articleItemNext)}"
+                   th:style="${#lists.isEmpty(articleItemPrev)}?'width:100%':''">
+                <a th:href="@{'/article/' + ${articleItemNext.getArticleId()}}" rel="next"
                 >
                   <div
                           class="background"
@@ -146,7 +165,7 @@
                   ></div>
                   <span class="label">Next Post</span>
                   <div class="info">
-                    <h3>漂亮的Nav导航动效</h3>
+                    <h3 th:text="${articleItemNext.getArticleTitle()}">漂亮的Nav导航动效</h3>
                     <hr/>
                   </div
                   >

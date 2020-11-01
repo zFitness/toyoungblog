@@ -124,4 +124,28 @@
         ORDER BY
             a.article_date DESC
     </select>
+
+    <select id="getPrevArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+        SELECT
+             *
+        FROM
+            ty_articles
+        WHERE
+             article_id = (
+                SELECT
+                    max( article_id )
+                FROM
+                    ty_articles
+                WHERE
+                    article_id &lt; #{articleId})
+    </select>
+
+    <select id="getNextArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+        SELECT
+            *
+        FROM
+            ty_articles
+        WHERE
+            article_id = ( SELECT min( article_id ) FROM ty_articles WHERE article_id > #{articleId} )
+    </select>
 </mapper>

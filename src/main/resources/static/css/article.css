@@ -40,7 +40,6 @@
 }
 
 
-
 /* 文章标签，打赏 */
 .article-footer {
     padding: 20px 10px;
@@ -147,6 +146,14 @@ li.wedonate:after {
     border-radius: 3px;
     font-size: 14px;
     color: #fff;
+}
+
+.open-message p {
+    margin: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: miranafont, "Hiragino Sans GB", STXihei, "Microsoft YaHei", SimSun, sans-serif;
 }
 
 /* 下一篇 */

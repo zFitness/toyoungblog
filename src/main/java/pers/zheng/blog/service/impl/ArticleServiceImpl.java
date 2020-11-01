@@ -221,4 +221,20 @@ public class ArticleServiceImpl implements ArticleService {
         IPage<ArticleItemVo> publishArticle = articlesDao.getArticleItemBySort(page, "publish", sortId);
         return setArticleItemSorts(publishArticle);
     }
+
+    /**
+     * 得到上一篇文章
+     *
+     * @param articleId
+     * @return
+     */
+    @Override
+    public ArticleItemVo getPrevArticleItemByArticleId(Long articleId) {
+        return articlesDao.getPrevArticleItemByArticleId(articleId);
+    }
+
+    @Override
+    public ArticleItemVo getNextArticleItemByArticleId(Long articleId) {
+        return articlesDao.getNextArticleItemByArticleId(articleId);
+    }
 }

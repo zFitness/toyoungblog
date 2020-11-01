@@ -39,4 +39,8 @@ public interface ArticleService {
     int setArticleStatus(int articleId, String articleStatus);
 
     IPage<ArticleItemVo> getArticleItemsBySort(int p, Integer sortId, int size);
+
+    ArticleItemVo getPrevArticleItemByArticleId(Long articleId);
+
+    ArticleItemVo getNextArticleItemByArticleId(Long articleId);
 }
