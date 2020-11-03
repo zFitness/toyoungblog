@@ -13,7 +13,7 @@ class BlogApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(sortsDao.selectById(2));
+//        System.out.println(sortsDao.selectById(2));
     }
 
 }

@@ -1,8 +1,14 @@
 package pers.zheng.blog.model.dto;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import pers.zheng.blog.model.entity.Label;
+import pers.zheng.blog.model.entity.Sort;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName ArticleSummaryVO
@@ -11,9 +17,45 @@ import lombok.ToString;
  * @Date 2020/10/12 12:24
  * @Version 1.0
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-@ToString(callSuper = true)
-public class ArticleDto extends ArticleItemDto {
+public class ArticleDto {
+    /**
+     * 文章id
+     */
+    @TableId(type = IdType.AUTO)
+    private Long articleId;
+    /**
+     * 文章标题
+     */
+    private String articleTitle;
+    /**
+     * 文章访问量
+     */
+    private Long articleViewCount;
+    /**
+     * 文章点赞数
+     */
+    private Long articleLikeCount;
+    /**
+     * 文章发布日期
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date articleDate;
+    /**
+     * 文章评论数
+     */
+    private Long articleCommentCount;
+
+    /**
+     * 文章摘要
+     */
+    private String articleSummary;
+
     private String articleContent;
+
+    private Sort sort;
+
+    private String articleStatus;
+
+    private List<Label> labels;
 }

@@ -14,10 +14,7 @@ import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.SortDao;
 import pers.zheng.blog.model.dto.ArticleDto;
 import pers.zheng.blog.model.dto.ArticleItemDto;
-import pers.zheng.blog.model.entity.Article;
-import pers.zheng.blog.model.entity.ArticleSort;
-import pers.zheng.blog.model.entity.Label;
-import pers.zheng.blog.model.entity.Sort;
+import pers.zheng.blog.model.entity.*;
 import pers.zheng.blog.model.vo.ArticleContentVo;
 import pers.zheng.blog.model.vo.ArticleItemVo;
 import pers.zheng.blog.service.ArticleService;
@@ -162,8 +159,18 @@ public class ArticleServiceImpl implements ArticleService {
         } else {
             article.setArticleSummary(articleDto.getArticleSummary());
         }
+        int count = articlesDao.insert(article);
+        if (count != 0) {
+            //创建标签
+            for (Label label : articleDto.getLabels()) {
+                ArticleLabel articleLabel = new ArticleLabel();
+                articleLabel.setArticleId(article.getArticleId());
+                articleLabel.setLabelId(label.getLabelId());
+                articleLabelDao.insert(articleLabel);
+            }
+        }
 
-        return articlesDao.insert(article);
+        return count;
     }
 
     @Override

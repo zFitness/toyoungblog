@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (XzUsers)实体类
@@ -25,7 +26,7 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    private String userName;
+    private String name;
     /**
      * 用户密码
      */
@@ -41,7 +42,10 @@ public class User implements Serializable {
     /**
      * 头像
      */
-    private String userProfilePhoto;
+    private String avatar;
 
+    private String introduction;
+
+    private List<String> roles;
 
 }

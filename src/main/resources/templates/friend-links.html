@@ -37,7 +37,6 @@
                     <a class="link-item-inner effect-apollo" th:href="${link.getLinkUrl()}"
                        title="me" target="_blank" rel="friend">
                       <img class="lazyload"
-                           onerror="imgError(this,1)"
                            th:src="${link.getLinkImage()}">
                       <span class="sitename" th:text="${link.getLinkName()}">me</span>
                       <div class="linkdes" th:text="${link.getLinkDescription()}">

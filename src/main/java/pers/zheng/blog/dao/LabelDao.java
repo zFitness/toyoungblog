@@ -18,5 +18,5 @@ import java.util.List;
 @Repository
 public interface LabelDao extends BaseMapper<Label> {
 
-    List<LabelVo> getAllLabel();
+    List<LabelVo> getAllLabelVO();
 }

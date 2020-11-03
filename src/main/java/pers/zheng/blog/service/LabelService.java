@@ -26,7 +26,18 @@ public class LabelService {
         return labelDao.selectOne(queryWrapper);
     }
 
-    public List<LabelVo> getAllLabel() {
-        return labelDao.getAllLabel();
+    public List<LabelVo> getAllLabelVO() {
+        return labelDao.getAllLabelVO();
+    }
+
+    public Label addByName(String labelName) {
+        Label label = new Label();
+        label.setLabelName(labelName);
+        int count = labelDao.insert(label);
+        return label;
+    }
+
+    public List<Label> getAllLabel() {
+        return labelDao.selectList(null);
     }
 }

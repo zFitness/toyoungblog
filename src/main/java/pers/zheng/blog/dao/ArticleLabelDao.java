@@ -1,5 +1,6 @@
 package pers.zheng.blog.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 @Mapper
 @Repository
-public interface ArticleLabelDao {
+public interface ArticleLabelDao extends BaseMapper<ArticleLabel> {
 
     List<Label> getLabelByArticle(Long articleId);
 }

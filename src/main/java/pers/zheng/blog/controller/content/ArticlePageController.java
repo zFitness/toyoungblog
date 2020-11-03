@@ -34,9 +34,10 @@ public class ArticlePageController {
 
         model.addAttribute("article", articleContentVO);
 
+
+        //上一篇文章，下一篇文章
         ArticleItemVo articleItemPrev = articleService.getPrevArticleItemByArticleId(articleId);
         ArticleItemVo articleItemNext = articleService.getNextArticleItemByArticleId(articleId);
-
         model.addAttribute("articleItemPrev", articleItemPrev);
         model.addAttribute("articleItemNext", articleItemNext);
         return "article";
