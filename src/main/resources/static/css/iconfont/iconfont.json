@@ -6,6 +6,13 @@
   "description": "个人主页x'm",
   "glyphs": [
     {
+      "icon_id": "3248712",
+      "name": "文件夹",
+      "font_class": "wenjianjia1",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "17924336",
       "name": "Menu",
       "font_class": "Menu",
@@ -151,20 +158,6 @@
       "font_class": "Stockup",
       "unicode": "e67f",
       "unicode_decimal": 59007
-    },
-    {
-      "icon_id": "398906",
-      "name": "评论",
-      "font_class": "pinglun",
-      "unicode": "e628",
-      "unicode_decimal": 58920
-    },
-    {
-      "icon_id": "903842",
-      "name": "阅读",
-      "font_class": "yuedu",
-      "unicode": "e679",
-      "unicode_decimal": 59001
     },
     {
       "icon_id": "5121520",

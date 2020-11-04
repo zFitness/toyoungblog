@@ -39,6 +39,7 @@
             <div>
               <h3 class="link-title"><span class="fake-title">分类</span></h3>
               <span th:each="sort : ${sorts}" style="width: 256px; display: inline-block">
+                <i class="iconfont iconwenjianjia1"></i>
                         <a th:href="@{'/sorts/'+${sort.getSortName()}}" th:text="${sort.getSortName()}">
                             docker
                         </a>
@@ -48,6 +49,7 @@
             <div>
               <h3 class="link-title"><span class="fake-title">标签</span></h3>
               <span th:each="label:${labels}" style="width: 256px; display: inline-block">
+                <i class="iconfont icontag"></i>
                          <a th:href="@{'/labels/'+${label.getLabelName()}}" th:text="${label.getLabelName()}">
                             docker
                         </a>

@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.A;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +11,15 @@ import pers.zheng.blog.dao.ArticleDao;
 import pers.zheng.blog.dao.ArticleLabelDao;
 import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.SortDao;
+import pers.zheng.blog.exception.ArticleNotFoundException;
 import pers.zheng.blog.model.dto.ArticleDto;
 import pers.zheng.blog.model.dto.ArticleItemDto;
 import pers.zheng.blog.model.entity.*;
+import pers.zheng.blog.model.util.MarkdownEntity;
 import pers.zheng.blog.model.vo.ArticleContentVo;
 import pers.zheng.blog.model.vo.ArticleItemVo;
 import pers.zheng.blog.service.ArticleService;
+import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 import pers.zheng.blog.util.MarkdownUtils;
 
 import java.util.List;
@@ -74,6 +76,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleContentVo getArticleById(Long articleId) {
         ArticleContentVo article = articlesDao.getArticleById(articleId);
+        if (article == null) {
+            throw new ArticleNotFoundException("没有这篇文章");
+        }
         //获得分类
         LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
@@ -88,6 +93,10 @@ public class ArticleServiceImpl implements ArticleService {
         //获得标签
         List<Label> labels = articleLabelDao.getLabelByArticle(article.getArticleId());
         article.setLabels(labels);
+        //markdown转换
+        MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(article.getArticleContent());
+        article.setArticleContentHTML(markdownEntity.toString());
+        article.setArticleTocHTML(markdownEntity.getHtmlTOC());
         return article;
     }
 
