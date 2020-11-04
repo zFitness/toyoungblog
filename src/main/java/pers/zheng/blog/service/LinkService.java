@@ -20,7 +20,7 @@ public class LinkService {
     @Autowired
     private LinksDao linksDao;
 
-    public List<Link> getLinks() {
+    public List<Link> listLinks() {
         LambdaQueryWrapper<Link> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Link::getLinkVisible, 1);
         return linksDao.selectList(wrapper);

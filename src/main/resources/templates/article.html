@@ -81,14 +81,14 @@
             <div class="article">
               <!--PC端：目录-->
               <div class="toc-container" style="max-height: 600px;overflow-y: auto;"
-                   th:utext="${article.getArticleTocHTML()}">
+                   th:utext="${article.getArticleTocHtml()}">
               </div>
               <!-- 运动端：目录-->
               <div class="toc-container-mob" style="max-height: 600px;overflow-y: auto;"
-                   th:utext="${article.getArticleTocHTML()}">
+                   th:utext="${article.getArticleTocHtml()}">
               </div>
               <!-- markdown转html-->
-              <div id="article-content" th:utext="${article.getArticleContentHTML()}"></div>
+              <div id="article-content" th:utext="${article.getArticleContent()}"></div>
               <div class="article-footer">
                 <div class="breadcrumbs">
                   <div id="crumbs">最后更新时间：2019年10月12日</div>

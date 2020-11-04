@@ -5,13 +5,22 @@ import lombok.Data;
 import java.io.Serializable;
 
 
+/**
+ * @author zheng
+ */
 @Data
 public class Result implements Serializable {
-    //返回状态码
+    /**
+     * 状态码
+     */
     Integer code;
-    //返回消息
+    /**
+     * 返回消息
+     */
     String msg;
-    //返回数据
+    /**
+     * 返回的数据
+     */
     Object data;
 
     public Result() {
@@ -28,7 +37,11 @@ public class Result implements Serializable {
         this.msg = resultCode.getMessage();
     }
 
-    //操作成功, 不返回数据
+    /**
+     * 返回成功
+     *
+     * @return Result
+     */
     public static Result success() {
         Result result = new Result();
         result.setResultCode(ResponseCode.SUCCESS);
@@ -36,6 +49,13 @@ public class Result implements Serializable {
     }
 
     //操作成功， 且返回数据
+
+    /**
+     * 返回成功的提示和数据
+     *
+     * @param data 返回的数据
+     * @return Result实体类
+     */
     public static Result success(Object data) {
         Result result = new Result();
         result.setResultCode(ResponseCode.SUCCESS);
@@ -43,7 +63,12 @@ public class Result implements Serializable {
         return result;
     }
 
-    //操作失败,
+
+    /**
+     * 失败
+     *
+     * @return Result
+     */
     public static Result failure() {
         Result result = new Result();
         result.setResultCode(ResponseCode.FAIL);
@@ -51,13 +76,23 @@ public class Result implements Serializable {
     }
 
     //操作失败, 不返回数据
+
+    /**
+     * @param responseCode 失败的状态码
+     * @return Result
+     */
     public static Result failure(ResponseCode responseCode) {
         Result result = new Result();
         result.setResultCode(responseCode);
         return result;
     }
 
-    //操作失败, 返回数据
+
+    /**
+     * @param responseCode 状态码
+     * @param data         数据
+     * @return Result
+     */
     public static Result failure(ResponseCode responseCode, Object data) {
         Result result = new Result();
         result.setResultCode(responseCode);

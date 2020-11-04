@@ -1,11 +1,11 @@
 package pers.zheng.blog.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import pers.zheng.blog.model.dto.ArticleDto;
-import pers.zheng.blog.model.dto.ArticleItemDto;
+import pers.zheng.blog.model.dto.ArticleDTO;
+import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.Article;
-import pers.zheng.blog.model.vo.ArticleContentVo;
-import pers.zheng.blog.model.vo.ArticleItemVo;
+import pers.zheng.blog.model.vo.ArticleContentVO;
+import pers.zheng.blog.model.vo.ArticleItemVO;
 
 import java.util.List;
 
@@ -18,29 +18,29 @@ import java.util.List;
 public interface ArticleService {
     List<Article> getAll();
 
-    IPage<ArticleItemVo> getArticleItems(int p, int size);
+    IPage<ArticleItemVO> listArticlePages(int p, int size);
 
-    IPage<ArticleItemDto> getArticleDtoItems(int p, int size);
+    IPage<ArticleItemDTO> getArticleDtoItems(int p, int size);
 
-    ArticleContentVo getArticleById(Long articleId);
+    ArticleContentVO getArticleById(Long articleId);
 
-    IPage<ArticleItemVo> getArticleItemsByLabel(int p, Integer labelId, int size);
+    IPage<ArticleItemVO> getArticleItemsByLabel(int p, Integer labelId, int size);
 
-    IPage<ArticleItemVo> getArticleItemsByName(int p, int size, String keyword);
+    IPage<ArticleItemVO> listArticleItemsByName(int p, int size, String keyword);
 
-    int createArticle(ArticleDto article);
+    int createArticle(ArticleDTO article);
 
-    ArticleDto getArticleDtoById(int id);
+    ArticleDTO getArticleDtoById(int id);
 
-    int updateArticle(ArticleDto articleDto);
+    int updateArticle(ArticleDTO articleDto);
 
     int deleteArticleById(int id);
 
     int setArticleStatus(int articleId, String articleStatus);
 
-    IPage<ArticleItemVo> getArticleItemsBySort(int p, Integer sortId, int size);
+    IPage<ArticleItemVO> getArticleItemsBySort(int p, Integer sortId, int size);
 
-    ArticleItemVo getPrevArticleItemByArticleId(Long articleId);
+    ArticleItemVO getPrevArticleItemByArticleId(Long articleId);
 
-    ArticleItemVo getNextArticleItemByArticleId(Long articleId);
+    ArticleItemVO getNextArticleItemByArticleId(Long articleId);
 }

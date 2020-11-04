@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.util.MarkdownEntity;
-import pers.zheng.blog.model.vo.ArticleItemVo;
+import pers.zheng.blog.model.vo.ArticleItemVO;
 import pers.zheng.blog.service.ArticleService;
 import pers.zheng.blog.service.LabelService;
 import pers.zheng.blog.util.MarkDown2HtmlWrapper;
@@ -37,12 +37,12 @@ public class LabelPageController {
         int size = 10;
         Label label = labelService.getLabelByName(labelName);
         if (label == null) {
-            Page<ArticleItemVo> articleItems = new Page<>(p, 10);
+            Page<ArticleItemVO> articleItems = new Page<>(p, 10);
             //没有这个标签
             model.addAttribute("articleItems", articleItems);
         } else {
-            IPage<ArticleItemVo> articleItems = articleService.getArticleItemsByLabel(p, label.getLabelId(), size);
-            for (ArticleItemVo itemVo : articleItems.getRecords()) {
+            IPage<ArticleItemVO> articleItems = articleService.getArticleItemsByLabel(p, label.getLabelId(), size);
+            for (ArticleItemVO itemVo : articleItems.getRecords()) {
                 MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
                 itemVo.setArticleSummary(markdownEntity.toString());
             }

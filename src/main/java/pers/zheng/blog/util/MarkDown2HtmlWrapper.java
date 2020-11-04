@@ -37,17 +37,6 @@ public class MarkDown2HtmlWrapper {
 
     static {
         try {
-//            String c = System.getProperty("user.dir");
-//            File mdCss = new File("E:\\workspace2\\blog\\target\\classes\\static\\css\\markdown.css");
-//            FileInputStream fis = new FileInputStream(mdCss);
-//
-//            BufferedReader bufferedReader =
-//                    new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8));
-//            List<String> collect = bufferedReader.lines().collect(Collectors.toList());
-//            MD_CSS = Joiner.on("\n").join(collect);
-//            MD_CSS = "<style type=\"text/css\">\n" + MD_CSS + "\n</style>\n";
-
-
             options = new MutableDataSet();
             options.setFrom(ParserEmulationProfile.MARKDOWN);
             // enable table parse!
@@ -115,7 +104,6 @@ public class MarkDown2HtmlWrapper {
     public static MarkdownEntity ofContent(String content) {
         String html = parse(content);
         MarkdownEntity entity = new MarkdownEntity();
-//        entity.setCss(MD_CSS);
         entity.setHtml(html);
         entity.setHtmlTOC(parseTOC(content));
         entity.addDivStyle("class", "markdown-here-wrapper ");
@@ -138,7 +126,7 @@ public class MarkDown2HtmlWrapper {
         Node document = parser.parse("[TOC]\n" + content);
         String html = renderer.render(document);
         String toc = "";
-        if (html.indexOf("<div class=\"toc\">") == -1) {
+        if (!html.contains("<div class=\"toc\">")) {
             toc = "";
         } else {
             toc = html.substring(0, 6 + html.indexOf("</div>"));

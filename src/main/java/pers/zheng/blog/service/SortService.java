@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.SortDao;
 import pers.zheng.blog.model.entity.Sort;
-import pers.zheng.blog.model.vo.SortVo;
+import pers.zheng.blog.model.vo.SortVO;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class SortService {
     @Autowired
     private SortDao sortDao;
 
-    public List<SortVo> getAllSort() {
-        return sortDao.getAllSort();
+    public List<SortVO> listSortVOs() {
+        return sortDao.listSortVOs();
     }
 
     public Sort getSortByName(String sortName) {

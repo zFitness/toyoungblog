@@ -12,7 +12,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class LabelVo {
+public class LabelVO {
     /**
      * 标签id
      */

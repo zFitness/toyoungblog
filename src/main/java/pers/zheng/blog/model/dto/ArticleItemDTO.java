@@ -1,4 +1,4 @@
-package pers.zheng.blog.model.vo;
+package pers.zheng.blog.model.dto;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -16,7 +16,7 @@ import java.util.Date;
  * @Version 1.0
  */
 @Data
-public class ArticleItemVo {
+public class ArticleItemDTO {
     /**
      * 文章id
      */
@@ -51,9 +51,9 @@ public class ArticleItemVo {
 
     private String articleContent;
 
-    /**
-     * 分类
-     */
     private Sort sort;
+
+
+    private String articleStatus;
 
 }

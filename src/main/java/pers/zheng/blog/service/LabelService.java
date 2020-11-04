@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.LabelDao;
 import pers.zheng.blog.model.entity.Label;
-import pers.zheng.blog.model.vo.LabelVo;
+import pers.zheng.blog.model.vo.LabelVO;
 
 import java.util.List;
 
@@ -26,8 +26,8 @@ public class LabelService {
         return labelDao.selectOne(queryWrapper);
     }
 
-    public List<LabelVo> getAllLabelVO() {
-        return labelDao.getAllLabelVO();
+    public List<LabelVO> listLabelVOs() {
+        return labelDao.listLabelVOs();
     }
 
     public Label addByName(String labelName) {

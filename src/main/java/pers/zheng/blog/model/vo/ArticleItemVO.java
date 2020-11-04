@@ -1,14 +1,12 @@
-package pers.zheng.blog.model.dto;
+package pers.zheng.blog.model.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.entity.Sort;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @ClassName ArticleSummaryVO
@@ -18,7 +16,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Data
-public class ArticleDto {
+public class ArticleItemVO {
     /**
      * 文章id
      */
@@ -53,9 +51,9 @@ public class ArticleDto {
 
     private String articleContent;
 
+    /**
+     * 分类
+     */
     private Sort sort;
 
-    private String articleStatus;
-
-    private List<Label> labels;
 }

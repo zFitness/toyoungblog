@@ -3,7 +3,7 @@
 <mapper namespace="pers.zheng.blog.dao.ArticleDao">
 
 
-    <select id="getArticleItem" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+    <select id="listArticlePages" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT
             article_id,
             article_title,
@@ -22,7 +22,7 @@
     </select>
 
 
-    <select id="getArticleDtoItems" resultType="pers.zheng.blog.model.dto.ArticleItemDto">
+    <select id="getArticleDtoItems" resultType="pers.zheng.blog.model.dto.ArticleItemDTO">
         SELECT
             article_id,
             article_title,
@@ -39,7 +39,7 @@
         DESC
     </select>
 
-    <select id="getArticleById" resultType="pers.zheng.blog.model.vo.ArticleContentVo">
+    <select id="getArticleById" resultType="pers.zheng.blog.model.vo.ArticleContentVO">
         SELECT
             article_id,
             article_content,
@@ -53,7 +53,7 @@
         WHERE article_id = #{articleId}
     </select>
 
-    <select id="getArticleItemByLabel" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+    <select id="getArticleItemByLabel" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT
             a.article_id,
             a.article_title,
@@ -76,7 +76,7 @@
         DESC
     </select>
 
-    <select id="getArticleItemsByName" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+    <select id="listArticleItemsByName" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT
             article_id,
             article_title,
@@ -98,7 +98,7 @@
 
 
     <!-- 根据分类查询-->
-    <select id="getArticleItemBySort" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+    <select id="getArticleItemBySort" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT
             a.article_id,
             a.article_title,
@@ -116,7 +116,7 @@
             a.article_date DESC
     </select>
 
-    <select id="getPrevArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+    <select id="getPrevArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT
              *
         FROM
@@ -131,7 +131,7 @@
                     article_id &lt; #{articleId})
     </select>
 
-    <select id="getNextArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
+    <select id="getNextArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT
             *
         FROM

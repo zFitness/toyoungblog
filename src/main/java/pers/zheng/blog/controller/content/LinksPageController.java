@@ -26,8 +26,8 @@ public class LinksPageController {
 
 
     @RequestMapping("")
-    public String friendLinks(Model model) {
-        List<Link> links = linkService.getLinks();
+    public String listLinks(Model model) {
+        List<Link> links = linkService.listLinks();
         log.info(links.toString());
         model.addAttribute("links", links);
         return "friend-links";

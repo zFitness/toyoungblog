@@ -3,7 +3,7 @@ package pers.zheng.blog.controller.admin.api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pers.zheng.blog.model.dto.ArticleDto;
+import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.result.Result;
 import pers.zheng.blog.service.ArticleService;
 
@@ -29,7 +29,7 @@ public class ArticleController {
     }
 
     @PostMapping("add")
-    public Result add(@RequestBody ArticleDto article) {
+    public Result add(@RequestBody ArticleDTO article) {
         log.info(article.toString());
         articleService.createArticle(article);
         return Result.success();
@@ -39,13 +39,13 @@ public class ArticleController {
     @GetMapping("{id}")
     public Result fetchArticle(@PathVariable("id") int id) {
         log.info("fetchArticle: " + id);
-        ArticleDto articleDto = articleService.getArticleDtoById(id);
+        ArticleDTO articleDto = articleService.getArticleDtoById(id);
 
         return Result.success(articleDto);
     }
 
     @PostMapping("update")
-    public Result updateArticle(@RequestBody ArticleDto articleDto) {
+    public Result updateArticle(@RequestBody ArticleDTO articleDto) {
         log.info("updateArticle: " + articleDto.getArticleId());
         articleService.updateArticle(articleDto);
         return Result.success();

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.zheng.blog.dao.LabelDao">
 
-    <select id="getAllLabelVO" resultType="pers.zheng.blog.model.vo.LabelVo">
+    <select id="listLabelVOs" resultType="pers.zheng.blog.model.vo.LabelVO">
         SELECT
             ty_label.*,
             b.article_count

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import pers.zheng.blog.model.entity.Label;
-import pers.zheng.blog.model.vo.LabelVo;
+import pers.zheng.blog.model.vo.LabelVO;
 
 import java.util.List;
 
@@ -18,5 +18,5 @@ import java.util.List;
 @Repository
 public interface LabelDao extends BaseMapper<Label> {
 
-    List<LabelVo> getAllLabelVO();
+    List<LabelVO> listLabelVOs();
 }

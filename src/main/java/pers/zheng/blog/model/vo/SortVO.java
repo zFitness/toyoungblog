@@ -12,7 +12,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class SortVo {
+public class SortVO {
     /**
      * 分类id
      */

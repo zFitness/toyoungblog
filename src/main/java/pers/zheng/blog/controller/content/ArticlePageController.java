@@ -5,12 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pers.zheng.blog.model.util.MarkdownEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import pers.zheng.blog.model.vo.ArticleContentVO;
+import pers.zheng.blog.model.vo.ArticleItemVO;
 import pers.zheng.blog.service.ArticleService;
-import pers.zheng.blog.util.MarkDown2HtmlWrapper;
-import pers.zheng.blog.model.vo.ArticleContentVo;
-import pers.zheng.blog.model.vo.ArticleItemVo;
 
 /**
  * @ClassName ArticleController
@@ -27,13 +28,13 @@ public class ArticlePageController {
 
     @RequestMapping("/article/{articleId}")
     public String test(Model model, @PathVariable("articleId") Long articleId) {
-        ArticleContentVo articleContentVO = articleService.getArticleById(articleId);
+        ArticleContentVO articleContentVO = articleService.getArticleById(articleId);
         model.addAttribute("article", articleContentVO);
 
 
         //上一篇文章，下一篇文章
-        ArticleItemVo articleItemPrev = articleService.getPrevArticleItemByArticleId(articleId);
-        ArticleItemVo articleItemNext = articleService.getNextArticleItemByArticleId(articleId);
+        ArticleItemVO articleItemPrev = articleService.getPrevArticleItemByArticleId(articleId);
+        ArticleItemVO articleItemNext = articleService.getNextArticleItemByArticleId(articleId);
         model.addAttribute("articleItemPrev", articleItemPrev);
         model.addAttribute("articleItemNext", articleItemNext);
         return "article";
@@ -43,11 +44,8 @@ public class ArticlePageController {
     public String search(Model model,
                          @RequestParam("keyword") String keyword,
                          @RequestParam(value = "p", defaultValue = "1", required = false) int p) {
-        IPage<ArticleItemVo> articleItems = articleService.getArticleItemsByName(p, 10, keyword);
-        for (ArticleItemVo itemVo : articleItems.getRecords()) {
-            MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
-            itemVo.setArticleSummary(markdownEntity.toString());
-        }
+        IPage<ArticleItemVO> articleItems = articleService.listArticleItemsByName(p, 10, keyword);
+
         model.addAttribute("articleItems", articleItems);
         model.addAttribute("keyword", keyword);
         return "search";

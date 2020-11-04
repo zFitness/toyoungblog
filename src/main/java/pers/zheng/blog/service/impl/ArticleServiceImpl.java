@@ -12,12 +12,12 @@ import pers.zheng.blog.dao.ArticleLabelDao;
 import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.SortDao;
 import pers.zheng.blog.exception.ArticleNotFoundException;
-import pers.zheng.blog.model.dto.ArticleDto;
-import pers.zheng.blog.model.dto.ArticleItemDto;
+import pers.zheng.blog.model.dto.ArticleDTO;
+import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.*;
 import pers.zheng.blog.model.util.MarkdownEntity;
-import pers.zheng.blog.model.vo.ArticleContentVo;
-import pers.zheng.blog.model.vo.ArticleItemVo;
+import pers.zheng.blog.model.vo.ArticleContentVO;
+import pers.zheng.blog.model.vo.ArticleItemVO;
 import pers.zheng.blog.service.ArticleService;
 import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 import pers.zheng.blog.util.MarkdownUtils;
@@ -52,9 +52,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public IPage<ArticleItemVo> getArticleItems(int p, int size) {
-        Page<ArticleItemVo> pageConf = new Page<>(p, size);
-        IPage<ArticleItemVo> page = articlesDao.getArticleItem(pageConf, "publish");
+    public IPage<ArticleItemVO> listArticlePages(int p, int size) {
+        Page<ArticleItemVO> pageConf = new Page<>(p, size);
+        IPage<ArticleItemVO> page = articlesDao.listArticlePages(pageConf, "publish");
         /**
          * 添加分类
          */
@@ -62,8 +62,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public IPage<ArticleItemDto> getArticleDtoItems(int p, int size) {
-        Page<ArticleItemVo> page = new Page<>(p, size);
+    public IPage<ArticleItemDTO> getArticleDtoItems(int p, int size) {
+        Page<ArticleItemVO> page = new Page<>(p, size);
         return articlesDao.getArticleDtoItems(page);
     }
 
@@ -74,8 +74,8 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public ArticleContentVo getArticleById(Long articleId) {
-        ArticleContentVo article = articlesDao.getArticleById(articleId);
+    public ArticleContentVO getArticleById(Long articleId) {
+        ArticleContentVO article = articlesDao.getArticleById(articleId);
         if (article == null) {
             throw new ArticleNotFoundException("没有这篇文章");
         }
@@ -95,8 +95,8 @@ public class ArticleServiceImpl implements ArticleService {
         article.setLabels(labels);
         //markdown转换
         MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(article.getArticleContent());
-        article.setArticleContentHTML(markdownEntity.toString());
-        article.setArticleTocHTML(markdownEntity.getHtmlTOC());
+        article.setArticleContent(markdownEntity.toString());
+        article.setArticleTocHtml(markdownEntity.getHtmlTOC());
         return article;
     }
 
@@ -109,9 +109,9 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public IPage<ArticleItemVo> getArticleItemsByLabel(int p, Integer labelId, int size) {
-        Page<ArticleItemVo> page = new Page<>(p, size);
-        IPage<ArticleItemVo> publishArticle = articlesDao.getArticleItemByLabel(page, "publish", labelId);
+    public IPage<ArticleItemVO> getArticleItemsByLabel(int p, Integer labelId, int size) {
+        Page<ArticleItemVO> page = new Page<>(p, size);
+        IPage<ArticleItemVO> publishArticle = articlesDao.getArticleItemByLabel(page, "publish", labelId);
         return setArticleItemSorts(publishArticle);
     }
 
@@ -124,10 +124,15 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public IPage<ArticleItemVo> getArticleItemsByName(int p, int size, String keyword) {
-        Page<ArticleItemVo> page = new Page<>(p, size);
-        IPage<ArticleItemVo> publishArticle = articlesDao.getArticleItemsByName(page, "publish", keyword);
-        return setArticleItemSorts(publishArticle);
+    public IPage<ArticleItemVO> listArticleItemsByName(int p, int size, String keyword) {
+        Page<ArticleItemVO> page = new Page<>(p, size);
+        IPage<ArticleItemVO> publishArticle = articlesDao.listArticleItemsByName(page, "publish", keyword);
+        IPage<ArticleItemVO> articleItems = setArticleItemSorts(publishArticle);
+        for (ArticleItemVO itemVo : articleItems.getRecords()) {
+            MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(itemVo.getArticleSummary());
+            itemVo.setArticleSummary(markdownEntity.toString());
+        }
+        return articleItems;
     }
 
     /**
@@ -137,8 +142,8 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @NotNull
-    private IPage<ArticleItemVo> setArticleItemSorts(IPage<ArticleItemVo> publishArticle) {
-        for (ArticleItemVo record : publishArticle.getRecords()) {
+    private IPage<ArticleItemVO> setArticleItemSorts(IPage<ArticleItemVO> publishArticle) {
+        for (ArticleItemVO record : publishArticle.getRecords()) {
             LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
             wrapper.eq(ArticleSort::getArticleId, record.getArticleId());
             ArticleSort articleSort = articleSortDao.selectOne(wrapper);
@@ -154,7 +159,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int createArticle(ArticleDto articleDto) {
+    public int createArticle(ArticleDTO articleDto) {
         //包装类型没有默认值
         Article article = new Article();
 
@@ -163,7 +168,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setArticleDate(articleDto.getArticleDate());
         article.setArticleStatus(articleDto.getArticleStatus());
         //如果没有填写摘要则自动生成摘要
-        if (articleDto.getArticleSummary() == null || articleDto.getArticleSummary().equals("")) {
+        if (articleDto.getArticleSummary() == null || "".equals(articleDto.getArticleSummary())) {
             article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
         } else {
             article.setArticleSummary(articleDto.getArticleSummary());
@@ -183,9 +188,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticleDto getArticleDtoById(int id) {
+    public ArticleDTO getArticleDtoById(int id) {
         Article article = articlesDao.selectById(id);
-        ArticleDto articleDto = new ArticleDto();
+        ArticleDTO articleDto = new ArticleDTO();
         articleDto.setArticleId(article.getArticleId());
         articleDto.setArticleTitle(article.getArticleTitle());
         articleDto.setArticleSummary(article.getArticleSummary());
@@ -196,12 +201,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int updateArticle(ArticleDto articleDto) {
+    public int updateArticle(ArticleDTO articleDto) {
         Article article = articlesDao.selectById(articleDto.getArticleId());
         if (article != null) {
             article.setArticleContent(articleDto.getArticleContent());
             //如果没有填写摘要则自动生成摘要
-            if (articleDto.getArticleSummary() == null || articleDto.getArticleSummary().equals("")) {
+            if (articleDto.getArticleSummary() == null || "".equals(articleDto.getArticleSummary())) {
                 article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
             } else {
                 article.setArticleSummary(articleDto.getArticleSummary());
@@ -232,9 +237,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public IPage<ArticleItemVo> getArticleItemsBySort(int p, Integer sortId, int size) {
-        Page<ArticleItemVo> page = new Page<>(p, size);
-        IPage<ArticleItemVo> publishArticle = articlesDao.getArticleItemBySort(page, "publish", sortId);
+    public IPage<ArticleItemVO> getArticleItemsBySort(int p, Integer sortId, int size) {
+        Page<ArticleItemVO> page = new Page<>(p, size);
+        IPage<ArticleItemVO> publishArticle = articlesDao.getArticleItemBySort(page, "publish", sortId);
         return setArticleItemSorts(publishArticle);
     }
 
@@ -245,12 +250,12 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public ArticleItemVo getPrevArticleItemByArticleId(Long articleId) {
+    public ArticleItemVO getPrevArticleItemByArticleId(Long articleId) {
         return articlesDao.getPrevArticleItemByArticleId(articleId);
     }
 
     @Override
-    public ArticleItemVo getNextArticleItemByArticleId(Long articleId) {
+    public ArticleItemVO getNextArticleItemByArticleId(Long articleId) {
         return articlesDao.getNextArticleItemByArticleId(articleId);
     }
 }
