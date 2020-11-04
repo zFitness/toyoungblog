@@ -28,6 +28,9 @@ public class ArticlePageController {
     @RequestMapping("/article/{articleId}")
     public String test(Model model, @PathVariable("articleId") Long articleId) {
         ArticleContentVo articleContentVO = articleService.getArticleById(articleId);
+        if (articleContentVO == null) {
+            return "error/404.html";
+        }
         MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(articleContentVO.getArticleContent());
         articleContentVO.setArticleContentHTML(markdownEntity.toString());
         articleContentVO.setArticleTocHTML(markdownEntity.getHtmlTOC());
