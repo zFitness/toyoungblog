@@ -12,9 +12,11 @@ import com.vladsch.flexmark.util.data.MutableDataSet;
 import lombok.extern.slf4j.Slf4j;
 import pers.zheng.blog.model.util.MarkdownEntity;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,8 +30,6 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public class MarkDown2HtmlWrapper {
-
-//    private static String MD_CSS = null;
 
     private static MutableDataSet options = null;
     private static Parser parser;
@@ -57,42 +57,18 @@ public class MarkDown2HtmlWrapper {
 
 
     /**
-     * 将本地的markdown文件，转为html文档输出
-     *
-     * @param path 相对地址or绝对地址 ("/" 开头)
-     * @return
-     * @throws IOException
-     */
-//    public static MarkdownEntity ofFile(String path) throws IOException {
-//        return ofStream(FileReadUtil.getStreamByFileName(path));
-//    }
-
-
-    /**
-     * 将网络的markdown文件，转为html文档输出
-     *
-     * @param url http开头的url格式
-     * @return
-     * @throws IOException
-     */
-    //public static MarkdownEntity ofUrl(String url) throws IOException {
-    //    return ofStream(FileReadUtil.getStreamByFileName(url));
-    //}
-
-
-    /**
      * 将流转为html文档输出
      *
-     * @param stream
-     * @return
+     * @param stream 流
+     * @return MarkDownEntity
      */
-    //public static MarkdownEntity ofStream(InputStream stream) {
-    //    BufferedReader bufferedReader = new BufferedReader(
-    //            new InputStreamReader(stream, Charset.forName("UTF-8")));
-    //    List<String> lines = bufferedReader.lines().collect(Collectors.toList());
-    //    String content = Joiner.on("\n").join(lines);
-    //    return ofContent(content);
-    //}
+    public static MarkdownEntity ofStream(InputStream stream) {
+        BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(stream, Charset.forName("UTF-8")));
+        List<String> lines = bufferedReader.lines().collect(Collectors.toList());
+        String content = Joiner.on("\n").join(lines);
+        return ofContent(content);
+    }
 
 
     /**
@@ -122,6 +98,12 @@ public class MarkDown2HtmlWrapper {
         return renderer.render(document);
     }
 
+    /**
+     * 从markdo文章中获取目录
+     *
+     * @param content markdown 文章
+     * @return 目录html
+     */
     public static String parseTOC(String content) {
         Node document = parser.parse("[TOC]\n" + content);
         String html = renderer.render(document);

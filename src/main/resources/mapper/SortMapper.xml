@@ -3,12 +3,10 @@
 <mapper namespace="pers.zheng.blog.dao.SortDao">
 
     <select id="listSortVOs" resultType="pers.zheng.blog.model.vo.SortVO">
-        SELECT
-			ty_sort.*,
-			b.count
-		FROM
-			ty_sort
-		RIGHT JOIN ( SELECT sort_id, COUNT(*) AS count FROM ty_article_sort GROUP BY sort_id ) AS b
-		ON ty_sort.sort_id = b.sort_id
+        SELECT ty_sort.*,
+               b.count
+        FROM ty_sort
+                 RIGHT JOIN (SELECT sort_id, COUNT(*) AS count FROM ty_article_sort GROUP BY sort_id) AS b
+                            ON ty_sort.sort_id = b.sort_id
     </select>
 </mapper>

@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("pers.zheng.blog.dao.*")
 public class MybatisPlusConfig {
 
+    @SuppressWarnings("AlibabaRemoveCommentedCode")
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();

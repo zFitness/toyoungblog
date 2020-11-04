@@ -1,5 +1,6 @@
 package pers.zheng.blog.model.dto.result;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -21,6 +22,7 @@ public class Result implements Serializable {
     /**
      * 返回的数据
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     Object data;
 
     public Result() {
@@ -48,7 +50,6 @@ public class Result implements Serializable {
         return result;
     }
 
-    //操作成功， 且返回数据
 
     /**
      * 返回成功的提示和数据
@@ -75,7 +76,7 @@ public class Result implements Serializable {
         return result;
     }
 
-    //操作失败, 不返回数据
+
 
     /**
      * @param responseCode 失败的状态码
