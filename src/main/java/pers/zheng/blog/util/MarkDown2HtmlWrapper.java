@@ -109,7 +109,7 @@ public class MarkDown2HtmlWrapper {
         String html = renderer.render(document);
         String toc = "";
         if (!html.contains("<div class=\"toc\">")) {
-            toc = "";
+            toc = null;
         } else {
             toc = html.substring(0, 6 + html.indexOf("</div>"));
         }

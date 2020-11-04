@@ -80,12 +80,16 @@
           <div class="content">
             <div class="article">
               <!--PC端：目录-->
-              <div class="toc-container" style="max-height: 600px;overflow-y: auto;"
+              <div th:if="${not #strings.isEmpty(article.getArticleTocHtml())}" class="toc-container"
+                   style="max-height: 600px;overflow-y: auto;"
                    th:utext="${article.getArticleTocHtml()}">
               </div>
-              <!-- 运动端：目录-->
-              <div class="toc-container-mob" style="max-height: 600px;overflow-y: auto;"
-                   th:utext="${article.getArticleTocHtml()}">
+              <!-- 移动端：目录-->
+              <div class="toc-container-mob" th:if="${not #strings.isEmpty(article.getArticleTocHtml())}">
+                <div class="close-button">
+                  <i class="iconfont iconclose"></i>
+                </div>
+                <div style="overflow-y: auto;height: 100%" th:utext="${article.getArticleTocHtml()}"></div>
               </div>
               <!-- markdown转html-->
               <div id="article-content" th:utext="${article.getArticleContent()}"></div>
@@ -177,7 +181,7 @@
             <i class="iconfont icondaodingbu" aria-hidden="true"></i>
           </button>
 
-          <button class="m-menu" title="menu">
+          <button class="m-menu" title="menu" th:if="${not #strings.isEmpty(article.getArticleTocHtml())}">
             <i class="iconfont iconguidang" aria-hidden="true"></i>
           </button>
         </div>

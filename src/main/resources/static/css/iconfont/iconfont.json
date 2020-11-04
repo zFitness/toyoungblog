@@ -6,6 +6,13 @@
   "description": "个人主页x'm",
   "glyphs": [
     {
+      "icon_id": "392076",
+      "name": "CLOSE",
+      "font_class": "close",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
       "icon_id": "3248712",
       "name": "文件夹",
       "font_class": "wenjianjia1",

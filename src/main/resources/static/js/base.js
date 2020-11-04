@@ -25,4 +25,8 @@ $(document).ready(function () {
             $('.toc-container-mob').css('display', 'none');
         }
     })
+
+    $('.close-button .iconclose').click(function () {
+        $('.toc-container-mob').css('display', 'none');
+    })
 })
