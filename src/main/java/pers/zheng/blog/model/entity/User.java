@@ -15,7 +15,7 @@ import java.util.List;
  * @since 2020-10-11 23:23:04
  */
 @Data
-@TableName("ty_users")
+@TableName("ty_user")
 public class User implements Serializable {
     private static final long serialVersionUID = 704758868845611742L;
     /**

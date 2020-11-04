@@ -2,15 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.zheng.blog.dao.ArticleDao">
 
-    <resultMap type="pers.zheng.blog.model.entity.Article" id="XzArticlesMap">
-        <result property="articleId" column="article_id" jdbcType="INTEGER"/>
-        <result property="articleContent" column="article_content" jdbcType="VARCHAR"/>
-        <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>
-        <result property="articleViewCount" column="article_view_count" jdbcType="OTHER"/>
-        <result property="articleLikeCount" column="article_like_count" jdbcType="OTHER"/>
-        <result property="articleDate" column="article_date" jdbcType="TIMESTAMP"/>
-        <result property="articleCommentCount" column="article_comment_count" jdbcType="OTHER"/>
-    </resultMap>
 
     <select id="getArticleItem" resultType="pers.zheng.blog.model.vo.ArticleItemVo">
         SELECT
@@ -22,7 +13,7 @@
             article_summary,
             article_date
         FROM
-            ty_articles
+            ty_article
         WHERE
             article_status like #{state}
         ORDER BY
@@ -42,7 +33,7 @@
             article_date,
             article_status
         FROM
-            ty_articles
+            ty_article
         ORDER BY
 	        article_date
         DESC
@@ -58,7 +49,7 @@
             article_comment_count,
             article_view_count
         FROM
-            ty_articles
+            ty_article
         WHERE article_id = #{articleId}
     </select>
 
@@ -71,7 +62,7 @@
             a.article_summary,
             a.article_date
         FROM
-            ty_articles a
+            ty_article a
         JOIN
             ty_article_label b
         on
@@ -95,7 +86,7 @@
             article_summary,
             article_date
         FROM
-            ty_articles
+            ty_article
         WHERE
             article_title like concat('%', #{keyword}, '%')
         AND
@@ -116,7 +107,7 @@
             a.article_summary,
             a.article_date
         FROM
-            ty_articles a
+            ty_article a
             JOIN ty_article_sort b ON a.article_id = b.article_id
         WHERE
             b.sort_id = #{sortId}
@@ -129,13 +120,13 @@
         SELECT
              *
         FROM
-            ty_articles
+            ty_article
         WHERE
              article_id = (
                 SELECT
                     max( article_id )
                 FROM
-                    ty_articles
+                    ty_article
                 WHERE
                     article_id &lt; #{articleId})
     </select>
@@ -144,8 +135,8 @@
         SELECT
             *
         FROM
-            ty_articles
+            ty_article
         WHERE
-            article_id = ( SELECT min( article_id ) FROM ty_articles WHERE article_id > #{articleId} )
+            article_id = ( SELECT min( article_id ) FROM ty_article WHERE article_id > #{articleId} )
     </select>
 </mapper>

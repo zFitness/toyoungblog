@@ -4,11 +4,11 @@
 
     <select id="getAllSort" resultType="pers.zheng.blog.model.vo.SortVo">
         SELECT
-			ty_sorts.*,
+			ty_sort.*,
 			b.count
 		FROM
-			ty_sorts
+			ty_sort
 		RIGHT JOIN ( SELECT sort_id, COUNT(*) AS count FROM ty_article_sort GROUP BY sort_id ) AS b
-		ON ty_sorts.sort_id = b.sort_id
+		ON ty_sort.sort_id = b.sort_id
     </select>
 </mapper>

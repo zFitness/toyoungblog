@@ -13,7 +13,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-@TableName("ty_options")
+@TableName("ty_option")
 public class Option {
     @TableId(type = IdType.AUTO)
     private Integer optionId;

@@ -4,13 +4,13 @@
 
     <select id="getAllLabelVO" resultType="pers.zheng.blog.model.vo.LabelVo">
         SELECT
-            ty_labels.*,
+            ty_label.*,
             b.article_count
         FROM
-            ty_labels
+            ty_label
         RIGHT JOIN
             (SELECT label_id, count(*) as article_count from ty_article_label GROUP BY label_id) as b
         ON
-            ty_labels.label_id = b.label_id
+            ty_label.label_id = b.label_id
     </select>
 </mapper>

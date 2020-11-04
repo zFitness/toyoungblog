@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @since 2020-10-11 23:23:03
  */
 @Data
-@TableName("ty_sorts")
+@TableName("ty_sort")
 public class Sort implements Serializable {
     private static final long serialVersionUID = -88853805527558525L;
     /**

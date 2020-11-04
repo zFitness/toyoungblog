@@ -15,7 +15,7 @@ import java.util.Date;
  * @Version 1.0
  */
 @Data
-@TableName("ty_links")
+@TableName("ty_link")
 public class Link {
     @TableId(type = IdType.AUTO)
     private Integer linkId;

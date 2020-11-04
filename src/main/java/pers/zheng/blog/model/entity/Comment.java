@@ -15,7 +15,7 @@ import java.util.Date;
  * @since 2020-10-11 23:23:02
  */
 @Data
-@TableName("ty_comments")
+@TableName("ty_comment")
 public class Comment implements Serializable {
     private static final long serialVersionUID = 882658646303495437L;
 
