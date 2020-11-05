@@ -20,7 +20,7 @@ public interface ArticleService {
 
     IPage<ArticleItemVO> listArticlePages(int p, int size);
 
-    IPage<ArticleItemDTO> getArticleDtoItems(int p, int size);
+    IPage<ArticleItemDTO> listArticleDtoItems(int p, int size, String title);
 
     ArticleContentVO getArticleById(Long articleId);
 
@@ -28,7 +28,7 @@ public interface ArticleService {
 
     IPage<ArticleItemVO> listArticleItemsByName(int p, int size, String keyword);
 
-    int createArticle(ArticleDTO article);
+    int insertArticle(ArticleDTO article);
 
     ArticleDTO getArticleDtoById(int id);
 

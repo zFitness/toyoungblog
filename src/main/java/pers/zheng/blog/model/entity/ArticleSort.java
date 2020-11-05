@@ -23,7 +23,7 @@ public class ArticleSort implements Serializable {
     /**
      * 文章id
      */
-    private Integer articleId;
+    private Long articleId;
     /**
      * 分类id
      */

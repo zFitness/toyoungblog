@@ -361,9 +361,14 @@ li.wedonate:after {
 }
 
 
-
 @media (max-width: 1280px) {
     .toc-container {
+        display: none;
+    }
+}
+
+@media (min-width: 1280px) {
+    .m-menu {
         display: none;
     }
 }
@@ -407,9 +412,11 @@ ol ol, ol ul, ul ol, ul ul {
 .toc-container-mob .close-button {
     text-align: right;
 }
-.toc-container-mob .close-button i:hover{
+
+.toc-container-mob .close-button i:hover {
     background-color: #fe9600;
 }
+
 /*底部menu*/
 
 .m-menu {

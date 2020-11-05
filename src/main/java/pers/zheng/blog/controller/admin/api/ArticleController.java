@@ -24,14 +24,17 @@ public class ArticleController {
 
     @GetMapping("")
     public Result list(@RequestParam("page") int page,
-                       @RequestParam("limit") int limit) {
-        return Result.success(articleService.getArticleDtoItems(page, limit));
+                       @RequestParam("limit") int limit,
+                       @RequestParam(value = "title", required = false) String title) {
+        log.info(title);
+        return Result.success(articleService.listArticleDtoItems(page, limit, title));
     }
+
 
     @PostMapping("add")
     public Result add(@RequestBody ArticleDTO article) {
         log.info(article.toString());
-        articleService.createArticle(article);
+        articleService.insertArticle(article);
         return Result.success();
     }
 

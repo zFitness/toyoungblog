@@ -62,9 +62,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public IPage<ArticleItemDTO> getArticleDtoItems(int p, int size) {
-        Page<ArticleItemVO> page = new Page<>(p, size);
-        return articlesDao.getArticleDtoItems(page);
+    public IPage<ArticleItemDTO> listArticleDtoItems(int p, int size, String title) {
+        Page<ArticleItemDTO> page = new Page<>(p, size);
+        return articlesDao.getArticleDtoItems(page, title);
     }
 
     /**
@@ -79,6 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (article == null) {
             throw new ArticleNotFoundException("没有这篇文章");
         }
+
         //获得分类
         LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
@@ -159,7 +160,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int createArticle(ArticleDTO articleDto) {
+    public int insertArticle(ArticleDTO articleDto) {
         //包装类型没有默认值
         Article article = new Article();
 
@@ -183,7 +184,14 @@ public class ArticleServiceImpl implements ArticleService {
                 articleLabelDao.insert(articleLabel);
             }
         }
-
+        //默认设置未分类
+        Sort sort = articleDto.getSort();
+        if (sort == null) {
+            ArticleSort articleSort = new ArticleSort();
+            articleSort.setArticleId(article.getArticleId());
+            articleSort.setSortId(2);
+            articleSortDao.insert(articleSort);
+        }
         return count;
     }
 
@@ -206,11 +214,8 @@ public class ArticleServiceImpl implements ArticleService {
         if (article != null) {
             article.setArticleContent(articleDto.getArticleContent());
             //如果没有填写摘要则自动生成摘要
-            if (articleDto.getArticleSummary() == null || "".equals(articleDto.getArticleSummary())) {
-                article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
-            } else {
-                article.setArticleSummary(articleDto.getArticleSummary());
-            }
+            article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
+
             article.setArticleTitle(articleDto.getArticleTitle());
             article.setArticleStatus(articleDto.getArticleStatus());
             article.setArticleDate(articleDto.getArticleDate());
