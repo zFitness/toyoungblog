@@ -3,6 +3,7 @@ package pers.zheng.blog.model.vo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.entity.Sort;
@@ -49,6 +50,7 @@ public class ArticleContentVO {
     /**
      * 文章发布日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date articleDate;
     /**
      * 文章评论数

@@ -18,3 +18,7 @@ spring:
     url: jdbc:mysql://localhost:3306/blog?useSSL=false&serverTimezone=UTC
     username: root
     password: 131452
+
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss

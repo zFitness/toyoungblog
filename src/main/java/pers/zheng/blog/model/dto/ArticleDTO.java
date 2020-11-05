@@ -39,7 +39,7 @@ public class ArticleDTO {
     /**
      * 文章发布日期
      */
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date articleDate;
     /**
      * 文章评论数

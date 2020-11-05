@@ -186,7 +186,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         //默认设置未分类
         Sort sort = articleDto.getSort();
-        if (sort == null) {
+        if (sort == null || sort.getSortName() == null) {
             ArticleSort articleSort = new ArticleSort();
             articleSort.setArticleId(article.getArticleId());
             articleSort.setSortId(2);
