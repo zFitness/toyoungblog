@@ -104,12 +104,17 @@
         WHERE article_id = (
             SELECT max(article_id)
             FROM ty_article
-            WHERE article_id &lt; #{articleId})
+            WHERE article_id &lt; #{articleId}
+              AND article_status like 'publish')
     </select>
 
     <select id="getNextArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT *
         FROM ty_article
-        WHERE article_id = (SELECT min(article_id) FROM ty_article WHERE article_id > #{articleId})
+        WHERE article_id = (
+            SELECT min(article_id)
+            FROM ty_article
+            WHERE article_id > #{articleId}
+              AND article_status like 'publish')
     </select>
 </mapper>
