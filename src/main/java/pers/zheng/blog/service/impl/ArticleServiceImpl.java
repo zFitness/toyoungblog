@@ -22,6 +22,7 @@ import pers.zheng.blog.service.ArticleService;
 import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 import pers.zheng.blog.util.MarkdownUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -232,13 +233,31 @@ public class ArticleServiceImpl implements ArticleService {
     public int updateArticle(ArticleDTO articleDto) {
         Article article = articlesDao.selectById(articleDto.getArticleId());
         if (article != null) {
-            article.setArticleContent(articleDto.getArticleContent());
-            //如果没有填写摘要则自动生成摘要
-            article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
-
             article.setArticleTitle(articleDto.getArticleTitle());
+            article.setArticleContent(articleDto.getArticleContent());
+            article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
             article.setArticleStatus(articleDto.getArticleStatus());
             article.setCreateTime(articleDto.getCreateTime());
+            article.setUpdateTime(new Date());
+            //更新文章的的分类
+            LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
+            articleSortDao.delete(wrapper);
+            Sort sort = articleDto.getSort();
+            ArticleSort articleSort = new ArticleSort();
+            articleSort.setArticleId(article.getArticleId());
+            articleSort.setSortId(sort.getSortId());
+            articleSortDao.insert(articleSort);
+            //更新文章的标签
+            LambdaQueryWrapper<ArticleLabel> wrapper1 = new LambdaQueryWrapper<>();
+            wrapper1.eq(ArticleLabel::getArticleId, article.getArticleId());
+            articleLabelDao.delete(wrapper1);
+            for (Label label : articleDto.getLabels()) {
+                ArticleLabel articleLabel = new ArticleLabel();
+                articleLabel.setArticleId(article.getArticleId());
+                articleLabel.setLabelId(label.getLabelId());
+                articleLabelDao.insert(articleLabel);
+            }
             return articlesDao.updateById(article);
         } else {
             return 0;

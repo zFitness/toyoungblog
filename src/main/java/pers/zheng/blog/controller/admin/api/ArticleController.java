@@ -40,7 +40,7 @@ public class ArticleController {
 
 
     @GetMapping("{id}")
-    public Result fetchArticle(@PathVariable("id") int id) {
+    public Result getArticle(@PathVariable("id") int id) {
         log.info("fetchArticle: " + id);
         ArticleDTO articleDto = articleService.getArticleDtoById(id);
 
