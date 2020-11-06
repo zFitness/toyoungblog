@@ -21,8 +21,31 @@ public class LinkService {
     private LinksDao linksDao;
 
     public List<Link> listLinks() {
+        return linksDao.selectList(null);
+    }
+
+    public List<Link> listVisibleLinks() {
         LambdaQueryWrapper<Link> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Link::getLinkVisible, 1);
+        wrapper.eq(Link::getVisible, true);
         return linksDao.selectList(wrapper);
     }
+
+    /**
+     * 设置友链可见
+     *
+     * @param linkId
+     * @param visible
+     * @return
+     */
+    public int setVisible(Integer linkId, boolean visible) {
+        Link link = linksDao.selectById(linkId);
+        link.setVisible(visible);
+        return linksDao.updateById(link);
+    }
+
+    public int deleteById(Integer linkId) {
+        return linksDao.deleteById(linkId);
+    }
+
+
 }
