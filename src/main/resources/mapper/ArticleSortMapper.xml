@@ -10,4 +10,12 @@
             WHERE article_id = #{articleId})
     </select>
 
+    <select id="countPublishArticleBySort" resultType="int">
+        SELECT count(*)
+        FROM ty_article_sort AS a
+                 JOIN ty_article AS b ON a.article_id = b.article_id
+        WHERE a.sort_id = #{sortId}
+          AND b.article_status LIKE 'publish'
+    </select>
+
 </mapper>

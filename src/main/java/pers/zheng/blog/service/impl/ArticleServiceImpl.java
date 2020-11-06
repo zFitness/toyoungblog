@@ -121,9 +121,9 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public IPage<ArticleItemVO> getArticleItemsByLabel(int p, Integer labelId, int size) {
+    public IPage<ArticleItemVO> listArticleItemsByLabel(int p, Integer labelId, int size) {
         Page<ArticleItemVO> page = new Page<>(p, size);
-        IPage<ArticleItemVO> publishArticle = articlesDao.getArticleItemByLabel(page, "publish", labelId);
+        IPage<ArticleItemVO> publishArticle = articlesDao.listArticleItemByLabel(page, "publish", labelId);
         return setArticleItemSorts(publishArticle);
     }
 

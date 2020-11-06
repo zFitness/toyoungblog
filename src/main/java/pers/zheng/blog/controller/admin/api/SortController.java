@@ -26,6 +26,6 @@ public class SortController {
 
     @GetMapping("")
     public Result getAll() {
-        return Result.success(sortService.listSortVOs());
+        return Result.success(sortService.listSortVO());
     }
 }

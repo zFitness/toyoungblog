@@ -23,7 +23,7 @@ public interface ArticleDao extends BaseMapper<Article> {
 
     ArticleContentVO getArticleById(Long articleId);
 
-    IPage<ArticleItemVO> getArticleItemByLabel(Page<ArticleItemVO> page, String state, int labelId);
+    IPage<ArticleItemVO> listArticleItemByLabel(Page<ArticleItemVO> page, String state, int labelId);
 
     IPage<ArticleItemVO> listArticleItemsByName(Page<ArticleItemVO> page, String state, String keyword);
 

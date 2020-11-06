@@ -24,7 +24,7 @@ public interface ArticleService {
 
     ArticleContentVO getArticleById(Long articleId);
 
-    IPage<ArticleItemVO> getArticleItemsByLabel(int p, Integer labelId, int size);
+    IPage<ArticleItemVO> listArticleItemsByLabel(int p, Integer labelId, int size);
 
     IPage<ArticleItemVO> listArticleItemsByName(int p, int size, String keyword);
 

@@ -18,5 +18,5 @@ import java.util.List;
 @Repository
 public interface SortDao extends BaseMapper<Sort> {
 
-    List<SortVO> listSortVOs();
+    List<SortVO> listSortVO();
 }

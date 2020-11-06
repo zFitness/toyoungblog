@@ -20,4 +20,12 @@ import java.util.List;
 public interface ArticleSortDao extends BaseMapper<ArticleSort> {
 
     Sort getSortByArticleId(Long articleId);
+
+    /**
+     * 分类下的可见文章数量
+     *
+     * @param sortId
+     * @return 文章数量
+     */
+    int countPublishArticleBySort(Integer sortId);
 }

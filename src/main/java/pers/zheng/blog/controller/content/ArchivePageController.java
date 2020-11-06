@@ -32,7 +32,7 @@ public class ArchivePageController {
      */
     @RequestMapping("archives")
     public String getAll(Model model) {
-        List<SortVO> sorts = sortsService.listSortVOs();
+        List<SortVO> sorts = sortsService.listSortVO();
         List<LabelVO> labels = labelService.listLabelVOs();
         model.addAttribute("sorts", sorts);
         model.addAttribute("labels", labels);
