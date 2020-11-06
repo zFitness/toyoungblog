@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import pers.zheng.blog.model.entity.ArticleSort;
+import pers.zheng.blog.model.entity.Sort;
 
 import java.util.List;
 
@@ -18,4 +19,5 @@ import java.util.List;
 @Repository
 public interface ArticleSortDao extends BaseMapper<ArticleSort> {
 
+    Sort getSortByArticleId(Long articleId);
 }

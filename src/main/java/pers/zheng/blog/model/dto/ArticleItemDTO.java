@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.entity.Sort;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName ArticleSummaryVO
@@ -38,7 +40,10 @@ public class ArticleItemDTO {
      * 文章发布日期
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
-    private Date articleDate;
+    private Date createTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+    private Date updateTime;
     /**
      * 文章评论数
      */
@@ -53,7 +58,8 @@ public class ArticleItemDTO {
 
     private Sort sort;
 
-
     private String articleStatus;
+
+    private List<Label> labels;
 
 }

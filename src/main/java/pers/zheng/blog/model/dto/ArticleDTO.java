@@ -40,7 +40,7 @@ public class ArticleDTO {
      * 文章发布日期
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
-    private Date articleDate;
+    private Date createTime;
     /**
      * 文章评论数
      */

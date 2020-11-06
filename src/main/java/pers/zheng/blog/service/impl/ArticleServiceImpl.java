@@ -62,9 +62,20 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public IPage<ArticleItemDTO> listArticleDtoItems(int p, int size, String title) {
-        Page<ArticleItemDTO> page = new Page<>(p, size);
-        return articlesDao.getArticleDtoItems(page, title);
+    public IPage<ArticleItemDTO> listArticleDtoItems(int current, int size, String title) {
+        Page<ArticleItemDTO> pageConf = new Page<>(current, size);
+        IPage<ArticleItemDTO> resultPage = articlesDao.listArticleDtoItems(pageConf, title);
+        //获取文章的分类
+        for (ArticleItemDTO record : resultPage.getRecords()) {
+            Sort sort = articleSortDao.getSortByArticleId(record.getArticleId());
+            record.setSort(sort);
+        }
+        //获取文章的标签
+        for (ArticleItemDTO record : resultPage.getRecords()) {
+            List<Label> labels = articleLabelDao.listLabelByArticle(record.getArticleId());
+            record.setLabels(labels);
+        }
+        return resultPage;
     }
 
     /**
@@ -92,7 +103,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         article.setSort(sort);
         //获得标签
-        List<Label> labels = articleLabelDao.getLabelByArticle(article.getArticleId());
+        List<Label> labels = articleLabelDao.listLabelByArticle(article.getArticleId());
         article.setLabels(labels);
         //markdown转换
         MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(article.getArticleContent());
@@ -166,7 +177,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         article.setArticleTitle(articleDto.getArticleTitle());
         article.setArticleContent(articleDto.getArticleContent());
-        article.setArticleDate(articleDto.getArticleDate());
+        article.setCreateTime(articleDto.getCreateTime());
         article.setArticleStatus(articleDto.getArticleStatus());
         //如果没有填写摘要则自动生成摘要
         if (articleDto.getArticleSummary() == null || "".equals(articleDto.getArticleSummary())) {
@@ -186,10 +197,13 @@ public class ArticleServiceImpl implements ArticleService {
         }
         //默认设置未分类
         Sort sort = articleDto.getSort();
+        ArticleSort articleSort = new ArticleSort();
+        articleSort.setArticleId(article.getArticleId());
         if (sort == null || sort.getSortName() == null) {
-            ArticleSort articleSort = new ArticleSort();
-            articleSort.setArticleId(article.getArticleId());
             articleSort.setSortId(2);
+            articleSortDao.insert(articleSort);
+        } else {
+            articleSort.setSortId(sort.getSortId());
             articleSortDao.insert(articleSort);
         }
         return count;
@@ -202,9 +216,15 @@ public class ArticleServiceImpl implements ArticleService {
         articleDto.setArticleId(article.getArticleId());
         articleDto.setArticleTitle(article.getArticleTitle());
         articleDto.setArticleSummary(article.getArticleSummary());
-        articleDto.setArticleDate(article.getArticleDate());
+        articleDto.setCreateTime(article.getCreateTime());
         articleDto.setArticleContent(article.getArticleContent());
         articleDto.setArticleStatus(article.getArticleStatus());
+        //返回文章的标签
+        List<Label> labels = articleLabelDao.listLabelByArticle(article.getArticleId());
+        articleDto.setLabels(labels);
+        //返回文章的分类
+        Sort sort = articleSortDao.getSortByArticleId(article.getArticleId());
+        articleDto.setSort(sort);
         return articleDto;
     }
 
@@ -218,7 +238,7 @@ public class ArticleServiceImpl implements ArticleService {
 
             article.setArticleTitle(articleDto.getArticleTitle());
             article.setArticleStatus(articleDto.getArticleStatus());
-            article.setArticleDate(articleDto.getArticleDate());
+            article.setCreateTime(articleDto.getCreateTime());
             return articlesDao.updateById(article);
         } else {
             return 0;

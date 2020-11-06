@@ -10,15 +10,15 @@
                article_like_count,
                article_comment_count,
                article_summary,
-               article_date
+               create_time
         FROM ty_article
         WHERE article_status like #{state}
-        ORDER BY article_date
+        ORDER BY create_time
             DESC
     </select>
 
 
-    <select id="getArticleDtoItems" resultType="pers.zheng.blog.model.dto.ArticleItemDTO">
+    <select id="listArticleDtoItems" resultType="pers.zheng.blog.model.dto.ArticleItemDTO">
         SELECT
         article_id,
         article_title,
@@ -26,7 +26,7 @@
         article_like_count,
         article_comment_count,
         article_summary,
-        article_date,
+        create_time,
         article_status
         FROM
         ty_article
@@ -35,14 +35,14 @@
             and article_title like concat('%', #{title}, '%')
         </if>
         ORDER BY
-        article_date
+        create_time
         DESC
     </select>
 
     <select id="getArticleById" resultType="pers.zheng.blog.model.vo.ArticleContentVO">
         SELECT article_id,
                article_content,
-               article_date,
+               create_time,
                article_like_count,
                article_title,
                article_comment_count,
@@ -59,7 +59,7 @@
                a.article_view_count,
                a.article_comment_count,
                a.article_summary,
-               a.article_date
+               a.create_time
         FROM ty_article a
                  JOIN
              ty_article_label b
@@ -67,7 +67,7 @@
                  a.article_id = b.article_id
         WHERE b.label_id = #{labelId}
           AND a.article_status like #{state}
-        ORDER BY a.article_date
+        ORDER BY a.create_time
             DESC
     </select>
 
@@ -78,11 +78,11 @@
                article_like_count,
                article_comment_count,
                article_summary,
-               article_date
+               create_time
         FROM ty_article
         WHERE article_title like concat('%', #{keyword}, '%')
           AND article_status like #{state}
-        ORDER BY article_date
+        ORDER BY create_time
             DESC
     </select>
 
@@ -94,12 +94,12 @@
                a.article_view_count,
                a.article_comment_count,
                a.article_summary,
-               a.article_date
+               a.create_time
         FROM ty_article a
                  JOIN ty_article_sort b ON a.article_id = b.article_id
         WHERE b.sort_id = #{sortId}
           AND a.article_status LIKE #{state}
-        ORDER BY a.article_date DESC
+        ORDER BY a.create_time DESC
     </select>
 
     <select id="getPrevArticleItemByArticleId" resultType="pers.zheng.blog.model.vo.ArticleItemVO">

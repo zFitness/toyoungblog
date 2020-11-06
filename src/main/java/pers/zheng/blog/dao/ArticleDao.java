@@ -27,7 +27,7 @@ public interface ArticleDao extends BaseMapper<Article> {
 
     IPage<ArticleItemVO> listArticleItemsByName(Page<ArticleItemVO> page, String state, String keyword);
 
-    IPage<ArticleItemDTO> getArticleDtoItems(Page<ArticleItemDTO> page, String title);
+    IPage<ArticleItemDTO> listArticleDtoItems(Page<ArticleItemDTO> page, String title);
 
     IPage<ArticleItemVO> getArticleItemBySort(Page<ArticleItemVO> page, String state, Integer sortId);
 

@@ -69,7 +69,7 @@
                           class="iconfont iconTime"
                           aria-hidden="true"
                   ></i>
-                  <span th:text="${#dates.format(articleItem.articleDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                  <span th:text="${#dates.format(articleItem.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </div>
                 <div id="article-content" th:utext="${articleItem.articleSummary}"></div>
                 <div class="article-info">

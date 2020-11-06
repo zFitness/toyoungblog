@@ -44,7 +44,7 @@ public class Article implements Serializable {
     /**
      * 文章发布日期
      */
-    private Date articleDate;
+    private Date createTime;
     /**
      * 文章评论数
      */
@@ -56,4 +56,6 @@ public class Article implements Serializable {
     private String articleSummary;
 
     private String articleStatus;
+
+    private Date updateTime;
 }

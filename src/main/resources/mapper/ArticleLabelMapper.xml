@@ -2,20 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.zheng.blog.dao.ArticleLabelDao">
 
-    <resultMap type="pers.zheng.blog.model.entity.ArticleLabel" id="XzArticleLabelMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="articleId" column="article_id" jdbcType="INTEGER"/>
-        <result property="labelId" column="label_id" jdbcType="INTEGER"/>
-    </resultMap>
 
-    <select id="getLabelByArticle" resultType="pers.zheng.blog.model.entity.Label">
-        SELECT
-            ty_label.*
-        FROM
-            ty_label
-	    JOIN
-	        ( SELECT * FROM ty_article_label WHERE article_id = #{articleId} ) AS b
-	    ON
-	        ty_label.label_id = b.label_id
+    <select id="listLabelByArticle" resultType="pers.zheng.blog.model.entity.Label">
+        SELECT ty_label.*
+        FROM ty_label
+                 JOIN
+                 (SELECT * FROM ty_article_label WHERE article_id = #{articleId}) AS b
+                 ON
+                     ty_label.label_id = b.label_id
     </select>
 </mapper>
