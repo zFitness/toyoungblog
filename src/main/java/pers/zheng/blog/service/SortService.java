@@ -50,4 +50,8 @@ public class SortService {
         wrapper.eq(Sort::getSortName, sortName);
         return sortDao.selectOne(wrapper);
     }
+
+    public List<Sort> listSort() {
+        return sortDao.selectList(null);
+    }
 }

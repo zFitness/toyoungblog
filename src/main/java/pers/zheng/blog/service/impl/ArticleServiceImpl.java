@@ -148,7 +148,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     /**
-     * 给文章列表的每一项添加数据
+     * 给文章列表的每一项添加分类
      *
      * @param publishArticle
      * @return
@@ -178,6 +178,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setArticleTitle(articleDto.getArticleTitle());
         article.setArticleContent(articleDto.getArticleContent());
         article.setCreateTime(articleDto.getCreateTime());
+        article.setUpdateTime(articleDto.getCreateTime());
         article.setArticleStatus(articleDto.getArticleStatus());
         //如果没有填写摘要则自动生成摘要
         if (articleDto.getArticleSummary() == null || "".equals(articleDto.getArticleSummary())) {
@@ -199,13 +200,12 @@ public class ArticleServiceImpl implements ArticleService {
         Sort sort = articleDto.getSort();
         ArticleSort articleSort = new ArticleSort();
         articleSort.setArticleId(article.getArticleId());
-        if (sort == null || sort.getSortName() == null) {
+        if (sort == null) {
             articleSort.setSortId(2);
-            articleSortDao.insert(articleSort);
         } else {
             articleSort.setSortId(sort.getSortId());
-            articleSortDao.insert(articleSort);
         }
+        articleSortDao.insert(articleSort);
         return count;
     }
 

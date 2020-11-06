@@ -11,4 +11,12 @@
                  ON
                      ty_label.label_id = b.label_id
     </select>
+
+    <select id="countPublishArticleByLabel" resultType="int">
+        SELECT count(*)
+        FROM ty_article_label AS a
+                 JOIN ty_article AS b ON a.article_id = b.article_id
+        WHERE a.label_id = #{labelId}
+          AND b.article_status LIKE 'publish'
+    </select>
 </mapper>

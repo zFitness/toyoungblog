@@ -20,4 +20,6 @@ import java.util.List;
 public interface ArticleLabelDao extends BaseMapper<ArticleLabel> {
 
     List<Label> listLabelByArticle(Long articleId);
+
+    int countPublishArticleByLabel(Integer labelId);
 }
