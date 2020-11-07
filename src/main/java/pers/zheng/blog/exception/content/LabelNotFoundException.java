@@ -1,4 +1,4 @@
-package pers.zheng.blog.exception;
+package pers.zheng.blog.exception.content;
 
 /**
  * @ClassName TestException

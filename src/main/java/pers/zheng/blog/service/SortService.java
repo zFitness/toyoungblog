@@ -1,11 +1,14 @@
 package pers.zheng.blog.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.SortDao;
-import pers.zheng.blog.model.entity.ArticleSort;
+import pers.zheng.blog.exception.admin.DefaultNotFoundException;
+import pers.zheng.blog.exception.admin.ItemExistException;
+import pers.zheng.blog.model.dto.SortDTO;
 import pers.zheng.blog.model.entity.Sort;
 import pers.zheng.blog.model.vo.SortVO;
 
@@ -38,8 +41,8 @@ public class SortService {
         for (Sort sort : sortList) {
             int count = articleSortDao.countPublishArticleBySort(sort.getSortId());
             SortVO sortVO = new SortVO();
+            BeanUtils.copyProperties(sort, sortVO);
             sortVO.setCount(count);
-            sortVO.setSortName(sort.getSortName());
             sortVOList.add(sortVO);
         }
         return sortVOList;
@@ -53,5 +56,39 @@ public class SortService {
 
     public List<Sort> listSort() {
         return sortDao.selectList(null);
+    }
+
+    public int deleteSortById(Integer sortId) {
+        int i = sortDao.deleteById(sortId);
+        if (i == 0) {
+            throw new DefaultNotFoundException("分类不存在");
+        }
+        return i;
+    }
+
+    public void insertSort(SortDTO sortDTO) {
+        LambdaQueryWrapper<Sort> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(Sort::getSortName, sortDTO.getSortName());
+        Sort sort = sortDao.selectOne(wrapper);
+        if (sort != null) {
+            throw new ItemExistException("分类已经存在");
+        }
+        sort = new Sort();
+        BeanUtils.copyProperties(sortDTO, sort);
+        sortDao.insert(sort);
+    }
+
+    public void updateSort(SortDTO sortDTO) {
+        Sort sort = sortDao.selectById(sortDTO.getSortId());
+        if (sort == null) {
+            throw new DefaultNotFoundException("分类不存在");
+        }
+        sort.setParentSortId(sortDTO.getParentSortId());
+        sort.setSortName(sortDTO.getSortName());
+        sort.setSortAlias(sortDTO.getSortAlias());
+        sort.setSortDescription(sortDTO.getSortDescription());
+
+        sortDao.updateById(sort);
+
     }
 }

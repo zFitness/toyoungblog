@@ -11,7 +11,7 @@ import pers.zheng.blog.dao.ArticleDao;
 import pers.zheng.blog.dao.ArticleLabelDao;
 import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.SortDao;
-import pers.zheng.blog.exception.ArticleNotFoundException;
+import pers.zheng.blog.exception.content.ArticleNotFoundException;
 import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.*;

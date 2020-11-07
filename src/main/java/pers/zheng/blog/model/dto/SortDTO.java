@@ -1,22 +1,23 @@
-package pers.zheng.blog.model.vo;
+package pers.zheng.blog.model.dto;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 /**
- * @ClassName SortVo
- * @Description TODO
- * @Author zheng
- * @Date 2020/10/31 18:14
- * @Version 1.0
+ * @author zheng
+ * @description TODO
+ * @date 2020/11/7
  */
 @Data
-public class SortVO {
+public class SortDTO {
     private Integer sortId;
     /**
      * 分类名称
      */
+    @NotBlank(message = "分类名不能为空")
     private String sortName;
     /**
      * 分类别名

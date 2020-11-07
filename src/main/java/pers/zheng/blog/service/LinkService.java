@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.LinksDao;
-import pers.zheng.blog.exception.LinkNotFoundException;
+import pers.zheng.blog.exception.admin.LinkNotFoundException;
 import pers.zheng.blog.model.dto.LinkDTO;
 import pers.zheng.blog.model.entity.Link;
 

@@ -3,8 +3,8 @@ package pers.zheng.blog.handler;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pers.zheng.blog.exception.ArticleNotFoundException;
-import pers.zheng.blog.exception.LabelNotFoundException;
+import pers.zheng.blog.exception.content.ArticleNotFoundException;
+import pers.zheng.blog.exception.content.LabelNotFoundException;
 
 /**
  * @ClassName BlogContentExceptionHandler

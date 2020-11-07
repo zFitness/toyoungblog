@@ -1,14 +1,13 @@
 package pers.zheng.blog.controller.content;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import pers.zheng.blog.exception.LabelNotFoundException;
+import pers.zheng.blog.exception.content.LabelNotFoundException;
 import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.util.MarkdownEntity;
 import pers.zheng.blog.model.vo.ArticleItemVO;

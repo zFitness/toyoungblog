@@ -2,12 +2,12 @@ package pers.zheng.blog.controller.admin.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pers.zheng.blog.model.dto.SortDTO;
 import pers.zheng.blog.model.dto.result.Result;
 import pers.zheng.blog.service.SortService;
+
+import javax.validation.Valid;
 
 /**
  * @ClassName LabelController
@@ -25,7 +25,25 @@ public class SortController {
     private SortService sortService;
 
     @GetMapping("")
-    public Result getAll() {
-        return Result.success(sortService.listSort());
+    public Result listSortVO() {
+        return Result.success(sortService.listSortVO());
+    }
+
+    @PostMapping("/delete")
+    public Result deleteSortById(@RequestParam("sortId") Integer sortId) {
+        sortService.deleteSortById(sortId);
+        return Result.success();
+    }
+
+    @PostMapping("/add")
+    public Result addSort(@Valid @RequestBody SortDTO sortDTO) {
+        sortService.insertSort(sortDTO);
+        return Result.success();
+    }
+
+    @PostMapping("/update")
+    public Result updateSort(@Valid @RequestBody SortDTO sortDTO) {
+        sortService.updateSort(sortDTO);
+        return Result.success();
     }
 }
