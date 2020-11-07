@@ -27,7 +27,7 @@ public class Link {
     private String linkDescription;
     @TableField("is_visible")
     private Boolean visible;
-    private Date linkUpdated;
+    private Date createTime;
     private String linkRss;
 
 }

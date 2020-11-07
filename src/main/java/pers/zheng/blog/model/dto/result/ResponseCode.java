@@ -12,7 +12,7 @@ public enum ResponseCode {
     TABLE_SUCCESS(0, "请求成功"),
     FAIL(500, "程序错误,杀个程序员祭天"),
     USER_NOT_FOUND(404, "用户不存在"),
-    PARAMETER_MISSING(600, "参数缺失"),
+    PARAMETER_MISSING(600, "参数错误"),
     UNAUTHORIZED(401, "未授权"),
     PASSWORD_ERROR(500050, "密码错误"),
     // ..一真往后面加

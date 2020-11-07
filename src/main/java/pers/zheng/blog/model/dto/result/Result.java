@@ -18,7 +18,7 @@ public class Result implements Serializable {
     /**
      * 返回消息
      */
-    String msg;
+    String message;
     /**
      * 返回的数据
      */
@@ -28,15 +28,15 @@ public class Result implements Serializable {
     public Result() {
     }
 
-    public Result(Integer code, String msg, Object data) {
+    public Result(Integer code, String message, Object data) {
         this.code = code;
-        this.msg = msg;
+        this.message = message;
         this.data = data;
     }
 
     public void setResultCode(ResponseCode resultCode) {
         this.code = resultCode.getCode();
-        this.msg = resultCode.getMessage();
+        this.message = resultCode.getMessage();
     }
 
     /**
