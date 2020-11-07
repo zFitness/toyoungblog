@@ -3,10 +3,12 @@ package pers.zheng.blog.controller.admin.api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pers.zheng.blog.model.dto.LabelDTO;
 import pers.zheng.blog.model.dto.result.Result;
 import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.service.LabelService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -39,5 +41,18 @@ public class LabelController {
     public Result addByName(@RequestParam(value = "labelName", required = true) String labelName) {
         Label label = labelService.addByName(labelName);
         return Result.success(label);
+    }
+
+
+    @PostMapping("update")
+    public Result update(@Valid @RequestBody LabelDTO labelDTO) {
+        int i = labelService.update(labelDTO);
+        return Result.success();
+    }
+
+    @PostMapping("delete")
+    public Result delete(@RequestParam(value = "labelId", required = true) Integer labelId) {
+        int i = labelService.delete(labelId);
+        return Result.success();
     }
 }
