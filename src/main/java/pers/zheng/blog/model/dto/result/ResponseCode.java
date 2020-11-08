@@ -8,8 +8,7 @@ package pers.zheng.blog.model.dto.result;
 public enum ResponseCode {
 
     // 公共请求信息
-    SUCCESS(20000, "请求成功"),
-    TABLE_SUCCESS(0, "请求成功"),
+    SUCCESS(200, "请求成功"),
     FAIL(500, "程序错误,杀个程序员祭天"),
     USER_NOT_FOUND(404, "用户不存在"),
     PARAMETER_MISSING(600, "参数错误"),
@@ -24,8 +23,10 @@ public enum ResponseCode {
     EMAIL_REPEAT(5000102, "邮箱已存在"),
     //用户-角色
     //5000201 - 5000300
-    USER_ROLE_NO_CLEAR(5000201, "该角色存在用户关联，无法删除"),
-    LINK_NOT_FOUND(5000202, "该链接不存在");
+    LINK_NOT_FOUND(404, "该链接不存在"),
+
+    BAD_REQUEST(400, "");
+
     private Integer code;
 
     private String message;

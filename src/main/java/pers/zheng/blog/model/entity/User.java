@@ -1,6 +1,7 @@
 package pers.zheng.blog.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -26,11 +27,11 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    private String name;
+    private String username;
     /**
      * 用户密码
      */
-    private String userPassword;
+    private String password;
     /**
      * 用户邮箱
      */
@@ -44,8 +45,10 @@ public class User implements Serializable {
      */
     private String avatar;
 
+    @TableField(exist = false)
     private String introduction;
 
+    @TableField(exist = false)
     private List<String> roles;
 
 }

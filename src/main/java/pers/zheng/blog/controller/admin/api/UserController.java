@@ -1,10 +1,15 @@
 package pers.zheng.blog.controller.admin.api;
 
+import com.auth0.jwt.JWT;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pers.zheng.blog.annotation.TokenRequired;
 import pers.zheng.blog.model.dto.result.Result;
 import pers.zheng.blog.model.entity.User;
+import pers.zheng.blog.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -17,28 +22,29 @@ import java.util.Map;
  * @Version 1.0
  */
 @Slf4j
-@CrossOrigin
 @RestController
-@RequestMapping("/user")
 public class UserController {
+    @Autowired
+    private UserService userService;
 
-    @PostMapping("/login")
+    @TokenRequired(required = false)
+    @PostMapping("/api/admin/user/login")
     public Result login(@RequestBody Map<String, String> map) {
         log.info(map.toString());
         String username = map.get("username");
         String password = map.get("password");
-
-        if ("admin".equals(username) && "admin123".equals(password)) {
-            return Result.success("admin-token");
-        }
-        return Result.failure();
+        String token = userService.login(username, password);
+//        if ("admin".equals(username) && "admin123".equals(password)) {
+//            return Result.success(token);
+//        }
+        return Result.success(token);
     }
 
-    @GetMapping("/info")
-    public Result userInfo(@RequestParam("token") String token) {
-        User user = new User();
-        user.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
-        user.setName("test");
+    @GetMapping("/api/admin/user/info")
+    public Result userInfo(HttpServletRequest request) {
+        String token = request.getHeader("X-token");
+        int userId = JWT.decode(token).getClaim("userId").asInt();
+        User user = userService.findUserById(userId);
         user.setIntroduction("hhhhhhhh");
         ArrayList<String> roles = new ArrayList<>();
         roles.add("admin");
@@ -46,7 +52,8 @@ public class UserController {
         return Result.success(user);
     }
 
-    @PostMapping("/logout")
+    @TokenRequired(required = false)
+    @PostMapping("/api/admin/user/logout")
     public Result logout() {
         return Result.success();
     }

@@ -1,4 +1,4 @@
-package pers.zheng.blog.filter;
+package pers.zheng.blog.interceptor;
 
 /**
  * @ClassName JwtFilter

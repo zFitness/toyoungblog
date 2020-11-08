@@ -3,9 +3,8 @@ package pers.zheng.blog.handler;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import pers.zheng.blog.exception.admin.DefaultNotFoundException;
-import pers.zheng.blog.exception.admin.ItemExistException;
-import pers.zheng.blog.exception.admin.LinkNotFoundException;
+import pers.zheng.blog.exception.admin.*;
+import pers.zheng.blog.model.dto.result.ResponseCode;
 import pers.zheng.blog.model.dto.result.Result;
 
 import javax.validation.ConstraintViolationException;
@@ -31,7 +30,7 @@ public class AdminExceptionHandler {
 
     @ExceptionHandler({LinkNotFoundException.class})
     public Result handler3(Exception e) {
-        return new Result(502, e.getMessage(), null);
+        return Result.failure(ResponseCode.LINK_NOT_FOUND);
     }
 
     @ExceptionHandler({DefaultNotFoundException.class})
@@ -42,6 +41,16 @@ public class AdminExceptionHandler {
     @ExceptionHandler({ItemExistException.class})
     public Result handler5(Exception e) {
         return new Result(504, e.getMessage(), null);
+    }
+
+    @ExceptionHandler({LoginException.class})
+    public Result handler6(Exception e) {
+        return new Result(505, e.getMessage(), null);
+    }
+
+    @ExceptionHandler({TokenException.class})
+    public Result handler7(Exception e) {
+        return new Result(401, e.getMessage(), null);
     }
 }
 

@@ -1,8 +1,13 @@
 package pers.zheng.blog.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pers.zheng.blog.dao.UserDao;
+import pers.zheng.blog.exception.admin.LoginException;
 import pers.zheng.blog.model.entity.User;
+import pers.zheng.blog.model.util.JwtUtil;
 
-import java.util.List;
 
 /**
  * (XzUsers)表服务接口
@@ -10,47 +15,32 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-11 23:23:04
  */
-public interface UserService {
+@Service
+public class UserService {
+    @Autowired
+    private UserDao userDao;
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param userId 主键
-     * @return 实例对象
-     */
-    User queryById(Integer userId);
+    public String login(String name, String password) {
+        String token = null;
 
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit  查询条数
-     * @return 对象列表
-     */
-    List<User> queryAllByLimit(int offset, int limit);
+        //查看用户是否存在
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(User::getUsername, name);
+        User user = userDao.selectOne(wrapper);
+        if (user == null) {
+            throw new LoginException("用户名错误");
+        } else {
+            if (!user.getPassword().equals(password)) {
+                throw new LoginException("密码错误");
+            } else {
+                token = JwtUtil.sign(user.getUsername(), user.getUserId(), user.getPassword());
+            }
+        }
 
-    /**
-     * 新增数据
-     *
-     * @param user 实例对象
-     * @return 实例对象
-     */
-    User insert(User user);
+        return token;
+    }
 
-    /**
-     * 修改数据
-     *
-     * @param user 实例对象
-     * @return 实例对象
-     */
-    User update(User user);
-
-    /**
-     * 通过主键删除数据
-     *
-     * @param userId 主键
-     * @return 是否成功
-     */
-    boolean deleteById(Integer userId);
-
+    public User findUserById(int userId) {
+        return userDao.selectById(userId);
+    }
 }
