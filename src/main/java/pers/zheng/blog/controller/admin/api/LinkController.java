@@ -18,7 +18,6 @@ import java.util.List;
  * @date 2020/11/6
  */
 @Slf4j
-@CrossOrigin
 @RestController()
 @RequestMapping("/api/admin/links")
 public class LinkController {

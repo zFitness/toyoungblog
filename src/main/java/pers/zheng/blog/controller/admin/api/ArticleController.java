@@ -15,7 +15,6 @@ import pers.zheng.blog.service.ArticleService;
  * @Version 1.0
  */
 @Slf4j
-@CrossOrigin
 @RestController()
 @RequestMapping("/api/admin/articles")
 public class ArticleController {

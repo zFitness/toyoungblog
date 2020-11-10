@@ -17,7 +17,6 @@ import javax.validation.Valid;
  * @Version 1.0
  */
 @Slf4j
-@CrossOrigin
 @RestController()
 @RequestMapping("/api/admin/sorts")
 public class SortController {

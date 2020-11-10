@@ -52,5 +52,10 @@ public class AdminExceptionHandler {
     public Result handler7(Exception e) {
         return new Result(401, e.getMessage(), null);
     }
+
+    @ExceptionHandler({RuntimeException.class})
+    public Result handler8(Exception e) {
+        return new Result(508, e.getMessage(), null);
+    }
 }
 

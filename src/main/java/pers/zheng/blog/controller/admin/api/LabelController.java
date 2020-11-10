@@ -19,7 +19,6 @@ import java.util.List;
  * @Version 1.0
  */
 @Slf4j
-@CrossOrigin
 @RestController()
 @RequestMapping("/api/admin/labels")
 public class LabelController {

@@ -69,7 +69,7 @@
                   ></i>
                   <span th:text="${article.getArticleCommentCount()}"></span>评论
                 </span>
-                <span class="" style="margin-right: 20px">
+                <span class="" style="margin-right: 20px" th:if="${article.getSort() != null}">
                    <i
                            class="iconfont iconwenjianjia1"
                    ></i>

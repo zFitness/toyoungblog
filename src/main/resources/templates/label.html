@@ -85,7 +85,7 @@
                     ></i>
                     <span th:text="${articleItem.articleCommentCount}"></span>评论
                   </div>
-                  <div class="" style="margin-right: 20px">
+                  <div class="" style="margin-right: 20px" th:if="${articleItem.getSort() != null}">
                     <i
                             class="iconfont iconDocument"
                     ></i>

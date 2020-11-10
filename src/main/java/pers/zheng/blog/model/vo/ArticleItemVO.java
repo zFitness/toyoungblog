@@ -20,7 +20,6 @@ public class ArticleItemVO {
     /**
      * 文章id
      */
-    @TableId(type = IdType.AUTO)
     private Long articleId;
     /**
      * 文章标题

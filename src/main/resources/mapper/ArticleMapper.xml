@@ -54,7 +54,8 @@
     </select>
 
     <select id="listArticleItemByLabel" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
-        SELECT a.article_title,
+        SELECT a.article_id,
+               a.article_title,
                a.article_summary,
                a.create_time,
                a.article_like_count,
