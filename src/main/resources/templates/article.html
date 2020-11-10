@@ -12,6 +12,9 @@
     <script>hljs.initLineNumbersOnLoad();</script>
     <script th:src="@{/static/js/table.js}"></script>
     <script th:src="@{/static/js/base.js}"></script>
+    <script th:src="@{/static/js/av-min.js}"></script>
+
+    <script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.main-wrapper').scroll(function () {
@@ -167,13 +170,29 @@
                   ></div>
                   <span class="label">Next Post</span>
                   <div class="info">
-                    <h3 th:text="${articleItemNext.getArticleTitle()}">漂亮的Nav导航动效</h3>
+                    <h3 th:text="${articleItemNext.getArticleTitle()}"></h3>
                     <hr/>
                   </div
                   >
                 </a>
               </div>
             </section>
+
+            <div id="vcomments"></div>
+            <script>
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'eB2Cr2KPJE7oA26v3y4lJMAw-gzGzoHsz',
+                    appKey: 'aRtu4UNpNtKCyAoIp8Pvfjjl',
+                    placeholder: '少侠说点什么吧',
+                    path: window.location.pathname,
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    requiredFields: ['nick', 'mail'],
+                    recordIP: true,
+                    visitor: true
+                })
+            </script>
           </div>
 
           <!-- 底部 footer -->

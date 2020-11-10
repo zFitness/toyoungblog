@@ -29,4 +29,5 @@ $(document).ready(function () {
     $('.close-button .iconclose').click(function () {
         $('.toc-container-mob').css('display', 'none');
     })
+
 })

@@ -3,9 +3,11 @@
   <head th:replace="~{common/header::common_header(~{::title}, ~{::link},~{::script})}">
     <title>分类</title>
     <link rel="stylesheet" th:href="@{/static/css/label.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/base.css}"/>
     <link rel="stylesheet" th:href="@{/static/lib/pagination/my-page.css}"/>
     <link rel="stylesheet" th:href="@{/static/css/markdown.css}"/>
     <script th:src="@{/static/lib/pagination/my-page.js}"></script>
+    <script th:src="@{/static/js/base.js}"></script>
     <script th:inline="javascript">
         /*<![CDATA[*/
         $(document).ready(function () {

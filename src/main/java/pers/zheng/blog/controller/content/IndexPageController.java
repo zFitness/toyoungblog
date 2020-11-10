@@ -12,6 +12,8 @@ import pers.zheng.blog.service.ArticleService;
 import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 import pers.zheng.blog.model.vo.ArticleItemVO;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @ClassName IndexController
  * @Description TODO
@@ -26,7 +28,10 @@ public class IndexPageController {
     private ArticleService articleService;
 
     @RequestMapping("/")
-    public String index(Model model, @RequestParam(value = "p", defaultValue = "1", required = false) int p) {
+    public String index(Model model,
+                        HttpServletRequest request,
+                        @RequestParam(value = "p", defaultValue = "1", required = false) int p) {
+        log.info(request.getRemoteHost());
         log.info(p + "");
         int size = 10;
         IPage<ArticleItemVO> articleItems = articleService.listArticlePages(p, size);

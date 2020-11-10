@@ -142,15 +142,16 @@ body {
 .article {
     background-color: #fff;
     position: relative;
-    box-shadow: 0 1px 20px -6px rgba(0, 0, 0, .5);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     padding: 15px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 13px;
+    transition: all 0.25s ease 0s, opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;
 }
 
 @media (min-width: 860px) {
     .article:hover {
-        box-shadow: 0 5px 10px 5px rgba(110, 110, 110, .4);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 16px 32px 0 rgba(0, 0, 0, 0.1);
     }
 }
 
