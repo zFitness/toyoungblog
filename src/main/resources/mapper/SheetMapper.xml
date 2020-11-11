@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zheng.blog.dao.SheetDao">
+    <select id="sheetPage" resultType="pers.zheng.blog.model.dto.SheetItemDTO">
+        SELECT sheet_id,
+        sheet_title,
+        sheet_slug,
+        sheet_status,
+        create_time,
+        sheet_like_count,
+        sheet_view_count,
+        sheet_comment_count,
+        update_time,
+        comment_status
+        FROM ty_sheet
+        WHERE
+        1 = 1
+        <if test="sheetStatus != null and sheetStatus != ''">
+            AND sheet_status LIKE #{sheetStatus}
+        </if>
+        <if test="sheetTitle != null and sheetTitle != ''">
+            AND sheet_title LIKE concat('%', #{sheetTitle}, '%')
+        </if>
+
+    </select>
+
+</mapper>
