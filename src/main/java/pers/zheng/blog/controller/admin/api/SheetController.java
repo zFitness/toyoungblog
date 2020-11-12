@@ -58,12 +58,24 @@ public class SheetController {
     }
 
     /**
+     * 根据id获取页面
+     *
+     * @param sheetId
+     * @return
+     */
+    @GetMapping("/id/{sheetId}")
+    public Result getSheet(@PathVariable Long sheetId) {
+        Sheet sheet = sheetService.getSheetById(sheetId);
+        return Result.success(sheet);
+    }
+
+    /**
      * 更新
      *
      * @param sheetDTO
      * @return
      */
-    @PutMapping("/{sheetId}")
+    @PutMapping("/id/{sheetId}")
     public Result updateSheet(@PathVariable Long sheetId,
                               @RequestBody SheetDTO sheetDTO) {
         log.info(sheetDTO.toString());
@@ -98,14 +110,14 @@ public class SheetController {
      * @param sheetSlug
      * @return
      */
-    @GetMapping("/{sheetSlug}")
+    @GetMapping("/slug/{sheetSlug}")
     public Result getSheet(@PathVariable String sheetSlug) {
         Sheet sheet = sheetService.getSheetBySlug(sheetSlug, null);
         return Result.success(sheet);
     }
 
 
-    @DeleteMapping("/{sheetId}")
+    @DeleteMapping("/id/{sheetId}")
     public Result deleteSheet(@PathVariable Long sheetId) {
         sheetService.deleteSheet(sheetId);
         return Result.success();

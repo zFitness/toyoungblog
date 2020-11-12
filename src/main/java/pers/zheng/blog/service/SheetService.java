@@ -73,22 +73,29 @@ public class SheetService {
     }
 
     public int updateSheet(Long sheetId, SheetDTO sheetDTO) {
-        //查询别名是否存在
+        //查询修改后的别名是否存在
         LambdaQueryWrapper<Sheet> wrapper1 = new LambdaQueryWrapper<>();
         wrapper1.eq(Sheet::getSheetSlug, sheetDTO.getSheetSlug())
+                .ne(Sheet::getSheetId, sheetId)
                 .last("limit 1");
         int i = sheetDao.selectCount(wrapper1);
         if (i != 0) {
             throw new ItemExistException("相同别名的页面已经存在");
         }
 
-        //查询页面是否存在
-        if (!isExist(sheetId)) {
+        //先查询出对象
+        Sheet sheet = sheetDao.selectById(sheetId);
+        if (sheet == null) {
             throw new DefaultNotFoundException("页面不存在");
         }
+        sheet.setSheetTitle(sheetDTO.getSheetTitle());
+        sheet.setSheetSlug(sheetDTO.getSheetSlug());
+        sheet.setSheetContent(sheetDTO.getSheetContent());
+        sheet.setCommentStatus(sheetDTO.getCommentStatus());
+        sheet.setSheetStatus(sheetDTO.getSheetStatus());
+        sheet.setCreateTime(sheetDTO.getCreateTime());
 
-        Sheet sheet = new Sheet();
-        BeanUtils.copyProperties(sheetDTO, sheet);
+
         sheet.setSheetId(sheetId);
         return sheetDao.updateById(sheet);
     }
@@ -118,5 +125,13 @@ public class SheetService {
                 .last("limit 1");
         int j = sheetDao.selectCount(wrapper);
         return j != 0;
+    }
+
+    public Sheet getSheetById(Long sheetId) {
+        Sheet sheet = sheetDao.selectById(sheetId);
+        if (sheet == null) {
+            throw new DefaultNotFoundException("页面不存在");
+        }
+        return sheet;
     }
 }
