@@ -23,15 +23,25 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    /**
+     * @param page
+     * @param limit
+     * @param title
+     * @return
+     */
     @GetMapping("")
-    public Result list(@RequestParam("page") int page,
-                       @RequestParam("limit") int limit,
+    public Result list(@RequestParam(value = "page", defaultValue = "1") int page,
+                       @RequestParam(value = "limit", defaultValue = "10") int limit,
                        @RequestParam(value = "title", required = false) String title) {
-        log.info(title);
         return Result.success(articleService.listArticleDtoItems(page, limit, title));
     }
 
-
+    /**
+     * 添加文章接口
+     *
+     * @param article
+     * @return
+     */
     @PostMapping("add")
     public Result add(@Valid @RequestBody ArticleDTO article) {
         log.info(article.toString());
@@ -39,23 +49,39 @@ public class ArticleController {
         return Result.success();
     }
 
-
+    /**
+     * 根据id获取文章接口
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("{id}")
     public Result getArticle(@PathVariable("id") int id) {
         log.info("fetchArticle: " + id);
-        ArticleDTO articleDto = articleService.getArticleDtoById(id);
+        ArticleDTO articleDto = articleService.getArticleDTOById(id);
 
         return Result.success(articleDto);
     }
 
-    @PostMapping("update")
-    public Result updateArticle(@RequestBody ArticleDTO articleDto) {
-        log.info("updateArticle: " + articleDto.getArticleId());
-        articleService.updateArticle(articleDto);
+    /**
+     * 更新文章
+     *
+     * @param articleDTO
+     * @return
+     */
+    @PutMapping("update")
+    public Result updateArticle(@Valid @RequestBody ArticleDTO articleDTO) {
+        log.info("updateArticle: " + articleDTO.getArticleId());
+        articleService.updateArticle(articleDTO);
         return Result.success();
     }
 
-
+    /**
+     * 删除文章
+     *
+     * @param id
+     * @return
+     */
     @PostMapping("delete")
     public Result deleteArticleById(@RequestParam("id") int id) {
         log.info("deleteArticle: " + id);

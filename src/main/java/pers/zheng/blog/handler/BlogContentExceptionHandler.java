@@ -4,6 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import pers.zheng.blog.exception.content.ArticleNotFoundException;
+import pers.zheng.blog.exception.content.BlogNotFoundException;
 import pers.zheng.blog.exception.content.LabelNotFoundException;
 import pers.zheng.blog.exception.content.SheetNotFoundException;
 
@@ -16,7 +17,8 @@ import pers.zheng.blog.exception.content.SheetNotFoundException;
  */
 @ControllerAdvice(basePackages = {"pers.zheng.blog.controller.content",})
 public class BlogContentExceptionHandler {
-    @ExceptionHandler({ArticleNotFoundException.class, LabelNotFoundException.class, SheetNotFoundException.class})
+    @ExceptionHandler({ArticleNotFoundException.class, LabelNotFoundException.class,
+            SheetNotFoundException.class, BlogNotFoundException.class})
     public String test(Exception e, Model model) {
         model.addAttribute("error_message", e.getMessage());
         return "error/404";

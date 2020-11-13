@@ -132,7 +132,7 @@
               </p>
               <p>
                 转载：转载请注明原文链接 -
-                <a th:href="${'/article/' + article.getArticleId()}"
+                <a th:href="${'/article/' + article.getArticleSlug()}"
                    th:text="${article.getArticleTitle()}"
                 >Git常用命令总结</a
                 >
@@ -142,7 +142,7 @@
             <section class="post-squares nextprev">
               <div class="post-nepre half previous" th:if="${not #lists.isEmpty(articleItemPrev)}"
                    th:style="${#lists.isEmpty(articleItemNext)}?'width:100%':''">
-                <a th:href="@{'/article/' + ${articleItemPrev.getArticleId()}}" rel="prev"
+                <a th:href="@{'/article/' + ${articleItemPrev.getArticleSlug()}}" rel="prev"
                 >
                   <div
                           class="background"
@@ -160,7 +160,7 @@
               </div>
               <div class="post-nepre half next" th:if="${not #lists.isEmpty(articleItemNext)}"
                    th:style="${#lists.isEmpty(articleItemPrev)}?'width:100%':''">
-                <a th:href="@{'/article/' + ${articleItemNext.getArticleId()}}" rel="next"
+                <a th:href="@{'/article/' + ${articleItemNext.getArticleSlug()}}" rel="next"
                 >
                   <div
                           class="background"

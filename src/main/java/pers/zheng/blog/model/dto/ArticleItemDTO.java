@@ -19,10 +19,7 @@ import java.util.List;
  */
 @Data
 public class ArticleItemDTO {
-    /**
-     * 文章id
-     */
-    @TableId(type = IdType.AUTO)
+
     private Long articleId;
     /**
      * 文章标题
@@ -58,12 +55,23 @@ public class ArticleItemDTO {
      */
     private String articleSummary;
 
-    private String articleContent;
-
+    /**
+     * 文章分类
+     */
     private Sort sort;
 
+    /**
+     * 文章状态
+     */
     private String articleStatus;
 
+    /**
+     * 文章标签
+     */
     private List<Label> labels;
 
+    /**
+     * 是否开启评论
+     */
+    private Boolean commentStatus;
 }

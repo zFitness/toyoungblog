@@ -23,12 +23,14 @@
         SELECT
         article_id,
         article_title,
+        article_slug,
         article_view_count,
         article_like_count,
         article_comment_count,
         article_summary,
         create_time,
-        article_status
+        article_status,
+        comment_status
         FROM
         ty_article
         WHERE 1=1
@@ -40,7 +42,7 @@
         DESC
     </select>
 
-    <select id="getArticleById" resultType="pers.zheng.blog.model.vo.ArticleContentVO">
+    <select id="getArticleById" resultType="pers.zheng.blog.model.vo.ArticleVO">
         SELECT article_id,
                article_content,
                create_time,
@@ -57,6 +59,7 @@
     <select id="listArticleItemByLabel" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT a.article_id,
                a.article_title,
+               a.article_slug,
                a.article_summary,
                a.create_time,
                a.article_like_count,
@@ -89,6 +92,7 @@
     <select id="getArticleItemBySort" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT a.article_id,
                a.article_title,
+               a.article_slug,
                a.article_view_count,
                a.article_comment_count,
                a.article_summary,

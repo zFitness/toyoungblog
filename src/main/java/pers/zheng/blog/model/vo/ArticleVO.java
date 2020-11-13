@@ -19,7 +19,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Data
-public class ArticleContentVO {
+public class ArticleVO {
     /**
      * 文章id
      */

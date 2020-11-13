@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import pers.zheng.blog.model.vo.ArticleContentVO;
+import pers.zheng.blog.model.util.MarkdownEntity;
+import pers.zheng.blog.model.vo.ArticleVO;
 import pers.zheng.blog.model.vo.ArticleItemVO;
 import pers.zheng.blog.service.ArticleService;
+import pers.zheng.blog.util.MarkDown2HtmlWrapper;
 
 /**
  * @ClassName ArticleController
@@ -25,15 +27,19 @@ public class ArticlePageController {
     @Autowired
     private ArticleService articleService;
 
-    @GetMapping("/article/{articleId}")
-    public String test(Model model, @PathVariable("articleId") Long articleId) {
-        ArticleContentVO articleContentVO = articleService.getArticleById(articleId);
-        model.addAttribute("article", articleContentVO);
+    @GetMapping("/article/{articleSlug}")
+    public String test(Model model, @PathVariable("articleSlug") String articleSlug) {
+        ArticleVO articleVO = articleService.getArticleBySlug(articleSlug, "publish");
+        //markdown转换
+        MarkdownEntity markdownEntity = MarkDown2HtmlWrapper.ofContent(articleVO.getArticleContent());
+        articleVO.setArticleContent(markdownEntity.toString());
+        articleVO.setArticleTocHtml(markdownEntity.getHtmlTOC());
+        model.addAttribute("article", articleVO);
 
 
         //上一篇文章，下一篇文章
-        ArticleItemVO articleItemPrev = articleService.getPrevArticleItemByArticleId(articleId);
-        ArticleItemVO articleItemNext = articleService.getNextArticleItemByArticleId(articleId);
+        ArticleItemVO articleItemPrev = articleService.getPrevArticleItemByArticleId(articleVO.getArticleId());
+        ArticleItemVO articleItemNext = articleService.getNextArticleItemByArticleId(articleVO.getArticleId());
         model.addAttribute("articleItemPrev", articleItemPrev);
         model.addAttribute("articleItemNext", articleItemNext);
         return "article";

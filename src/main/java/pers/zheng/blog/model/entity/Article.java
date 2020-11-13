@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.Date;
  * @since 2020-10-11 23:23:02
  */
 @Data
+@Accessors(chain = true)
 @TableName("ty_article")
 public class Article implements Serializable {
     private static final long serialVersionUID = 647796731339516238L;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.Article;
-import pers.zheng.blog.model.vo.ArticleContentVO;
+import pers.zheng.blog.model.vo.ArticleVO;
 import pers.zheng.blog.model.vo.ArticleItemVO;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public interface ArticleService {
 
     IPage<ArticleItemDTO> listArticleDtoItems(int current, int size, String title);
 
-    ArticleContentVO getArticleById(Long articleId);
+    ArticleVO getArticleById(Long articleId);
 
     IPage<ArticleItemVO> listArticleItemsByLabel(int p, Integer labelId, int size);
 
@@ -30,9 +30,9 @@ public interface ArticleService {
 
     int insertArticle(ArticleDTO article);
 
-    ArticleDTO getArticleDtoById(int id);
+    ArticleDTO getArticleDTOById(int id);
 
-    int updateArticle(ArticleDTO articleDto);
+    int updateArticle(ArticleDTO articleDTO);
 
     int deleteArticleById(int id);
 
@@ -43,4 +43,6 @@ public interface ArticleService {
     ArticleItemVO getPrevArticleItemByArticleId(Long articleId);
 
     ArticleItemVO getNextArticleItemByArticleId(Long articleId);
+
+    ArticleVO getArticleBySlug(String articleSlug, String status);
 }

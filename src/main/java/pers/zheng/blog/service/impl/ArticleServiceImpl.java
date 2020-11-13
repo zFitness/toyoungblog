@@ -2,9 +2,11 @@ package pers.zheng.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.zheng.blog.dao.ArticleDao;
@@ -18,7 +20,7 @@ import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.*;
 import pers.zheng.blog.model.util.MarkdownEntity;
-import pers.zheng.blog.model.vo.ArticleContentVO;
+import pers.zheng.blog.model.vo.ArticleVO;
 import pers.zheng.blog.model.vo.ArticleItemVO;
 import pers.zheng.blog.service.ArticleService;
 import pers.zheng.blog.util.MarkDown2HtmlWrapper;
@@ -88,8 +90,8 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public ArticleContentVO getArticleById(Long articleId) {
-        ArticleContentVO article = articlesDao.getArticleById(articleId);
+    public ArticleVO getArticleById(Long articleId) {
+        ArticleVO article = articlesDao.getArticleById(articleId);
         if (article == null) {
             throw new ArticleNotFoundException("没有这篇文章");
         }
@@ -172,14 +174,14 @@ public class ArticleServiceImpl implements ArticleService {
     /**
      * 添加文章
      *
-     * @param articleDto
+     * @param articleDTO
      * @return
      */
     @Override
-    public int insertArticle(ArticleDTO articleDto) {
+    public int insertArticle(ArticleDTO articleDTO) {
         //查询别名是否存在
         LambdaQueryWrapper<Article> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Article::getArticleSlug, articleDto.getArticleSlug())
+        wrapper.eq(Article::getArticleSlug, articleDTO.getArticleSlug())
                 .last("limit 1");
         int i = articlesDao.selectCount(wrapper);
         if (i != 0) {
@@ -189,21 +191,23 @@ public class ArticleServiceImpl implements ArticleService {
         //包装类型没有默认值
         Article article = new Article();
 
-        article.setArticleTitle(articleDto.getArticleTitle());
-        article.setArticleContent(articleDto.getArticleContent());
-        article.setCreateTime(articleDto.getCreateTime());
-        article.setUpdateTime(articleDto.getCreateTime());
-        article.setArticleStatus(articleDto.getArticleStatus());
-        article.setArticleSlug(articleDto.getArticleSlug());
+        article.setArticleTitle(articleDTO.getArticleTitle())
+                .setArticleSlug(articleDTO.getArticleSlug())
+                .setCreateTime(articleDTO.getCreateTime())
+                .setUpdateTime(articleDTO.getCreateTime())
+                .setArticleContent(articleDTO.getArticleContent())
+                .setCommentStatus(articleDTO.getCommentStatus())
+                .setArticleStatus(articleDTO.getArticleStatus());
+
         //使用 <!--more--> 自动生成摘要
-        article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
+        article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDTO.getArticleContent()));
         int count = articlesDao.insert(article);
         if (count == 0) {
             throw new RuntimeException("文章插入失败");
         }
 
         //创建标签
-        for (Label label : articleDto.getLabels()) {
+        for (Label label : articleDTO.getLabels()) {
             ArticleLabel articleLabel = new ArticleLabel();
             articleLabel.setArticleId(article.getArticleId());
             articleLabel.setLabelId(label.getLabelId());
@@ -211,7 +215,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
         //添加分类
-        Sort sort = articleDto.getSort();
+        Sort sort = articleDTO.getSort();
         if (sort.getSortId() != null) {
             ArticleSort articleSort = new ArticleSort();
             articleSort.setArticleId(article.getArticleId());
@@ -221,77 +225,92 @@ public class ArticleServiceImpl implements ArticleService {
         return count;
     }
 
+    /**
+     * 根据id获取文章
+     *
+     * @param id
+     * @return
+     */
     @Override
-    public ArticleDTO getArticleDtoById(int id) {
+    public ArticleDTO getArticleDTOById(int id) {
         Article article = articlesDao.selectById(id);
-        ArticleDTO articleDto = new ArticleDTO();
-        articleDto.setArticleId(article.getArticleId());
-        articleDto.setArticleTitle(article.getArticleTitle());
-        articleDto.setArticleSummary(article.getArticleSummary());
-        articleDto.setCreateTime(article.getCreateTime());
-        articleDto.setArticleContent(article.getArticleContent());
-        articleDto.setArticleStatus(article.getArticleStatus());
-        articleDto.setArticleSlug(article.getArticleSlug());
-        articleDto.setCommentStatus(article.getCommentStatus());
+        ArticleDTO articleDTO = new ArticleDTO();
+        articleDTO.setArticleId(article.getArticleId())
+                .setArticleTitle(article.getArticleTitle())
+                .setArticleSummary(article.getArticleSummary())
+                .setCreateTime(article.getCreateTime())
+                .setArticleContent(article.getArticleContent())
+                .setArticleStatus(article.getArticleStatus())
+                .setArticleSlug(article.getArticleSlug())
+                .setCommentStatus(article.getCommentStatus());
         //返回文章的标签
         List<Label> labels = articleLabelDao.listLabelByArticle(article.getArticleId());
-        articleDto.setLabels(labels);
+        articleDTO.setLabels(labels);
         //返回文章的分类
         Sort sort = articleSortDao.getSortByArticleId(article.getArticleId());
-        articleDto.setSort(sort);
-        return articleDto;
+        articleDTO.setSort(sort);
+        return articleDTO;
     }
 
     /**
      * 更新文章
      *
-     * @param articleDto
+     * @param articleDTO
      * @return
      */
     @Override
-    public int updateArticle(ArticleDTO articleDto) {
+    public int updateArticle(ArticleDTO articleDTO) {
+        if (articleDTO.getArticleId() == null) {
+            throw new DefaultNotFoundException("文章不存在");
+        }
+
         //查询修改后的别名是否存在
         LambdaQueryWrapper<Article> wrapperSlug = new LambdaQueryWrapper<>();
-        wrapperSlug.eq(Article::getArticleSlug, articleDto.getArticleSlug())
-                .ne(Article::getArticleId, articleDto.getArticleId())
+        wrapperSlug.eq(Article::getArticleSlug, articleDTO.getArticleSlug())
+                .ne(Article::getArticleId, articleDTO.getArticleId())
                 .last("limit 1");
         int i = articlesDao.selectCount(wrapperSlug);
         if (i != 0) {
             throw new ItemExistException("相同别名的页面已经存在");
         }
 
-        Article article = articlesDao.selectById(articleDto.getArticleId());
-        if (article != null) {
-            article.setArticleTitle(articleDto.getArticleTitle());
-            article.setArticleContent(articleDto.getArticleContent());
-            article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
-            article.setArticleStatus(articleDto.getArticleStatus());
-            article.setCreateTime(articleDto.getCreateTime());
-            article.setUpdateTime(new Date());
-            //更新文章的的分类
-            LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
-            articleSortDao.delete(wrapper);
-            Sort sort = articleDto.getSort();
-            ArticleSort articleSort = new ArticleSort();
-            articleSort.setArticleId(article.getArticleId());
-            articleSort.setSortId(sort.getSortId());
-            articleSortDao.insert(articleSort);
-            //更新文章的标签
-            //先判断提交的标签是否
-            LambdaQueryWrapper<ArticleLabel> wrapper1 = new LambdaQueryWrapper<>();
-            wrapper1.eq(ArticleLabel::getArticleId, article.getArticleId());
-            articleLabelDao.delete(wrapper1);
-            for (Label label : articleDto.getLabels()) {
-                ArticleLabel articleLabel = new ArticleLabel();
-                articleLabel.setArticleId(article.getArticleId());
-                articleLabel.setLabelId(label.getLabelId());
-                articleLabelDao.insert(articleLabel);
-            }
-            return articlesDao.updateById(article);
-        } else {
-            return 0;
+        Article article = articlesDao.selectById(articleDTO.getArticleId());
+        if (article == null) {
+            throw new DefaultNotFoundException("文章不存在");
         }
+
+        article.setArticleTitle(articleDTO.getArticleTitle())
+                .setArticleSlug(articleDTO.getArticleSlug())
+                .setArticleContent(articleDTO.getArticleContent())
+                .setArticleSummary(MarkdownUtils.getSummaryInMD(articleDTO.getArticleContent()))
+                .setArticleStatus(articleDTO.getArticleStatus())
+                .setCreateTime(articleDTO.getCreateTime())
+                .setUpdateTime(new Date())
+                .setCommentStatus(articleDTO.getCommentStatus());
+
+        //更新文章的的分类
+        //1.先删除之前的文章分类关系
+        LambdaQueryWrapper<ArticleSort> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ArticleSort::getArticleId, article.getArticleId());
+        articleSortDao.delete(wrapper);
+        Sort sort = articleDTO.getSort();
+        ArticleSort articleSort = new ArticleSort();
+        articleSort.setArticleId(article.getArticleId());
+        articleSort.setSortId(sort.getSortId());
+        articleSortDao.insert(articleSort);
+        //更新文章的标签
+        //先判断提交的标签是否
+        LambdaQueryWrapper<ArticleLabel> wrapper1 = new LambdaQueryWrapper<>();
+        wrapper1.eq(ArticleLabel::getArticleId, article.getArticleId());
+        articleLabelDao.delete(wrapper1);
+        for (Label label : articleDTO.getLabels()) {
+            ArticleLabel articleLabel = new ArticleLabel();
+            articleLabel.setArticleId(article.getArticleId());
+            articleLabel.setLabelId(label.getLabelId());
+            articleLabelDao.insert(articleLabel);
+        }
+        return articlesDao.updateById(article);
+
     }
 
     /**
@@ -371,5 +390,28 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleItemVO getNextArticleItemByArticleId(Long articleId) {
         return articlesDao.getNextArticleItemByArticleId(articleId);
+    }
+
+    /**
+     * 根据别名获取文章
+     *
+     * @param articleSlug 别名
+     * @param status      状态
+     * @return ArticleVO
+     */
+    @Override
+    public ArticleVO getArticleBySlug(String articleSlug, String status) {
+        LambdaQueryWrapper<Article> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Article::getArticleSlug, articleSlug)
+                .eq(StringUtils.isNotEmpty(status), Article::getArticleStatus, status);
+
+        Article article = articlesDao.selectOne(wrapper);
+        if (article == null) {
+            throw new ArticleNotFoundException("文章不存在");
+        }
+        ArticleVO articleVO = new ArticleVO();
+        BeanUtils.copyProperties(article, articleVO);
+
+        return articleVO;
     }
 }

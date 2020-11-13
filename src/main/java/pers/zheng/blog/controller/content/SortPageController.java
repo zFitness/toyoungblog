@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import pers.zheng.blog.exception.content.BlogNotFoundException;
 import pers.zheng.blog.model.entity.Sort;
 import pers.zheng.blog.model.util.MarkdownEntity;
 import pers.zheng.blog.model.vo.ArticleItemVO;
@@ -37,9 +38,7 @@ public class SortPageController {
         int size = 10;
         Sort sort = sortService.getSortByName(sortName);
         if (sort == null) {
-            Page<ArticleItemVO> articleItems = new Page<>(p, 10);
-            //没有这个标签
-            model.addAttribute("articleItems", articleItems);
+            throw new BlogNotFoundException("分类不存在");
         } else {
             IPage<ArticleItemVO> articleItems = articleService.getArticleItemsBySort(p, sort.getSortId(), size);
             for (ArticleItemVO itemVo : articleItems.getRecords()) {

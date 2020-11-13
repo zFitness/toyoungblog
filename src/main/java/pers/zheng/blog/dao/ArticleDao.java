@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.Article;
-import pers.zheng.blog.model.vo.ArticleContentVO;
+import pers.zheng.blog.model.vo.ArticleVO;
 import pers.zheng.blog.model.vo.ArticleItemVO;
 
 /**
@@ -21,7 +21,7 @@ import pers.zheng.blog.model.vo.ArticleItemVO;
 public interface ArticleDao extends BaseMapper<Article> {
     IPage<ArticleItemVO> listArticlePages(Page<?> page, String state);
 
-    ArticleContentVO getArticleById(Long articleId);
+    ArticleVO getArticleById(Long articleId);
 
     IPage<ArticleItemVO> listArticleItemByLabel(Page<ArticleItemVO> page, String state, int labelId);
 

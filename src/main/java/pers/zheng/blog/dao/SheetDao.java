@@ -5,13 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import pers.zheng.blog.model.dto.ArticleItemDTO;
-import pers.zheng.blog.model.dto.SheetDTO;
 import pers.zheng.blog.model.dto.SheetItemDTO;
-import pers.zheng.blog.model.entity.Article;
 import pers.zheng.blog.model.entity.Sheet;
-import pers.zheng.blog.model.vo.ArticleContentVO;
-import pers.zheng.blog.model.vo.ArticleItemVO;
 
 /**
  * (XzArticles)表数据库访问层
