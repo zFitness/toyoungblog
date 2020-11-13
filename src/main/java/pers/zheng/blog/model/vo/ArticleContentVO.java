@@ -40,6 +40,10 @@ public class ArticleContentVO {
      */
     private String articleTitle;
     /**
+     * 文章别名
+     */
+    private String articleSlug;
+    /**
      * 文章访问量
      */
     private Long articleViewCount;
@@ -72,7 +76,7 @@ public class ArticleContentVO {
      * 标签
      */
     private List<Label> labels;
-    
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date updateTime;
 }

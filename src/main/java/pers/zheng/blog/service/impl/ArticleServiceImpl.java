@@ -12,6 +12,7 @@ import pers.zheng.blog.dao.ArticleLabelDao;
 import pers.zheng.blog.dao.ArticleSortDao;
 import pers.zheng.blog.dao.SortDao;
 import pers.zheng.blog.exception.admin.DefaultNotFoundException;
+import pers.zheng.blog.exception.admin.ItemExistException;
 import pers.zheng.blog.exception.content.ArticleNotFoundException;
 import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.ArticleItemDTO;
@@ -176,6 +177,15 @@ public class ArticleServiceImpl implements ArticleService {
      */
     @Override
     public int insertArticle(ArticleDTO articleDto) {
+        //查询别名是否存在
+        LambdaQueryWrapper<Article> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Article::getArticleSlug, articleDto.getArticleSlug())
+                .last("limit 1");
+        int i = articlesDao.selectCount(wrapper);
+        if (i != 0) {
+            throw new ItemExistException("相同别名的文章已经存在");
+        }
+
         //包装类型没有默认值
         Article article = new Article();
 
@@ -184,6 +194,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setCreateTime(articleDto.getCreateTime());
         article.setUpdateTime(articleDto.getCreateTime());
         article.setArticleStatus(articleDto.getArticleStatus());
+        article.setArticleSlug(articleDto.getArticleSlug());
         //使用 <!--more--> 自动生成摘要
         article.setArticleSummary(MarkdownUtils.getSummaryInMD(articleDto.getArticleContent()));
         int count = articlesDao.insert(article);
@@ -220,6 +231,8 @@ public class ArticleServiceImpl implements ArticleService {
         articleDto.setCreateTime(article.getCreateTime());
         articleDto.setArticleContent(article.getArticleContent());
         articleDto.setArticleStatus(article.getArticleStatus());
+        articleDto.setArticleSlug(article.getArticleSlug());
+        articleDto.setCommentStatus(article.getCommentStatus());
         //返回文章的标签
         List<Label> labels = articleLabelDao.listLabelByArticle(article.getArticleId());
         articleDto.setLabels(labels);
@@ -237,6 +250,16 @@ public class ArticleServiceImpl implements ArticleService {
      */
     @Override
     public int updateArticle(ArticleDTO articleDto) {
+        //查询修改后的别名是否存在
+        LambdaQueryWrapper<Article> wrapperSlug = new LambdaQueryWrapper<>();
+        wrapperSlug.eq(Article::getArticleSlug, articleDto.getArticleSlug())
+                .ne(Article::getArticleId, articleDto.getArticleId())
+                .last("limit 1");
+        int i = articlesDao.selectCount(wrapperSlug);
+        if (i != 0) {
+            throw new ItemExistException("相同别名的页面已经存在");
+        }
+
         Article article = articlesDao.selectById(articleDto.getArticleId());
         if (article != null) {
             article.setArticleTitle(articleDto.getArticleTitle());

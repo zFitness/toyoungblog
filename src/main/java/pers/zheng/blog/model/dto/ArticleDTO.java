@@ -7,6 +7,7 @@ import lombok.Data;
 import pers.zheng.blog.model.entity.Label;
 import pers.zheng.blog.model.entity.Sort;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
 
@@ -19,15 +20,17 @@ import java.util.List;
  */
 @Data
 public class ArticleDTO {
-    /**
-     * 文章id
-     */
-    @TableId(type = IdType.AUTO)
     private Long articleId;
     /**
      * 文章标题
      */
+    @NotBlank(message = "标题不能为空")
     private String articleTitle;
+    /**
+     * 文章别名
+     */
+    @NotBlank(message = "别名不能为空")
+    private String articleSlug;
     /**
      * 文章访问量
      */
@@ -55,6 +58,11 @@ public class ArticleDTO {
     private String articleSummary;
 
     private String articleContent;
+
+    /**
+     * 开启评论
+     */
+    private Boolean commentStatus;
 
     private Sort sort;
 

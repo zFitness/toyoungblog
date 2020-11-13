@@ -34,6 +34,10 @@ public class Article implements Serializable {
      */
     private String articleTitle;
     /**
+     * 文章别名
+     */
+    private String articleSlug;
+    /**
      * 文章访问量
      */
     private Long articleViewCount;
@@ -58,4 +62,6 @@ public class Article implements Serializable {
     private String articleStatus;
 
     private Date updateTime;
+
+    private Boolean commentStatus;
 }

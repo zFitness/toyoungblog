@@ -7,6 +7,8 @@ import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.result.Result;
 import pers.zheng.blog.service.ArticleService;
 
+import javax.validation.Valid;
+
 /**
  * @ClassName ArticleController
  * @Description TODO
@@ -31,7 +33,7 @@ public class ArticleController {
 
 
     @PostMapping("add")
-    public Result add(@RequestBody ArticleDTO article) {
+    public Result add(@Valid @RequestBody ArticleDTO article) {
         log.info(article.toString());
         articleService.insertArticle(article);
         return Result.success();

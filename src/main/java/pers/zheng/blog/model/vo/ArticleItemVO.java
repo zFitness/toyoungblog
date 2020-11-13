@@ -26,6 +26,10 @@ public class ArticleItemVO {
      */
     private String articleTitle;
     /**
+     * 文章别名
+     */
+    private String articleSlug;
+    /**
      * 文章访问量
      */
     private Long articleViewCount;

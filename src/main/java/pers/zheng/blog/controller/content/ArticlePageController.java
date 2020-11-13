@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pers.zheng.blog.model.vo.ArticleContentVO;
 import pers.zheng.blog.model.vo.ArticleItemVO;
@@ -26,7 +25,7 @@ public class ArticlePageController {
     @Autowired
     private ArticleService articleService;
 
-    @RequestMapping("/article/{articleId}")
+    @GetMapping("/article/{articleId}")
     public String test(Model model, @PathVariable("articleId") Long articleId) {
         ArticleContentVO articleContentVO = articleService.getArticleById(articleId);
         model.addAttribute("article", articleContentVO);
