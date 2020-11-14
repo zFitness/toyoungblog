@@ -19,6 +19,7 @@ import pers.zheng.blog.exception.content.ArticleNotFoundException;
 import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.*;
+import pers.zheng.blog.model.enums.ArticleStatusEnum;
 import pers.zheng.blog.model.util.MarkdownEntity;
 import pers.zheng.blog.model.vo.ArticleVO;
 import pers.zheng.blog.model.vo.ArticleItemVO;
@@ -235,14 +236,8 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleDTO getArticleDTOById(int id) {
         Article article = articlesDao.selectById(id);
         ArticleDTO articleDTO = new ArticleDTO();
-        articleDTO.setArticleId(article.getArticleId())
-                .setArticleTitle(article.getArticleTitle())
-                .setArticleSummary(article.getArticleSummary())
-                .setCreateTime(article.getCreateTime())
-                .setArticleContent(article.getArticleContent())
-                .setArticleStatus(article.getArticleStatus())
-                .setArticleSlug(article.getArticleSlug())
-                .setCommentStatus(article.getCommentStatus());
+        BeanUtils.copyProperties(article, articleDTO);
+
         //返回文章的标签
         List<Label> labels = articleLabelDao.listLabelByArticle(article.getArticleId());
         articleDTO.setLabels(labels);

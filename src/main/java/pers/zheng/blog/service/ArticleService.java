@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.ArticleItemDTO;
 import pers.zheng.blog.model.entity.Article;
+import pers.zheng.blog.model.enums.ArticleStatusEnum;
 import pers.zheng.blog.model.vo.ArticleVO;
 import pers.zheng.blog.model.vo.ArticleItemVO;
 
@@ -36,7 +37,7 @@ public interface ArticleService {
 
     int deleteArticleById(int id);
 
-    int setArticleStatus(int articleId, String articleStatus);
+    int setArticleStatus(int articleId, String status);
 
     IPage<ArticleItemVO> getArticleItemsBySort(int p, Integer sortId, int size);
 

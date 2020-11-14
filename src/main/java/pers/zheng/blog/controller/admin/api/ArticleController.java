@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pers.zheng.blog.model.dto.ArticleDTO;
 import pers.zheng.blog.model.dto.result.Result;
+import pers.zheng.blog.model.enums.ArticleStatusEnum;
 import pers.zheng.blog.service.ArticleService;
 
 import javax.validation.Valid;
@@ -50,20 +51,6 @@ public class ArticleController {
     }
 
     /**
-     * 根据id获取文章接口
-     *
-     * @param id
-     * @return
-     */
-    @GetMapping("{id}")
-    public Result getArticle(@PathVariable("id") int id) {
-        log.info("fetchArticle: " + id);
-        ArticleDTO articleDto = articleService.getArticleDTOById(id);
-
-        return Result.success(articleDto);
-    }
-
-    /**
      * 更新文章
      *
      * @param articleDTO
@@ -76,25 +63,47 @@ public class ArticleController {
         return Result.success();
     }
 
+
+    /**
+     * 根据id获取文章接口
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("{id:\\d+}")
+    public Result getArticle(@PathVariable("id") int id) {
+        log.info("fetchArticle: " + id);
+        ArticleDTO articleDto = articleService.getArticleDTOById(id);
+
+        return Result.success(articleDto);
+    }
+
+
     /**
      * 删除文章
      *
      * @param id
      * @return
      */
-    @DeleteMapping("{id}")
+    @DeleteMapping("{id:\\d+}")
     public Result deleteArticleById(@PathVariable int id) {
         log.info("deleteArticle: " + id);
         int i = articleService.deleteArticleById(id);
         return i == 0 ? Result.failure() : Result.success();
     }
 
-    @PostMapping("setStatus")
-    public Result setArticleStatus(@RequestParam("articleId") int articleId,
-                                   @RequestParam("articleStatus") String articleStatus) {
-        log.info("setArticleStatus: " + articleId + " " + articleStatus);
+    /**
+     * 修改文章状态
+     * @param id
+     * @param status
+     * @return
+     */
+    @PutMapping("{id:\\d+}/status/{status}")
+    public Result setArticleStatus(@PathVariable("id") int id,
+                                   @PathVariable("status") String status) {
+        log.info("setArticleStatus: " + id + " " + status);
 
-        int i = articleService.setArticleStatus(articleId, articleStatus);
+        int i = articleService.setArticleStatus(id, status);
 
         return Result.success();
     }
