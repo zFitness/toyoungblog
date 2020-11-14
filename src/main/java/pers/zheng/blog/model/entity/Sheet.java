@@ -20,7 +20,7 @@ public class Sheet {
      * 文章id
      */
     @TableId(type = IdType.AUTO)
-    private Long sheetId;
+    private Integer sheetId;
     /**
      * 内容
      */

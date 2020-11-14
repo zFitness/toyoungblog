@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 public class ArticleItemDTO {
 
-    private Long articleId;
+    private Integer articleId;
     /**
      * 文章标题
      */

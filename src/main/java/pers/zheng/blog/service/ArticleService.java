@@ -22,7 +22,7 @@ public interface ArticleService {
 
     IPage<ArticleItemDTO> listArticleDtoItems(int current, int size, String title);
 
-    ArticleVO getArticleById(Long articleId);
+    ArticleVO getArticleById(Integer articleId);
 
     IPage<ArticleItemVO> listArticleItemsByLabel(int p, Integer labelId, int size);
 
@@ -40,9 +40,9 @@ public interface ArticleService {
 
     IPage<ArticleItemVO> getArticleItemsBySort(int p, Integer sortId, int size);
 
-    ArticleItemVO getPrevArticleItemByArticleId(Long articleId);
+    ArticleItemVO getPrevArticleItemByArticleId(Integer articleId);
 
-    ArticleItemVO getNextArticleItemByArticleId(Long articleId);
+    ArticleItemVO getNextArticleItemByArticleId(Integer articleId);
 
     ArticleVO getArticleBySlug(String articleSlug, String status);
 }

@@ -76,7 +76,7 @@ public class SheetController {
      * @return
      */
     @PutMapping("/id/{sheetId}")
-    public Result updateSheet(@PathVariable Long sheetId,
+    public Result updateSheet(@PathVariable Integer sheetId,
                               @RequestBody SheetDTO sheetDTO) {
         log.info(sheetDTO.toString());
         int i = sheetService.updateSheet(sheetId, sheetDTO);

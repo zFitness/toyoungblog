@@ -20,7 +20,7 @@ public class ArticleItemVO {
     /**
      * 文章id
      */
-    private Long articleId;
+    private Integer articleId;
     /**
      * 文章标题
      */

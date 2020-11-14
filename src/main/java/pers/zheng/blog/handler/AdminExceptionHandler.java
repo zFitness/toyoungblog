@@ -1,6 +1,7 @@
 package pers.zheng.blog.handler;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pers.zheng.blog.exception.admin.*;
@@ -18,6 +19,11 @@ import javax.validation.ConstraintViolationException;
  */
 @RestControllerAdvice(basePackages = {"pers.zheng.blog.controller.admin",})
 public class AdminExceptionHandler {
+    @ExceptionHandler({MissingServletRequestParameterException.class})
+    public Result handler(Exception e) {
+        return new Result(400, e.getMessage(), null);
+    }
+
     @ExceptionHandler({ConstraintViolationException.class})
     public Result test(Exception e) {
         return new Result(501, e.getMessage(), null);

@@ -26,7 +26,7 @@ class BlogApplicationTests {
     @Test
     void contextLoads() {
 //        System.out.println(sortsDao.selectById(2));
-        Sort sort = articleSortDao.getSortByArticleId(8L);
+        Sort sort = articleSortDao.getSortByArticleId(8);
         System.out.println(sort);
     }
 

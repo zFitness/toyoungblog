@@ -16,7 +16,7 @@ public class JwtUtil {
     /**
      * 过期时间
      */
-    private static final long EXPIRE_TIME = 35 * 60 * 1000;
+    private static final long EXPIRE_TIME = 60 * 60 * 1000;
 
     /**
      * 生成签名

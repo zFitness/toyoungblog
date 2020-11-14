@@ -21,7 +21,7 @@ import pers.zheng.blog.model.vo.ArticleItemVO;
 public interface ArticleDao extends BaseMapper<Article> {
     IPage<ArticleItemVO> listArticlePages(Page<?> page, String state);
 
-    ArticleVO getArticleById(Long articleId);
+    ArticleVO getArticleById(Integer articleId);
 
     IPage<ArticleItemVO> listArticleItemByLabel(Page<ArticleItemVO> page, String state, int labelId);
 
@@ -31,7 +31,7 @@ public interface ArticleDao extends BaseMapper<Article> {
 
     IPage<ArticleItemVO> getArticleItemBySort(Page<ArticleItemVO> page, String state, Integer sortId);
 
-    ArticleItemVO getPrevArticleItemByArticleId(Long articleId);
+    ArticleItemVO getPrevArticleItemByArticleId(Integer articleId);
 
-    ArticleItemVO getNextArticleItemByArticleId(Long articleId);
+    ArticleItemVO getNextArticleItemByArticleId(Integer articleId);
 }

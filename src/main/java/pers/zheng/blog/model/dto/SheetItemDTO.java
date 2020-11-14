@@ -18,7 +18,7 @@ public class SheetItemDTO {
     /**
      * 文章id
      */
-    private Long sheetId;
+    private Integer sheetId;
     /**
      * 标题
      */

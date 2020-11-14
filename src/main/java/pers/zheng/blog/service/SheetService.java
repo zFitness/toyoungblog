@@ -72,7 +72,7 @@ public class SheetService {
         return sheetDao.insert(sheet);
     }
 
-    public int updateSheet(Long sheetId, SheetDTO sheetDTO) {
+    public int updateSheet(Integer sheetId, SheetDTO sheetDTO) {
         //查询修改后的别名是否存在
         LambdaQueryWrapper<Sheet> wrapper1 = new LambdaQueryWrapper<>();
         wrapper1.eq(Sheet::getSheetSlug, sheetDTO.getSheetSlug())

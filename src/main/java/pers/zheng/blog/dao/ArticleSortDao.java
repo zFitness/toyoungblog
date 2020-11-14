@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public interface ArticleSortDao extends BaseMapper<ArticleSort> {
 
-    Sort getSortByArticleId(Long articleId);
+    Sort getSortByArticleId(Integer articleId);
 
     /**
      * 分类下的可见文章数量

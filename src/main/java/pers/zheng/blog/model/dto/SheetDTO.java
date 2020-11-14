@@ -22,7 +22,7 @@ public class SheetDTO extends Sheet {
     /**
      * 文章id
      */
-    private Long sheetId;
+    private Integer sheetId;
     /**
      * 内容
      */

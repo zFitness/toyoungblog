@@ -22,7 +22,7 @@ public class ArticleLabel implements Serializable {
     /**
      * 文章id
      */
-    private Long articleId;
+    private Integer articleId;
     /**
      * 标签id
      */

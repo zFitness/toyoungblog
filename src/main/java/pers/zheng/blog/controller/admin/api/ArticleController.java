@@ -42,7 +42,7 @@ public class ArticleController {
      * @param article
      * @return
      */
-    @PostMapping("add")
+    @PostMapping("")
     public Result add(@Valid @RequestBody ArticleDTO article) {
         log.info(article.toString());
         articleService.insertArticle(article);
@@ -69,7 +69,7 @@ public class ArticleController {
      * @param articleDTO
      * @return
      */
-    @PutMapping("update")
+    @PutMapping("")
     public Result updateArticle(@Valid @RequestBody ArticleDTO articleDTO) {
         log.info("updateArticle: " + articleDTO.getArticleId());
         articleService.updateArticle(articleDTO);
@@ -82,8 +82,8 @@ public class ArticleController {
      * @param id
      * @return
      */
-    @PostMapping("delete")
-    public Result deleteArticleById(@RequestParam("id") int id) {
+    @DeleteMapping("{id}")
+    public Result deleteArticleById(@PathVariable int id) {
         log.info("deleteArticle: " + id);
         int i = articleService.deleteArticleById(id);
         return i == 0 ? Result.failure() : Result.success();

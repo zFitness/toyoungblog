@@ -24,7 +24,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 public class ArticleDTO {
-    private Long articleId;
+    private Integer articleId;
 
     /**
      * 文章标题

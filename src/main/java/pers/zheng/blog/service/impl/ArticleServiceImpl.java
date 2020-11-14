@@ -90,7 +90,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public ArticleVO getArticleById(Long articleId) {
+    public ArticleVO getArticleById(Integer articleId) {
         ArticleVO article = articlesDao.getArticleById(articleId);
         if (article == null) {
             throw new ArticleNotFoundException("没有这篇文章");
@@ -377,7 +377,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public ArticleItemVO getPrevArticleItemByArticleId(Long articleId) {
+    public ArticleItemVO getPrevArticleItemByArticleId(Integer articleId) {
         return articlesDao.getPrevArticleItemByArticleId(articleId);
     }
 
@@ -388,7 +388,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public ArticleItemVO getNextArticleItemByArticleId(Long articleId) {
+    public ArticleItemVO getNextArticleItemByArticleId(Integer articleId) {
         return articlesDao.getNextArticleItemByArticleId(articleId);
     }
 
