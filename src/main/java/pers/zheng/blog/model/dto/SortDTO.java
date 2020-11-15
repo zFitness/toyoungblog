@@ -1,10 +1,9 @@
 package pers.zheng.blog.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author zheng
@@ -22,6 +21,7 @@ public class SortDTO {
     /**
      * 分类别名
      */
+    @NotBlank(message = "别名不能为空")
     private String sortAlias;
     /**
      * 分类描述
@@ -30,9 +30,7 @@ public class SortDTO {
     /**
      * 父分类ID
      */
+    @NotNull(message = "父分类不能为null")
     private Integer parentSortId;
-    /**
-     * 分类的文章数量
-     */
-    private Integer count;
+
 }

@@ -9,6 +9,8 @@ import pers.zheng.blog.dao.SortDao;
 import pers.zheng.blog.exception.admin.DefaultNotFoundException;
 import pers.zheng.blog.exception.admin.ItemExistException;
 import pers.zheng.blog.model.dto.SortDTO;
+import pers.zheng.blog.model.dto.SortWithArticleCountDTO;
+import pers.zheng.blog.model.entity.Article;
 import pers.zheng.blog.model.entity.Sort;
 import pers.zheng.blog.model.vo.SortVO;
 
@@ -28,6 +30,36 @@ public class SortService {
 
     @Autowired
     private ArticleSortDao articleSortDao;
+
+    /**
+     * 查询所有分类
+     *
+     * @return
+     */
+    public List<Sort> listSort() {
+        return sortDao.selectList(null);
+    }
+
+    /**
+     * 查询所有分类及其文章数量
+     *
+     * @return
+     */
+    public List<SortWithArticleCountDTO> listSortWithArticleCountDTO() {
+        List<Sort> sortList = sortDao.selectList(null);
+        List<SortWithArticleCountDTO> sortWithArticleCountDTOList = new ArrayList<>();
+        //得到每个分类下面的文章数量
+        for (Sort sort : sortList) {
+            SortWithArticleCountDTO sortWithArticleCountDTO = new SortWithArticleCountDTO();
+
+            int count = articleSortDao.countPublishArticleBySort(sort.getSortId());
+            BeanUtils.copyProperties(sort, sortWithArticleCountDTO);
+
+            sortWithArticleCountDTO.setCount(count);
+            sortWithArticleCountDTOList.add(sortWithArticleCountDTO);
+        }
+        return sortWithArticleCountDTOList;
+    }
 
     /**
      * 查询所有分类及其下面的文章数量
@@ -54,9 +86,6 @@ public class SortService {
         return sortDao.selectOne(wrapper);
     }
 
-    public List<Sort> listSort() {
-        return sortDao.selectList(null);
-    }
 
     public int deleteSortById(Integer sortId) {
         int i = sortDao.deleteById(sortId);
@@ -67,22 +96,55 @@ public class SortService {
     }
 
     public void insertSort(SortDTO sortDTO) {
+        //查询添加的别名是否存在
         LambdaQueryWrapper<Sort> wrapper = new LambdaQueryWrapper<>();
-        wrapper.like(Sort::getSortName, sortDTO.getSortName());
-        Sort sort = sortDao.selectOne(wrapper);
-        if (sort != null) {
-            throw new ItemExistException("分类已经存在");
+        wrapper.eq(Sort::getSortName, sortDTO.getSortName())
+                .last("limit 1");
+        int i = sortDao.selectCount(wrapper);
+        if (i != 0) {
+            throw new ItemExistException("同名的分类已经存在");
         }
-        sort = new Sort();
+
+        //查询添加的别名是否存在
+        LambdaQueryWrapper<Sort> wrapperSlug = new LambdaQueryWrapper<>();
+        wrapperSlug.eq(Sort::getSortAlias, sortDTO.getSortAlias())
+                .last("limit 1");
+        i = sortDao.selectCount(wrapperSlug);
+        if (i != 0) {
+            throw new ItemExistException("此别名已经存在");
+        }
+
+        Sort sort = new Sort();
         BeanUtils.copyProperties(sortDTO, sort);
         sortDao.insert(sort);
     }
 
-    public void updateSort(SortDTO sortDTO) {
-        Sort sort = sortDao.selectById(sortDTO.getSortId());
+    public void updateSort(Integer sortId, SortDTO sortDTO) {
+        //查询除了自己以外的标题是否存在
+        LambdaQueryWrapper<Sort> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Sort::getSortName, sortDTO.getSortName())
+                .ne(Sort::getSortId, sortId)
+                .last("limit 1");
+        int i = sortDao.selectCount(wrapper);
+        if (i != 0) {
+            throw new ItemExistException("同名的分类已经存在");
+        }
+
+        //查询除了自己以外的别名是否存在
+        LambdaQueryWrapper<Sort> wrapperSlug = new LambdaQueryWrapper<>();
+        wrapperSlug.eq(Sort::getSortAlias, sortDTO.getSortAlias())
+                .ne(Sort::getSortId, sortId)
+                .last("limit 1");
+        i = sortDao.selectCount(wrapperSlug);
+        if (i != 0) {
+            throw new ItemExistException("此别名已经存在");
+        }
+
+        Sort sort = sortDao.selectById(sortId);
         if (sort == null) {
             throw new DefaultNotFoundException("分类不存在");
         }
+        sort.setSortId(sortId);
         sort.setParentSortId(sortDTO.getParentSortId());
         sort.setSortName(sortDTO.getSortName());
         sort.setSortAlias(sortDTO.getSortAlias());
@@ -91,4 +153,6 @@ public class SortService {
         sortDao.updateById(sort);
 
     }
+
+
 }
