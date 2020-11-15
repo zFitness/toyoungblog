@@ -22,13 +22,12 @@ public class LabelDTO {
      */
     @NotBlank(message = "标签名不能为空")
     private String labelName;
+
+    @NotBlank(message = "别名不能为空")
+    private String labelSlug;
     /**
      * 标签描述
      */
     private String labelDescription;
 
-    /**
-     * 标签对应的文章数量
-     */
-    private Integer articleCount;
 }

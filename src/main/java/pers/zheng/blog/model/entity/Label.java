@@ -27,6 +27,10 @@ public class Label implements Serializable {
      */
     private String labelName;
     /**
+     * 标签别名
+     */
+    private String labelSlug;
+    /**
      * 标签描述
      */
     private String labelDescription;

@@ -26,32 +26,41 @@ public class LabelController {
     private LabelService labelService;
 
     @GetMapping("")
-    public Result getAll() {
-        return Result.success(labelService.getAllLabel());
+    public Result listAll(@RequestParam(name = "more", required = false, defaultValue = "false") boolean more) {
+        if (more) {
+            return Result.success(labelService.listAllLabelWithArticleCountDTO());
+        }
+        return Result.success(labelService.listAllLabel());
     }
 
     /**
-     * 根据姓名添加标签
+     * 添加标签
      *
-     * @param labelName
+     * @param labelDTO
      * @return
      */
-    @PostMapping("/addByName")
-    public Result addByName(@RequestParam(value = "labelName", required = true) String labelName) {
-        Label label = labelService.addByName(labelName);
-        return Result.success(label);
-    }
-
-
-    @PostMapping("update")
-    public Result update(@Valid @RequestBody LabelDTO labelDTO) {
-        int i = labelService.update(labelDTO);
+    @PostMapping("")
+    public Result insert(@Valid @RequestBody LabelDTO labelDTO) {
+        labelService.insertLabel(labelDTO);
         return Result.success();
     }
 
-    @PostMapping("delete")
-    public Result delete(@RequestParam(value = "labelId", required = true) Integer labelId) {
-        int i = labelService.delete(labelId);
+    /**
+     * 更新
+     *
+     * @param labelDTO
+     * @param labelId
+     * @return
+     */
+    @PutMapping("{labelId:\\d+}")
+    public Result update(@Valid @RequestBody LabelDTO labelDTO, @PathVariable Integer labelId) {
+        labelService.updateLabel(labelId, labelDTO);
+        return Result.success();
+    }
+
+    @DeleteMapping("{labelId:\\d+}")
+    public Result delete(@PathVariable Integer labelId) {
+        labelService.delete(labelId);
         return Result.success();
     }
 }

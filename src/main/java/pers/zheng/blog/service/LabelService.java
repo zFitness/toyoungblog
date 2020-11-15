@@ -9,7 +9,9 @@ import pers.zheng.blog.dao.LabelDao;
 import pers.zheng.blog.exception.admin.DefaultNotFoundException;
 import pers.zheng.blog.exception.admin.ItemExistException;
 import pers.zheng.blog.model.dto.LabelDTO;
+import pers.zheng.blog.model.dto.LabelWithArticleCountDTO;
 import pers.zheng.blog.model.entity.Label;
+import pers.zheng.blog.model.entity.Sort;
 import pers.zheng.blog.model.vo.LabelVO;
 
 import java.util.ArrayList;
@@ -68,27 +70,38 @@ public class LabelService {
         return label;
     }
 
-    public List<LabelDTO> getAllLabel() {
+    public List<Label> listAllLabel() {
         List<Label> labelList = labelDao.selectList(null);
-        List<LabelDTO> labelDTOList = new ArrayList<>();
-        //得到每个标签下面的可见的文章数量
-        for (Label label : labelList) {
-            int count = articleLabelDao.countPublishArticleByLabel(label.getLabelId());
-
-            LabelDTO labelDTO = new LabelDTO();
-            BeanUtils.copyProperties(label, labelDTO);
-            labelDTO.setArticleCount(count);
-            labelDTOList.add(labelDTO);
-        }
-        return labelDTOList;
+        return labelList;
     }
 
-    public int update(LabelDTO labelDTO) {
-        Label label = labelDao.selectById(labelDTO.getLabelId());
+    public int updateLabel(Integer labelId, LabelDTO labelDTO) {
+        //判断标签是否存在
+        LambdaQueryWrapper<Label> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Label::getLabelName, labelDTO.getLabelName())
+                .ne(Label::getLabelId, labelId)
+                .last("limit 1");
+        int i = labelDao.selectCount(wrapper);
+        if (i != 0) {
+            throw new ItemExistException("标签名存在");
+        }
+        //判断别名是否存在
+        LambdaQueryWrapper<Label> wrapperSlug = new LambdaQueryWrapper<>();
+        wrapperSlug.eq(Label::getLabelSlug, labelDTO.getLabelSlug())
+                .ne(Label::getLabelId, labelId)
+                .last("limit 1");
+        i = labelDao.selectCount(wrapperSlug);
+        if (i != 0) {
+            throw new ItemExistException("别名存在");
+        }
+
+
+        Label label = labelDao.selectById(labelId);
         if (label == null) {
             throw new DefaultNotFoundException("标签不存在");
         }
         BeanUtils.copyProperties(labelDTO, label);
+        label.setLabelId(labelId);
         return labelDao.updateById(label);
     }
 
@@ -98,5 +111,45 @@ public class LabelService {
             throw new DefaultNotFoundException("标签不存在");
         }
         return labelDao.deleteById(label.getLabelId());
+    }
+
+    public List<LabelWithArticleCountDTO> listAllLabelWithArticleCountDTO() {
+        List<Label> labelList = labelDao.selectList(null);
+        List<LabelWithArticleCountDTO> labelDTOList = new ArrayList<>();
+        //得到每个标签下面的可见的文章数量
+        for (Label label : labelList) {
+            int count = articleLabelDao.countPublishArticleByLabel(label.getLabelId());
+
+            LabelWithArticleCountDTO labelDTO = new LabelWithArticleCountDTO();
+            BeanUtils.copyProperties(label, labelDTO);
+            labelDTO.setArticleCount(count);
+            labelDTOList.add(labelDTO);
+        }
+        return labelDTOList;
+
+    }
+
+    public int insertLabel(LabelDTO labelDTO) {
+        //判断标签是否存在
+        LambdaQueryWrapper<Label> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Label::getLabelName, labelDTO.getLabelName())
+                .last("limit 1");
+        int i = labelDao.selectCount(wrapper);
+        if (i != 0) {
+            throw new ItemExistException("标签名存在");
+        }
+
+        //判断标签是否存在
+        LambdaQueryWrapper<Label> wrapperSlug = new LambdaQueryWrapper<>();
+        wrapperSlug.eq(Label::getLabelSlug, labelDTO.getLabelSlug())
+                .last("limit 1");
+        i = labelDao.selectCount(wrapperSlug);
+        if (i != 0) {
+            throw new ItemExistException("别名存在");
+        }
+
+        Label label = new Label();
+        BeanUtils.copyProperties(labelDTO, label);
+        return labelDao.insert(label);
     }
 }
