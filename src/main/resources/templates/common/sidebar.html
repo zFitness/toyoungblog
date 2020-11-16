@@ -6,57 +6,34 @@
         <img src="http://q.qlogo.cn/g?b=qq&nk=1786128750&s=160" alt=""/>
         <p>昵称：xzF</p>
       </div>
-      <form class="search-form-mov" th:action="@{/article/search}" method="get">
-        <input type="text" class="form-control" placeholder="搜索" aria-describedby="basic-addon2" name="keyword">
-      </form>
-      <div class="option">
-        <ul>
-          <li>
-            <a th:href="@{/}">
-              <p>
-                <i class="iconfont iconHomehomepagemenu"></i>
-                首页</p>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/archives}">
-              <p><i class="iconfont iconguidang"></i>归档</p>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/links}">
-              <p><i class="iconfont iconlink"></i>友链</p>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/sheet/about}">
-              <p><i class="iconfont iconguanyu"></i>关于</p>
-            </a>
-          </li>
-          <li class="dropdown">
-            <a
-                    href="#"
-                    class="dropdown-toggle"
-                    data-toggle="dropdown"
-                    role="button"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-            >
-              <p><i class="iconfont iconguanyu"></i>更多<span class="caret"></span></p>
-
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="http://github.com">开源项目</a></li>
-              <li><a href="#">后端</a></li>
-              <li><a href="#">安卓</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">数据库</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">心得</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+      <ul class="side-menu">
+        <li class="item" id="profile">
+          <a href="#profile" class="btn"><i class="iconfont icon-user"></i>我的</a>
+          <div class="smenu">
+            <a href="javascript:void(0);">发布</a>
+            <a href="javascript:void(0);">图片</a>
+          </div>
+        </li>
+        <li class="item" id="messages">
+          <a href="#messages" class="btn"><i class="iconfont icon-mail"></i>邮件</a>
+          <div class="smenu">
+            <a href="javascript:void(0);">写邮件</a>
+            <a href="javascript:void(0);">草稿箱</a>
+            <a href="javascript:void(0);">已发送</a>
+            <a href="javascript:void(0);">垃圾箱</a>
+          </div>
+        </li>
+        <li class="item" id="settings">
+          <a href="#settings" class="btn"><i class="iconfont icon-setting"></i>设置</a>
+          <div class="smenu">
+            <a href="javascript:void(0);">密码</a>
+            <a href="javascript:void(0);">语言</a>
+          </div>
+        </li>
+        <li class="item">
+          <a href="javascript:void(0);" class="btn"><i class="iconfont icon-logout"></i>注销</a>
+        </li>
+      </ul>
     </div>
   </body>
 </html>

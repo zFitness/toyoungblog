@@ -34,7 +34,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     top: 0;
     height: 64px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -42,6 +43,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     .site-header .menu {
         display: none;
     }
+}
+
+.site-header-title {
+    margin-left: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.site-header-title h1 {
+    font-size: 24px;
+    color: #666;
 }
 
 .site-header > .menu-wrapper {
@@ -156,8 +169,8 @@ div, ul, li {
 }
 
 .searchbox i {
-    font-size: 30px;
-    color: #000;
+    font-size: 24px;
+    color: #666;
 }
 
 .search-form.is-visible {

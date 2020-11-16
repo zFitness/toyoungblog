@@ -27,6 +27,7 @@ ul {
     bottom: 0;
     background-color: #ffffff;
     overflow-y: auto;
+    overflow-x: hidden;
     font-family: miranafont, 'Hiragino Sans GB', STXihei, 'Microsoft YaHei',
     SimSun, sans-serif;
 }
@@ -34,16 +35,15 @@ ul {
 .openNav {
     border: 0;
     outline: none;
-    position: absolute;
-    top: 8px;
-    left: 10px;
     transition: all 0.5s;
     cursor: pointer;
     z-index: 20;
+    margin-left: 16px;
 }
 
 .openNav i {
-    font-size: 25px;
+    font-size: 24px;
+    color: #666;
 }
 
 .openNav-i-white {
@@ -93,85 +93,6 @@ ul {
     transform: translate(0, 0);
 }
 
-.option,
-.option ul li {
-    width: 100%;
-}
-
-.option ul {
-    /*padding:  0;*/
-}
-
-.option ul li a {
-    display: flex;
-    align-items: center;
-    width: 195px;
-    margin-top: 15px;
-    padding-left: 25px;
-    cursor: pointer;
-    color: #060a1d;
-    transform: translateZ(0);
-    position: relative;
-    transition-property: color;
-    transition-duration: 0.4s;
-    transition: all 1s;
-}
-
-.option ul li:nth-child(1),
-.option ul li:nth-child(3),
-.option ul li:nth-child(5) {
-    transform: translate(-200px, 0);
-}
-
-.option ul li:nth-child(2),
-.option ul li:nth-child(4) {
-    transform: translate(200px, 0);
-}
-
-.sidebar .option ul li.li {
-    transform: translate(0, 0);
-}
-
-.option ul li:before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: pink;
-    transform-origin: 0 50%;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-out;
-}
-
-.option ul li:hover,
-.option ul li:focus,
-.option ul li:active {
-    color: #ffffff;
-}
-
-.option ul li:hover:before,
-.option ul li:focus:before,
-.option ul li:active:before {
-    transform: scaleX(1);
-}
-
-.option ul li i {
-    width: 25px;
-    height: 25px;
-}
-
-.option ul li p {
-    width: 145px;
-    height: 30px;
-    line-height: 40px;
-    font-size: 15px;
-    padding-left: 15px;
-    margin-left: 10px;
-    letter-spacing: 1px;
-}
 
 .main-wrapper {
     top: 0;

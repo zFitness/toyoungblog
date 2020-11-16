@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <body>
     <header class="site-header" th:fragment="header">
+      <div class="openNav">
+        <i class="iconfont iconadashboardbuttonterminal"></i>
+      </div>
+      <div class="site-header-title"><h1 th:href="@{/}">XZF'S BLOG</h1>
+      </div>
       <div
               class="menu-wrapper"
       >
-        <div class="openNav">
-          <i class="iconfont iconadashboardbuttonterminal"></i>
-        </div>
-
         <ul class="menu">
           <li><a th:href="@{/}"><i class="iconfont iconHomehomepagemenu"></i>首页</a></li>
           <li><a th:href="@{/archives}"><i class="iconfont iconguidang"></i>归档</a></li>
@@ -22,7 +23,7 @@
         </ul>
 
         <div class="searchbox">
-          <i class="iconfont iconsearch"></i>
+          <i class="iconfont iconsousuo"></i>
         </div>
       </div>
 
