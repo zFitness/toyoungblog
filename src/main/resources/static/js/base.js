@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('.main-wrapper').scroll(function () {
-        if ($('.main-wrapper').scrollTop() > 100) {
+        if ($('.main-wrapper').scrollTop() > 64) {
             //回到顶部按钮
             $('.m-cd-top').fadeIn();
             if ($(document).width() >= 768) {
