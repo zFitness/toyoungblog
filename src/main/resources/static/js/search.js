@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#search-form-open').click(function () {
+    $('.searchbox').click(function () {
         $('.js-search').addClass('is-visible')
     })
 

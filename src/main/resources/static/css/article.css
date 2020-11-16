@@ -335,6 +335,10 @@ li.wedonate:after {
     opacity: 0.6;
 }
 
+.post-nepre a {
+    padding: 0 !important;
+}
+
 @media (max-width: 760px) {
     .post-squares .half {
         float: none;

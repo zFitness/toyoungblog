@@ -14,6 +14,10 @@ ul {
     transition: all 0.5s;
 }
 
+#dark-wrapper {
+    height: 100%;
+}
+
 #wrapper .sidebar {
     width: 220px;
     height: 100%;

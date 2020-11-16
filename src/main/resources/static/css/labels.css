@@ -1,19 +1,16 @@
-body {
-    background-image: url("https://view.moezx.cc/images/2018/01/24/kyotoanimation.png");
-}
-
-
 /* 内容区 */
-.content {
+.content-wrapper {
     max-width: 800px;
-    padding: 0 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 13em;
-    padding-top: 60px;
+    height: auto !important;
+    padding-top: 64px;
     background-color: #fff;
+    margin: 0 auto -58px;
+    min-height: calc(100% - 64px);
 }
 
+.content {
+    padding-bottom: 58px;
+}
 .content-head {
     position: relative;
     top: 0;

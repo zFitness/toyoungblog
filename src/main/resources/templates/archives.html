@@ -27,34 +27,36 @@
           <div th:replace="~{common/headbar::header}"></div>
 
           <!-- 主题内容 -->
-          <div class="content">
-            <div class="content-head">
-              <div class="content-head-img">
-                <img th:src="@{https://img.clinicmed.net/uploadimg/image/20200922/20200922202055_53717.jpg}"
-                     class="lazyload"
-                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                     referrerpolicy="origin">
+          <div class="content-wrapper">
+            <div class="content">
+              <div class="content-head">
+                <div class="content-head-img">
+                  <img th:src="@{https://img.clinicmed.net/uploadimg/image/20200922/20200922202055_53717.jpg}"
+                       class="lazyload"
+                       style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                       referrerpolicy="origin">
+                </div>
               </div>
-            </div>
-            <div>
-              <h3 class="link-title"><span class="fake-title">分类</span></h3>
-              <span th:each="sort : ${sorts}" style="width: 256px; display: inline-block">
+              <div>
+                <h3 class="link-title"><span class="fake-title">分类</span></h3>
+                <span th:each="sort : ${sorts}" style="width: 256px; display: inline-block">
                 <i class="iconfont iconwenjianjia1"></i>
                         <a th:href="@{'/sorts/'+${sort.getSortName()}}" th:text="${sort.getSortName()}">
                             docker
                         </a>
                         <span th:text="${sort.getCount() + '篇'}">5 篇</span>
               </span>
-            </div>
-            <div>
-              <h3 class="link-title"><span class="fake-title">标签</span></h3>
-              <span th:each="label:${labels}" style="width: 256px; display: inline-block">
+              </div>
+              <div>
+                <h3 class="link-title"><span class="fake-title">标签</span></h3>
+                <span th:each="label:${labels}" style="width: 256px; display: inline-block">
                 <i class="iconfont icontag"></i>
                          <a th:href="@{'/labels/'+${label.getLabelName()}}" th:text="${label.getLabelName()}">
                             docker
                         </a>
                         <span th:text="${label.getArticleCount() + '篇'}">5 篇</span>
               </span>
+              </div>
             </div>
           </div>
           <!-- 底部 footer -->

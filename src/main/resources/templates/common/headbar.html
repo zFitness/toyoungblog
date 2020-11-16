@@ -2,57 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <body>
     <header class="site-header" th:fragment="header">
-
-      <!-- 顶部NavBar -->
-      <nav class="navbar navbar-default xz-navbar-head" id="site-nav">
-
-        <div class="container">
-          <!--          <div class="navbar-left">-->
-          <!--            <a class="navbar-brand" style="font-size: 22px" th:href="@{/}">XZF'S BLOG</a>-->
-          <!--          </div>-->
-          <!-- 菜单栏 -->
-          <div
-                  class="collapse navbar-collapse navbar-right"
-                  id="bs-example-navbar-collapse-1"
-          >
-
-
-            <ul class="nav navbar-nav">
-              <li>
-                <a th:href="@{/}"><i class="iconfont iconHomehomepagemenu"></i>首页</a>
-              </li>
-              <li><a th:href="@{/archives}"><i class="iconfont iconguidang"></i>归档</a></li>
-              <li><a th:href="@{/links}"><i class="iconfont iconlink"></i>友链</a></li>
-              <li><a th:href="@{/sheet/about}"><i class="iconfont iconguanyu"></i>关于</a></li>
-              <li class="dropdown">
-                <a
-                        href="#"
-                        class="dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >更多<span class="caret"></span
-                ></a>
-                <ul class="dropdown-menu">
-                  <li><a href="http://github.com">开源项目</a></li>
-                  <li><a href="#">后端</a></li>
-                  <li><a href="#">安卓</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">数据库</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">心得</a></li>
-                </ul>
-              </li>
+      <div
+              class="menu-wrapper"
+      >
+        <ul class="menu">
+          <li><a th:href="@{/}"><i class="iconfont iconHomehomepagemenu"></i>首页</a></li>
+          <li><a th:href="@{/archives}"><i class="iconfont iconguidang"></i>归档</a></li>
+          <li><a th:href="@{/links}"><i class="iconfont iconlink"></i>友链</a></li>
+          <li><a th:href="@{/sheet/about}"><i class="iconfont iconguanyu"></i>关于</a>
+            <ul class="one">
+              <li><a th:href="@{http://www.baidu.com}"><i class="iconfont iconlink"></i>百度</a></li>
+              <li><a th:href="@{http://www.bilibili.com}"><i class="iconfont iconlink"></i>b站</a></li>
             </ul>
-            <form class="navbar-right " id="search-form-open">
-              <div class="searchbox">
-                <i class="iconfont iconsearch"></i>
-              </div>
-            </form>
-          </div>
+          </li>
+        </ul>
+
+        <div class="searchbox">
+          <i class="iconfont iconsearch"></i>
         </div>
-      </nav>
+      </div>
     </header>
   </body>
 </html>

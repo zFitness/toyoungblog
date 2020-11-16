@@ -35,11 +35,13 @@
           <div th:replace="~{common/headbar::header}"></div>
 
           <!-- 主题内容 -->
-          <div class="content">
-            <div class="content-head">
+          <div class="content-wrapper">
+            <div class="content">
+              <div class="content-head">
+              </div>
+              <!-- markdown转html-->
+              <div id="article-content" th:utext="${sheet.getSheetContent()}"></div>
             </div>
-            <!-- markdown转html-->
-            <div id="article-content" th:utext="${sheet.getSheetContent()}"></div>
           </div>
           <!-- 底部 footer -->
           <div th:replace="~{common/footer :: footer}"></div>

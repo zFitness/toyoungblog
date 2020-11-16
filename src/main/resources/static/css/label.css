@@ -101,21 +101,25 @@
 }
 
 /* 内容区 */
-.content {
+.content-wrapper {
     max-width: 800px;
-    padding: 0 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 13em;
+    height: auto !important;
+    padding-top: 64px;
+    background-color: #fff;
+    margin: 0 auto -58px;
+    min-height: calc(100% - 64px);
+}
+
+.content {
+    padding-bottom: 58px;
 }
 
 /* 标签内容 */
 .tag-title {
     position: relative;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 48px;
     color: #9c9c9c;
-    margin-top: 5em;
 }
 
 .tag-title h1 {
