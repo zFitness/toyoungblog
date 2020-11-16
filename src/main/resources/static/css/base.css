@@ -37,6 +37,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     justify-content: flex-end;
 }
 
+
+@media screen and (max-width: 768px) {
+    .site-header .menu {
+        display: none;
+    }
+}
+
 .site-header > .menu-wrapper {
     height: 100%;
     padding-right: 32px;
@@ -95,8 +102,6 @@ div, ul, li {
 .menu li ul a:hover {
     background: #f2f2f2;
 }
-
-
 
 
 .site-header-hover {
@@ -189,7 +194,7 @@ div, ul, li {
     margin: auto;
     text-align: left;
     position: absolute;
-    width: 100%;
+    width: 80%;
     left: 0;
     right: 0;
     height: 285px;
@@ -207,7 +212,6 @@ div, ul, li {
 
 .search-form i {
     font-size: 32px !important;
-    font-size: 2rem;
     line-height: 0.4;
     color: #ddd;
     position: absolute;
@@ -217,8 +221,6 @@ div, ul, li {
 }
 
 .search-form input {
-    font-size: 24px;
-    font-size: 1.5rem;
     background: #fff;
     padding: 12px 24px 12px 64px;
     width: 100%;

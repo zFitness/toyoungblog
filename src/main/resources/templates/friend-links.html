@@ -32,8 +32,8 @@
 
               <div class="links">
                 <h3 class="link-title"><span class="fake-title">友情链接</span></h3>
-                <ul class="link-items fontSmooth">
-                  <li class="link-item" th:each="link:${links}">
+                <div class="link-items fontSmooth">
+                  <div class="link-item" th:each="link:${links}">
                     <a class="link-item-inner effect-apollo" th:href="${link.getLinkUrl()}"
                        title="me" target="_blank" rel="friend">
                       <img class="lazyload"
@@ -42,8 +42,8 @@
                       <div class="linkdes" th:text="${link.getLinkDescription()}">
                       </div>
                     </a>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
 
             </div>
