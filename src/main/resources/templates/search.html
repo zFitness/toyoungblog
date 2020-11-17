@@ -51,7 +51,7 @@
             <div class="article"
                  th:each="articleItem : ${articleItems.getRecords()}">
               <h1 class="article-title">
-                <a th:href="${'/article/' + articleItem.getArticleId()}"
+                <a th:href="${'/article/' + articleItem.getArticleSlug()}"
                    th:text="${articleItem.articleTitle}"> </a>
               </h1>
 

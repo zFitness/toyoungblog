@@ -75,6 +75,7 @@
     <select id="listArticleItemsByName" resultType="pers.zheng.blog.model.vo.ArticleItemVO">
         SELECT article_id,
                article_title,
+               article_slug,
                article_view_count,
                article_like_count,
                article_comment_count,

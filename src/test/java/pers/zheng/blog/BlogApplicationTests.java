@@ -26,17 +26,17 @@ class BlogApplicationTests {
     @Test
     void contextLoads() {
 //        System.out.println(sortsDao.selectById(2));
-        Sort sort = articleSortDao.getSortByArticleId(8);
-        System.out.println(sort);
+//        Sort sort = articleSortDao.getSortByArticleId(8);
+//        System.out.println(sort);
     }
 
     @Test
     void ss() {
-        //先查询
-        LambdaQueryWrapper<Label> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.like(Label::getLabelName, "dddd");
-        List<Label> labels = labelDao.selectList(queryWrapper);
-        System.out.println(labels);
+//        //先查询
+//        LambdaQueryWrapper<Label> queryWrapper = new LambdaQueryWrapper<>();
+//        queryWrapper.like(Label::getLabelName, "dddd");
+//        List<Label> labels = labelDao.selectList(queryWrapper);
+//        System.out.println(labels);
     }
 
 }

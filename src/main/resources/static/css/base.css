@@ -2,6 +2,7 @@
 a {
     text-decoration: none;
     color: #666;
+    word-wrap: break-word;
 }
 
 /*清除 padding-left:40px*/
