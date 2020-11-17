@@ -1,16 +1,13 @@
 $(document).ready(function () {
+    //滚动
     $(document).scroll(function () {
         if ($(document).scrollTop() > 64) {
             //回到顶部按钮
             $('.m-cd-top').fadeIn();
-
             $('.site-header').addClass('site-header-hover')
-
         } else {
             $('.m-cd-top').fadeOut();
-
             $('.site-header').removeClass('site-header-hover')
-
         }
     })
 
@@ -18,7 +15,7 @@ $(document).ready(function () {
         $(document).scrollTop(0)
     })
 
-    yyui_menu('.menu');
+    //目录
     $('.m-menu').click(function () {
         if ($('.toc-container-mob').css('display') == 'none') {
             $('.toc-container-mob').css('display', 'block');
@@ -31,6 +28,10 @@ $(document).ready(function () {
         $('.toc-container-mob').css('display', 'none');
     })
 
+
+    //
+    yyui_menu('.menu');
+
     function yyui_menu(ulclass) {
         $(document).ready(function () {
             $(ulclass + ' li').hover(function () {
@@ -40,5 +41,7 @@ $(document).ready(function () {
             });
         });
     }
+
+
 
 })

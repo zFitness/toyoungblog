@@ -1,58 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <body>
-    <div id="menu" th:fragment="sidebar">
+    <div id="site-menu" th:fragment="sidebar">
       <div class="canvi-user-info">
         <div class="canvi-user-info__image">
           <img src="http://q.qlogo.cn/g?b=qq&nk=1786128750&s=160">
         </div>
         <div class="canvi-user-info__data">
-          <span class="canvi-user-info__title">Title</span>
-          <a href="#" class="canvi-user-info__meta">View site</a>
+          <span class="canvi-user-info__title">XZF</span>
+          <a href="#" class="canvi-user-info__meta">Just do it.</a>
         </div>
       </div>
       <div class="f1">
         <ul>
-          <li class="hasChild">
+          <li>
             <a th:href="@{/}">
               <p>
                 <i class="iconfont iconHomehomepagemenu"></i>
                 首页</p>
             </a>
           </li>
-          <li class="hasChild">
+          <li>
             <a th:href="@{/archives}">
               <p><i class="iconfont iconguidang"></i>归档</p>
             </a>
           </li>
+          <li>
+            <a th:href="@{/links}">
+              <p><i class="iconfont iconlink"></i>友链</p>
+            </a>
+          <li>
+            <a th:href="@{/sheet/about}">
+              <p><i class="iconfont iconguanyu"></i>关于</p>
+            </a>
+          </li>
           <li class="hasChild">
-            <a href="#">腾讯链接</a>
+            <a href="#">更多</a>
             <div class="f2">
               <ul>
-                <li class="hasChild">
-                  <a href="#">content</a>
-                  <div class="f3">
-                    <ul>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                      <li><a href="#">qq</a></li>
-                    </ul>
-                  </div>
+                <li>
+                  <a href="http://github.com/zfitness">GITHUB</a>
+                </li>
+                <li>
+                  <a href="http://google.com">GOOGLE</a>
                 </li>
               </ul>
             </div>
           </li>
-          <li><a href="#">baidu</a></li>
         </ul>
       </div>
     </div>
