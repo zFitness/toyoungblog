@@ -1,4 +1,14 @@
 $(document).ready(function () {
+    //页面加载完才显示，解决白屏问题
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            document.body.style.display = "block";
+        } else {
+            document.body.style.display = "none";
+        }
+        ;
+    };
+
     //滚动
     $(document).scroll(function () {
         if ($(document).scrollTop() > 32) {

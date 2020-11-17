@@ -34,9 +34,6 @@ public class UserController {
         String username = map.get("username");
         String password = map.get("password");
         String token = userService.login(username, password);
-//        if ("admin".equals(username) && "admin123".equals(password)) {
-//            return Result.success(token);
-//        }
         return Result.success(token);
     }
 
