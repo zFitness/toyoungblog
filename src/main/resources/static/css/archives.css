@@ -9,8 +9,9 @@
 }
 
 .content {
-    padding: 0 8px 58px 8px;
+    padding: 32px 8px 58px 8px;
 }
+
 .content-head {
     position: relative;
     top: 0;

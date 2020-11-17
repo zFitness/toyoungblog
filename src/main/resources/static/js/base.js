@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //滚动
     $(document).scroll(function () {
-        if ($(document).scrollTop() > 64) {
+        if ($(document).scrollTop() > 32) {
             //回到顶部按钮
             $('.m-cd-top').fadeIn();
             $('.site-header').addClass('site-header-hover')
@@ -41,7 +41,6 @@ $(document).ready(function () {
             });
         });
     }
-
 
 
 })
