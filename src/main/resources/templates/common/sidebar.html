@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <body>
-    <div class="sidebar" th:fragment="sidebar">
-      <div class="headSculpture">
-        <img src="http://q.qlogo.cn/g?b=qq&nk=1786128750&s=160" alt=""/>
-        <p>昵称：xzF</p>
+    <div id="menu" th:fragment="sidebar">
+      <div class="canvi-user-info">
+        <div class="canvi-user-info__image">
+          <img src="http://q.qlogo.cn/g?b=qq&nk=1786128750&s=160">
+        </div>
+        <div class="canvi-user-info__data">
+          <span class="canvi-user-info__title">Title</span>
+          <a href="#" class="canvi-user-info__meta">View site</a>
+        </div>
       </div>
-      <ul class="side-menu">
-        <li class="item" id="profile">
-          <a href="#profile" class="btn"><i class="iconfont icon-user"></i>我的</a>
-          <div class="smenu">
-            <a href="javascript:void(0);">发布</a>
-            <a href="javascript:void(0);">图片</a>
-          </div>
-        </li>
-        <li class="item" id="messages">
-          <a href="#messages" class="btn"><i class="iconfont icon-mail"></i>邮件</a>
-          <div class="smenu">
-            <a href="javascript:void(0);">写邮件</a>
-            <a href="javascript:void(0);">草稿箱</a>
-            <a href="javascript:void(0);">已发送</a>
-            <a href="javascript:void(0);">垃圾箱</a>
-          </div>
-        </li>
-        <li class="item" id="settings">
-          <a href="#settings" class="btn"><i class="iconfont icon-setting"></i>设置</a>
-          <div class="smenu">
-            <a href="javascript:void(0);">密码</a>
-            <a href="javascript:void(0);">语言</a>
-          </div>
-        </li>
-        <li class="item">
-          <a href="javascript:void(0);" class="btn"><i class="iconfont icon-logout"></i>注销</a>
-        </li>
-      </ul>
+      <div class="f1">
+        <ul>
+          <li class="hasChild">
+            <a th:href="@{/}">
+              <p>
+                <i class="iconfont iconHomehomepagemenu"></i>
+                首页</p>
+            </a>
+          </li>
+          <li class="hasChild">
+            <a th:href="@{/archives}">
+              <p><i class="iconfont iconguidang"></i>归档</p>
+            </a>
+          </li>
+          <li class="hasChild">
+            <a href="#">腾讯链接</a>
+            <div class="f2">
+              <ul>
+                <li class="hasChild">
+                  <a href="#">content</a>
+                  <div class="f3">
+                    <ul>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                      <li><a href="#">qq</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="#">baidu</a></li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>

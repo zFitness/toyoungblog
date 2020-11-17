@@ -35,9 +35,11 @@
     </script>
   </head>
   <body>
+    <!-- 侧边栏 -->
+    <div th:replace="~{common/sidebar::sidebar}"></div>
+
     <div id="wrapper" style="left: 0">
-      <!-- 侧边栏 -->
-      <div th:replace="~{common/sidebar::sidebar}"></div>
+
       <!-- 搜索页面 -->
       <div th:replace="~{common/search-wrapper::search-wrapper}"></div>
       <!-- 主体区域 -->

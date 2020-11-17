@@ -1,79 +1,133 @@
-.middle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.side-menu {
-    width: 100%;
-    margin-top: 16px;
-}
-
-.side-menu .item {
-    border-top: 1px solid #2980b9;
-    overflow: hidden;
-}
-
-.side-menu .btn {
-    position: relative;
+.leftMenu a {
+    text-decoration: none;
     display: block;
-    padding: 16px 20px;
-    background: #3498db;
-    color: #fff;
 }
 
-.side-menu .btn::before {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: #3498db;
-    left: 20px;
-    bottom: -7px;
-    transform: rotate(45deg);
-}
-
-.side-menu .btn i {
-    margin-right: 10px;
-}
-
-.side-menu .smenu {
-    background: #333;
-    overflow: hidden;
-    transition: max-height .3s;
-    max-height: 0;
-}
-
-.side-menu .smenu a {
-    display: block;
-    padding: 16px 26px;
-    color: #fff;
-    font-size: 14px;
-    margin: 4px 0;
-    position: relative;
-}
-
-.side-menu .smenu a:hover {
-    background-color: #2D3766;
-}
-
-.side-menu .smenu a::before {
-    content: "";
-    position: absolute;
-    width: 6px;
-    height: 100%;
-    background: #3498db;
-    left: 0;
+.leftMenu {
+    background: #fff;
+    left: -1000px;
+    position: fixed;
     top: 0;
-    transition: .3s;
-    opacity: 0;
+    display: block;
+    height: 100%;
+    width: 68%;
+    min-width: 140px;
+    max-width: 440px;
+    z-index: 90002;
+    transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    position: fixed;
+    overflow: auto;
 }
 
-.side-menu .smenu a:hover::before {
-    opacity: 1;
+.leftMenu.menu-open {
+    left: 0;
 }
 
-.side-menu .item:target .smenu {
-    max-height: 14em;
+.leftMenu ul {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+.leftMenu ul li {
+    position: relative;
+    padding: 10px 0 10px 20px;
+    overflow: hidden;
+}
+
+.leftMenu ul li.hasChild > a:after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.leftMenu ul li.hasChild.open > a:after {
+    content: "-";
+    right: 23px;
+    font-size: 28px;
+    top: -3px;
+}
+
+.f2, .f3 {
+    height: 0;
+    padding-left: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: height 0.4s ease;
+    -moz-transition: height 0.4s ease;
+    -webkit-transition: height 0.4s ease;
+    -o-transition: height 0.4s ease;
+}
+
+.menu-dark-backdrop {
+    background: rgba(0, 0, 0, 0);
+    transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.menu-dark-backdrop.in {
+    height: 100%;
+    z-index: 90001;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+.canvi-user-info {
+    padding: 25px 30px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-cnt: left;
+    background: #333739;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.canvi-user-info__image {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.canvi-user-info img {
+    max-width: 100%;
+    height: auto;
+}
+
+.canvi-user-info__data {
+    width: calc(100% - 70px);
+}
+
+.canvi-user-info__title {
+    font-weight: 700;
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 3px;
+    line-height: 1.3em;
+    display: block;
+}
+
+.canvi-user-info__meta {
+    display: inline-block;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    font-size: 14px;
 }
