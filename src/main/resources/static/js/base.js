@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $('.main-wrapper').scroll(function () {
-        if ($('.main-wrapper').scrollTop() > 64) {
+    $(document).scroll(function () {
+        if ($(document).scrollTop() > 64) {
             //回到顶部按钮
             $('.m-cd-top').fadeIn();
 
@@ -15,8 +15,9 @@ $(document).ready(function () {
     })
 
     $('.m-cd-top').click(function () {
-        $('.main-wrapper').scrollTop(0)
+        $(document).scrollTop(0)
     })
+
     yyui_menu('.menu');
     $('.m-menu').click(function () {
         if ($('.toc-container-mob').css('display') == 'none') {

@@ -29,82 +29,78 @@
 
 
   <body>
+    <!-- 侧边栏 -->
+    <div th:replace="~{common/sidebar::sidebar}"></div>
+    <!-- 搜索页面 -->
+    <div th:replace="~{common/search-wrapper::search-wrapper}"></div>
+    <!-- 主体区域 -->
+    <div class="main-wrapper">
 
-    <div id="wrapper" style="left: 0">
-      <!-- 侧边栏 -->
-      <div th:replace="~{common/sidebar::sidebar}"></div>
-      <!-- 搜索页面 -->
-      <div th:replace="~{common/search-wrapper::search-wrapper}"></div>
-      <!-- 主体区域 -->
-      <div class="main-wrapper">
+      <!-- 头部导航栏 -->
+      <div th:replace="~{common/headbar::header}"></div>
 
-        <!-- 内容区的布局 -->
-        <div id="dark-wrapper">
-          <!-- 头部导航栏 -->
-          <div th:replace="~{common/headbar::header}"></div>
+      <!-- 主题内容 -->
+      <div class="content-wrapper">
+        <div class="content">
+          <div class="tag-title">
+            <h1>搜索结果: 分类
+              “<span th:text="${sortName}"></span>”下的文章</h1>
+          </div>
+          <!-- 博文内容 -->
+          <div class="blog">
+            <div class="article"
+                 th:if="${not #lists.isEmpty(articleItems)}"
+                 th:each="articleItem : ${articleItems.getRecords()}">
+              <h1 class="article-title">
+                <a th:href="${'/article/' + articleItem.getArticleSlug()}"
+                   th:text="${articleItem.articleTitle}"> </a>
+              </h1>
 
-          <!-- 主题内容 -->
-          <div class="content-wrapper">
-            <div class="content">
-              <div class="tag-title">
-                <h1>搜索结果: 分类
-                  “<span th:text="${sortName}"></span>”下的文章</h1>
+              <div class="article-time">
+                <i
+                        class="iconfont iconTime"
+                        aria-hidden="true"
+                ></i>
+                <span th:text="${#dates.format(articleItem.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
               </div>
-              <!-- 博文内容 -->
-              <div class="blog">
-                <div class="article"
-                     th:if="${not #lists.isEmpty(articleItems)}"
-                     th:each="articleItem : ${articleItems.getRecords()}">
-                  <h1 class="article-title">
-                    <a th:href="${'/article/' + articleItem.getArticleSlug()}"
-                       th:text="${articleItem.articleTitle}"> </a>
-                  </h1>
-
-                  <div class="article-time">
-                    <i
-                            class="iconfont iconTime"
-                            aria-hidden="true"
-                    ></i>
-                    <span th:text="${#dates.format(articleItem.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
-                  </div>
-                  <div id="article-content" th:utext="${articleItem.articleSummary}"></div>
-                  <div class="article-info">
-                    <div class="article-info-read" style="margin-right: 20px">
-                      <i
-                              class="iconfont iconViews"
-                      ></i>
-                      <span th:text="${articleItem.articleViewCount}"></span>阅读
-                    </div>
-                    <div class="" style="margin-right: 20px">
-                      <i
-                              class="iconfont iconComments"
-                      ></i>
-                      <span th:text="${articleItem.articleCommentCount}"></span>评论
-                    </div>
-                    <div class="" style="margin-right: 20px">
-                      <i
-                              class="iconfont iconDocument"
-                      ></i>
-                      <span th:text="${articleItem.getSort().getSortName()}"></span>
-                    </div>
-                    <!--                  <div class="article-info-more">-->
-                    <!--                    <a>...</a>-->
-                    <!--                  </div>-->
-                  </div>
+              <div id="article-content" th:utext="${articleItem.articleSummary}"></div>
+              <div class="article-info">
+                <div class="article-info-read" style="margin-right: 20px">
+                  <i
+                          class="iconfont iconViews"
+                  ></i>
+                  <span th:text="${articleItem.articleViewCount}"></span>阅读
                 </div>
-              </div>
-
-              <div style="text-align: center;">
-                <div class="my-page">
+                <div class="" style="margin-right: 20px">
+                  <i
+                          class="iconfont iconComments"
+                  ></i>
+                  <span th:text="${articleItem.articleCommentCount}"></span>评论
                 </div>
+                <div class="" style="margin-right: 20px">
+                  <i
+                          class="iconfont iconDocument"
+                  ></i>
+                  <span th:text="${articleItem.getSort().getSortName()}"></span>
+                </div>
+                <!--                  <div class="article-info-more">-->
+                <!--                    <a>...</a>-->
+                <!--                  </div>-->
               </div>
             </div>
-
           </div>
-          <!-- 底部 footer -->
-          <div th:replace="~{common/footer :: footer}"></div>
+
+          <div style="text-align: center;">
+            <div class="my-page">
+            </div>
+          </div>
         </div>
+
       </div>
+      <!-- 底部 footer -->
+      <div th:replace="~{common/footer :: footer}"></div>
     </div>
+
+
   </body>
 </html>

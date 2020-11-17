@@ -38,153 +38,146 @@
     <!-- 侧边栏 -->
     <div th:replace="~{common/sidebar::sidebar}"></div>
 
-    <div id="wrapper" style="left: 0">
 
-      <!-- 搜索页面 -->
-      <div th:replace="~{common/search-wrapper::search-wrapper}"></div>
-      <!-- 主体区域 -->
-      <div class="main-wrapper">
-        <!-- 侧边栏按钮 -->
-
-
-        <!-- 内容区的布局 -->
-        <div id="dark-wrapper">
-          <!-- 头部导航栏 -->
-          <div th:replace="~{common/headbar::header}"></div>
-          <!-- 背景图 -->
-          <div class="headertop">
-            <div
-                    id="centerbg"
-                    style="
+    <!-- 搜索页面 -->
+    <div th:replace="~{common/search-wrapper::search-wrapper}"></div>
+    <!-- 主体区域 -->
+    <div class="main-wrapper">
+      <!-- 侧边栏按钮 -->
+      <!-- 头部导航栏 -->
+      <div th:replace="~{common/headbar::header}"></div>
+      <!-- 背景图 -->
+      <div class="headertop">
+        <div
+                id="centerbg"
+                style="
                 background-image: url(https://cdn.ryanc.cc/img/blog/thumbnails/bd603f0a8e74c69c9c227e0d2eec4394.jpeg);
               "
-            >
-              <div class="slant-left"></div>
-              <div class="slant-right"></div>
-              <div class="focusinfo">
+        >
+          <div class="slant-left"></div>
+          <div class="slant-right"></div>
+          <div class="focusinfo">
 
-                <div class="header-tou">
-                  <a
-                          th:href="@{/}"
-                          target="_blank"
-                          rel="nofollow noopener noreferrer"
-                  ><img src="//q.qlogo.cn/g?b=qq&amp;nk=1786128750&amp;s=160"
-                        alt="a"
-                  /></a>
-                </div>
-                <div class="header-info"><p>Just do it.</p></div>
-                <div class="top-social">
-
-                  <li>
-                    <a
-                            href="https://github.com/"
-                            target="_blank"
-                            rel="nofollow noopener noreferrer"
-                            class="social-github"
-                    ><img
-                            th:src="@{/static/images/github.png}"
-                            alt=""/></a>
-                  </li>
-                  <li>
-                    <a
-                            href="https://www.bilibili.com/"
-                            target="_blank"
-                            rel="nofollow noopener noreferrer"
-                            class="social-bilibili"
-                    ><img
-                            th:src="@{/static/images/bilibili.png}"
-                            alt=""/></a>
-                  </li>
-                </div>
-              </div>
+            <div class="header-tou">
+              <a
+                      th:href="@{/}"
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+              ><img src="//q.qlogo.cn/g?b=qq&amp;nk=1786128750&amp;s=160"
+                    alt="a"
+              /></a>
             </div>
-          </div>
+            <div class="header-info"><p>Just do it.</p></div>
+            <div class="top-social">
 
-          <!-- 主题内容 -->
-          <div class="content">
-            <div class="notice">
-              <i class="iconfont iconnotice"></i>
-              :
-              <span>最新博客，发不了</span>
+              <li>
+                <a
+                        href="https://github.com/"
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        class="social-github"
+                ><img
+                        th:src="@{/static/images/github.png}"
+                        alt=""/></a>
+              </li>
+              <li>
+                <a
+                        href="https://www.bilibili.com/"
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        class="social-bilibili"
+                ><img
+                        th:src="@{/static/images/bilibili.png}"
+                        alt=""/></a>
+              </li>
             </div>
-            <!-- 推荐部分 -->
-            <div class="top-feature">
-              <h1 class="contetn-advice-title">
-                <i class="iconfont icontuijian"></i>
-                推荐
-              </h1>
-              <div class="feature-content">
-                <li class="feature-1"><a th:href="@{/}">
-                  <div class="feature-title"><span class="foverlay">博客开发记录</span></div>
-                  <img src="http://img.zmblog.wang/blog/20201103/Gqe6MwqmN3RC.png?imageslim"></a></li>
-                <li class="feature-2"><a th:href="@{/}">
-                  <div class="feature-title"><span class="foverlay">我的项目</span></div>
-                  <img src="http://img.zmblog.wang/blog/20201103/0MlFaqkOSjNJ.png?imageslim"></a></li>
-                <li class="feature-3"><a th:href="@{/}">
-                  <div class="feature-title"><span class="foverlay">心声</span></div>
-                  <img src="http://img.zmblog.wang/blog/20201103/kl86nR01XMQL.png?imageslim"></a></li>
-              </div>
-
-            </div>
-            <!-- 博文内容 -->
-            <div class="blog">
-              <h1 class="contetn-advice-title"><i class="iconfont iconleaf"></i>博文</h1>
-              <!-- 文章列表项 -->
-              <div class="article"
-                   th:each="articleItem : ${articleItems.getRecords()}">
-                <h1 class="article-title">
-                  <a th:href="${'/article/' + articleItem.getArticleSlug()}"
-                     th:text="${articleItem.articleTitle}"> </a>
-                </h1>
-
-                <div class="article-time">
-                  <i
-                          class="iconfont iconTime"
-                          aria-hidden="true"
-                  ></i>
-                  <span th:text="${#dates.format(articleItem.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
-                </div>
-                <div id="article-content" th:utext="${articleItem.articleSummary}"></div>
-                <div class="article-info">
-                  <div class="article-info-read" style="margin-right: 20px">
-                    <i
-                            class="iconfont iconViews"
-                    ></i>
-                    <span th:text="${articleItem.articleViewCount}"></span>阅读
-                  </div>
-                  <div class="" style="margin-right: 20px">
-                    <i
-                            class="iconfont iconComments"
-                    ></i>
-                    <span th:text="${articleItem.articleCommentCount}"></span>评论
-                  </div>
-                  <div class="" style="margin-right: 20px" th:if="${articleItem.getSort() != null}">
-                    <i
-                            class="iconfont iconwenjianjia1"
-                    ></i>
-                    <span th:text="${articleItem.getSort().getSortName()}"></span>
-                  </div>
-                  <!--                  <div class="article-info-more">-->
-                  <!--                    <a>...</a>-->
-                  <!--                  </div>-->
-                </div>
-              </div>
-
-
-              <div style="text-align: center;">
-                <div class="my-page">
-                </div>
-              </div>
-            </div>
-            <!-- 底部 footer -->
-            <div th:replace="~{common/footer :: footer}"></div>
-
-            <!-- 底部fixed的按钮，回到顶部|-->
-            <button class="m-cd-top cd-is-visible" title="Go to top">
-              <i class="iconfont icondaodingbu" aria-hidden="true"></i>
-            </button>
           </div>
         </div>
+      </div>
+
+      <!-- 主题内容 -->
+      <div class="content">
+        <div class="notice">
+          <i class="iconfont iconnotice"></i>
+          :
+          <span>最新博客，发不了</span>
+        </div>
+        <!-- 推荐部分 -->
+        <div class="top-feature">
+          <h1 class="contetn-advice-title">
+            <i class="iconfont icontuijian"></i>
+            推荐
+          </h1>
+          <div class="feature-content">
+            <li class="feature-1"><a th:href="@{/}">
+              <div class="feature-title"><span class="foverlay">博客开发记录</span></div>
+              <img src="http://img.zmblog.wang/blog/20201103/Gqe6MwqmN3RC.png?imageslim"></a></li>
+            <li class="feature-2"><a th:href="@{/}">
+              <div class="feature-title"><span class="foverlay">我的项目</span></div>
+              <img src="http://img.zmblog.wang/blog/20201103/0MlFaqkOSjNJ.png?imageslim"></a></li>
+            <li class="feature-3"><a th:href="@{/}">
+              <div class="feature-title"><span class="foverlay">心声</span></div>
+              <img src="http://img.zmblog.wang/blog/20201103/kl86nR01XMQL.png?imageslim"></a></li>
+          </div>
+
+        </div>
+        <!-- 博文内容 -->
+        <div class="blog">
+          <h1 class="contetn-advice-title"><i class="iconfont iconleaf"></i>博文</h1>
+          <!-- 文章列表项 -->
+          <div class="article"
+               th:each="articleItem : ${articleItems.getRecords()}">
+            <h1 class="article-title">
+              <a th:href="${'/article/' + articleItem.getArticleSlug()}"
+                 th:text="${articleItem.articleTitle}"> </a>
+            </h1>
+
+            <div class="article-time">
+              <i
+                      class="iconfont iconTime"
+                      aria-hidden="true"
+              ></i>
+              <span th:text="${#dates.format(articleItem.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+            </div>
+            <div id="article-content" th:utext="${articleItem.articleSummary}"></div>
+            <div class="article-info">
+              <div class="article-info-read" style="margin-right: 20px">
+                <i
+                        class="iconfont iconViews"
+                ></i>
+                <span th:text="${articleItem.articleViewCount}"></span>阅读
+              </div>
+              <div class="" style="margin-right: 20px">
+                <i
+                        class="iconfont iconComments"
+                ></i>
+                <span th:text="${articleItem.articleCommentCount}"></span>评论
+              </div>
+              <div class="" style="margin-right: 20px" th:if="${articleItem.getSort() != null}">
+                <i
+                        class="iconfont iconwenjianjia1"
+                ></i>
+                <span th:text="${articleItem.getSort().getSortName()}"></span>
+              </div>
+              <!--                  <div class="article-info-more">-->
+              <!--                    <a>...</a>-->
+              <!--                  </div>-->
+            </div>
+          </div>
+
+
+          <div style="text-align: center;">
+            <div class="my-page">
+            </div>
+          </div>
+        </div>
+        <!-- 底部 footer -->
+        <div th:replace="~{common/footer :: footer}"></div>
+
+        <!-- 底部fixed的按钮，回到顶部|-->
+        <button class="m-cd-top cd-is-visible" title="Go to top">
+          <i class="iconfont icondaodingbu" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </body>

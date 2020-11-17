@@ -14,16 +14,12 @@
     <script th:src="@{/static/js/base.js}"></script>
   </head>
   <body>
-    <div id="wrapper" style="left: 0">
       <!-- 侧边栏 -->
       <div th:replace="~{common/sidebar::sidebar}"></div>
       <!-- 搜索页面 -->
       <div th:replace="~{common/search-wrapper::search-wrapper}"></div>
       <!-- 主体区域 -->
       <div class="main-wrapper">
-
-        <!-- 内容区的布局 -->
-        <div id="dark-wrapper">
           <!-- 头部导航栏 -->
           <div th:replace="~{common/headbar::header}"></div>
 
@@ -39,7 +35,5 @@
           <!-- 底部 footer -->
           <div th:replace="~{common/footer :: footer}"></div>
         </div>
-      </div>
-    </div>
   </body>
 </html>
