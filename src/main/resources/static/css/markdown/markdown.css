@@ -1,31 +1,34 @@
-.markdown-here-wrapper {
+#write {
     font-size: 16px;
     line-height: 1.8em;
     letter-spacing: 0.1em;
+    width: 100%;
+    overflow-x: hidden;
+
 }
 
 
-.markdown-here-wrapper pre,
-.markdown-here-wrapper code {
+#write pre,
+#write code {
     font-size: 14px;
     font-family: Roboto, 'Courier New', Consolas, Inconsolata, Courier, monospace;
     margin: auto 5px;
 }
 
-.markdown-here-wrapper code {
+#write code {
     white-space: pre-wrap;
     border-radius: 2px;
     display: inline;
 }
 
-.markdown-here-wrapper pre {
+#write pre {
     font-size: 15px;
     line-height: 1.4em;
     display: block;
 !important;
 }
 
-.markdown-here-wrapper pre code {
+#write pre code {
     white-space: pre;
     overflow: auto;
     border-radius: 3px;
@@ -33,75 +36,75 @@
     display: block !important;
 }
 
-.markdown-here-wrapper strong, .markdown-here-wrapper b {
+#write strong, #write b {
     color: #BF360C;
 }
 
-.markdown-here-wrapper em, .markdown-here-wrapper i {
+#write em, #write i {
     color: #009688;
 }
 
-.markdown-here-wrapper hr {
+#write hr {
     border: 1px solid #BF360C;
     margin: 1.5em auto;
 }
 
-.markdown-here-wrapper p {
+#write p {
     margin: 1.5em 5px !important;
 }
 
-.markdown-here-wrapper table,
-.markdown-here-wrapper pre,
-.markdown-here-wrapper dl,
-.markdown-here-wrapper blockquote,
-.markdown-here-wrapper q,
-.markdown-here-wrapper ul,
-.markdown-here-wrapper ol {
+#write table,
+#write pre,
+#write dl,
+#write blockquote,
+#write q,
+#write ul,
+#write ol {
     margin: 10px 5px;
 }
 
-.markdown-here-wrapper ul,
-.markdown-here-wrapper ol {
+#write ul,
+#write ol {
     padding-left: 15px;
 }
 
-.markdown-here-wrapper li {
+#write li {
     margin: 10px;
 }
 
-.markdown-here-wrapper li p {
+#write li p {
     margin: 10px 0 !important;
 }
 
-.markdown-here-wrapper ul ul,
-.markdown-here-wrapper ul ol,
-.markdown-here-wrapper ol ul,
-.markdown-here-wrapper ol ol {
+#write ul ul,
+#write ul ol,
+#write ol ul,
+#write ol ol {
     margin: 0;
     padding-left: 10px;
 }
 
-.markdown-here-wrapper ul {
+#write ul {
     list-style-type: circle;
 }
 
-.markdown-here-wrapper dl {
+#write dl {
     padding: 0;
 }
 
-.markdown-here-wrapper dl dt {
+#write dl dt {
     font-size: 1em;
     font-weight: bold;
     font-style: italic;
 }
 
-.markdown-here-wrapper dl dd {
+#write dl dd {
     margin: 0 0 10px;
     padding: 0 10px;
 }
 
-.markdown-here-wrapper blockquote,
-.markdown-here-wrapper q {
+#write blockquote,
+#write q {
     border-left: 2px solid #009688;
     padding: 0 10px;
     color: #777;
@@ -109,48 +112,48 @@
     margin-left: 1em;
 }
 
-.markdown-here-wrapper blockquote::before,
-.markdown-here-wrapper blockquote::after,
-.markdown-here-wrapper q::before,
-.markdown-here-wrapper q::after {
+#write blockquote::before,
+#write blockquote::after,
+#write q::before,
+#write q::after {
     content: none;
 }
 
-.markdown-here-wrapper h1,
-.markdown-here-wrapper h2,
-.markdown-here-wrapper h3,
-.markdown-here-wrapper h4,
-.markdown-here-wrapper h5,
-.markdown-here-wrapper h6 {
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
     margin: 20px 0 10px;
     padding: 0;
-    font-style: normal!important;
+    font-style: normal !important;
     color: #009688 !important;
     text-align: center !important;
     margin: 1.5em 5px !important;
     padding: 0.5em 1em !important;
 }
 
-.markdown-here-wrapper h1 {
+#write h1 {
     font-size: 24px !important;
     border-bottom: 1px solid #ddd !important;
 }
 
-.markdown-here-wrapper h2 {
+#write h2 {
     font-size: 20px !important;
     border-bottom: 1px solid #eee !important;
 }
 
-.markdown-here-wrapper h3 {
+#write h3 {
     font-size: 18px;
 }
 
-.markdown-here-wrapper h4 {
+#write h4 {
     font-size: 16px;
 }
 
 
-.markdown-here-wrapper table {
+#write table {
     padding: 0;
     border-collapse: collapse;
     border-spacing: 0;
@@ -160,13 +163,13 @@
     margin: 0 auto;
 }
 
-.markdown-here-wrapper tbody {
+#write tbody {
     margin: 0;
     padding: 0;
     border: 0;
 }
 
-.markdown-here-wrapper table tr {
+#write table tr {
     border: 0;
     border-top: 1px solid #CCC;
     background-color: white;
@@ -174,25 +177,25 @@
     padding: 0;
 }
 
-.markdown-here-wrapper table tr:nth-child(2n) {
+#write table tr:nth-child(2n) {
     background-color: #F8F8F8;
 }
 
-.markdown-here-wrapper table tr th,
-.markdown-here-wrapper table tr td {
+#write table tr th,
+#write table tr td {
     font-size: 16px;
     border: 1px solid #CCC;
     margin: 0;
     padding: 5px 10px;
 }
 
-.markdown-here-wrapper table tr th {
+#write table tr th {
     font-weight: bold;
     color: #eee;
     border: 1px solid #009688;
     background-color: #009688;
 }
 
-.markdown-here-wrapper img {
+#write img {
     width: 100%;
 }

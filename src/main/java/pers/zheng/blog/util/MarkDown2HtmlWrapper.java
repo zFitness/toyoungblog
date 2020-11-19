@@ -82,7 +82,7 @@ public class MarkDown2HtmlWrapper {
         MarkdownEntity entity = new MarkdownEntity();
         entity.setHtml(html);
         entity.setHtmlTOC(parseTOC(content));
-        entity.addDivStyle("class", "markdown-here-wrapper ");
+        entity.addDivStyle("id", "write");
         return entity;
     }
 

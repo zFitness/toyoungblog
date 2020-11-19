@@ -5,6 +5,10 @@ a {
     word-wrap: break-word;
 }
 
+body {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 /*清除 padding-left:40px*/
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td {
     margin: 0;
@@ -178,7 +182,7 @@ div, ul, li {
     visibility: visible;
     opacity: .99;
     animation: elastic .5s;
-    background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.2.1/img/other/iloli.gif);
+    border: 1px solid #E7EAED;
     background-repeat: no-repeat;
     background-position: bottom right;
 }
