@@ -4,12 +4,12 @@
     height: auto !important;
     padding-top: 64px;
     background-color: #fff;
-    margin: 0 auto -58px;
+    margin: 0 auto -64px;
     min-height: calc(100% - 64px);
 }
 
 .content {
-    padding: 0 8px 58px 8px;
+    padding: 0 8px 64px 8px;
 }
 
 .links {

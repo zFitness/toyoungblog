@@ -13,21 +13,6 @@
     <script>hljs.initHighlightingOnLoad();</script>
     <script>hljs.initLineNumbersOnLoad();</script>
     <script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(document).scroll(function () {
-                if ($(document).width() > 1280) {
-                    if ($(document).scrollTop() > 500) {
-                        $('.toc-container').css("display", "block");
-                    } else {
-                        $('.toc-container').css("display", "none");
-                    }
-                }
-
-            })
-
-        })
-    </script>
   </head>
 
   <body>
@@ -74,116 +59,121 @@
       </div>
 
       <!-- 主体内容 -->
-      <div class="content">
-        <div class="article">
-          <!--PC端：目录-->
-          <div th:if="${not #strings.isEmpty(article.getArticleTocHtml())}" class="toc-container"
-               style="max-height: 600px;overflow-y: auto;"
-               th:utext="${article.getArticleTocHtml()}">
-          </div>
-          <!-- 移动端：目录-->
-          <div class="toc-container-mob" th:if="${not #strings.isEmpty(article.getArticleTocHtml())}">
-            <div class="close-button">
-              <i class="iconfont iconclose"></i>
+      <div class="content-wrapper">
+        <div class="content">
+          <div class="article">
+            <!-- 移动端：目录-->
+            <div class="toc-container-mob" th:if="${not #strings.isEmpty(article.getArticleTocHtml())}">
+              <div class="close-button">
+                <i class="iconfont iconclose"></i>
+              </div>
+              <div style="overflow-y: auto;height: 100%" th:utext="${article.getArticleTocHtml()}"></div>
             </div>
-            <div style="overflow-y: auto;height: 100%" th:utext="${article.getArticleTocHtml()}"></div>
-          </div>
-          <!-- markdown转html-->
-          <div id="article-content" th:utext="${article.getArticleContent()}"></div>
-          <div class="article-footer">
-            <div class="breadcrumbs">
-              <div id="crumbs">最后更新时间：2019年10月12日</div>
-            </div>
-            <div class="donate">
-              <a id="donate-btn">赏</a>
-              <ul class="donate_inner" style="display: none">
-                <li class="wedonate">
-                  <img
-                          src="http://img.zmblog.wang/blog/20201103/V8rYshN12MFi.png?imageslim"
-                  />
-                </li>
-              </ul>
-            </div>
-            <div class="article-tags" th:each="label : ${article.getLabels()}">
-              <span class="glyphicon glyphicon-tag"></span>
-              <a th:href="@{'/labels/'  + ${label.getLabelName()}}" th:text="${label.getLabelName()}">java</a>
+            <!-- markdown转html-->
+            <div id="article-content" th:utext="${article.getArticleContent()}"></div>
+            <div class="article-footer">
+              <div class="breadcrumbs">
+                <div id="crumbs">最后更新时间：2019年10月12日</div>
+              </div>
+              <div class="donate">
+                <a id="donate-btn">赏</a>
+                <ul class="donate_inner" style="display: none">
+                  <li class="wedonate">
+                    <img
+                            src="http://img.zmblog.wang/blog/20201103/V8rYshN12MFi.png?imageslim"
+                    />
+                  </li>
+                </ul>
+              </div>
+              <div class="article-tags" th:each="label : ${article.getLabels()}">
+                <span class="glyphicon glyphicon-tag"></span>
+                <a th:href="@{'/labels/'  + ${label.getLabelName()}}" th:text="${label.getLabelName()}">java</a>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- 版权提示 -->
-        <div class="open-message" th:fragment="copyright">
-          <p>
-            声明：xzf's
-            blog|版权所有，违者必究|如未注明，均为原创|本网站采用<a
-                  href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-          >BY-NC-SA</a
-          >协议进行授权
-          </p>
-          <p>
-            转载：转载请注明原文链接 -
-            <a th:href="${'/article/' + article.getArticleSlug()}"
-               th:text="${article.getArticleTitle()}"
-            >Git常用命令总结</a
-            >
-          </p>
-        </div>
-        <!-- 下一篇文章 -->
-        <section class="post-squares nextprev">
-          <div class="post-nepre half previous" th:if="${not #lists.isEmpty(articleItemPrev)}"
-               th:style="${#lists.isEmpty(articleItemNext)}?'width:100%':''">
-            <a th:href="@{'/article/' + ${articleItemPrev.getArticleSlug()}}" rel="prev"
-            >
-              <div
-                      class="background"
-                      style="
+          <!-- 版权提示 -->
+          <div class="open-message" th:fragment="copyright">
+            <p>
+              声明：xzf's
+              blog|版权所有，违者必究|如未注明，均为原创|本网站采用<a
+                    href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+            >BY-NC-SA</a
+            >协议进行授权
+            </p>
+            <p>
+              转载：转载请注明原文链接 -
+              <a th:href="${'/article/' + article.getArticleSlug()}"
+                 th:text="${article.getArticleTitle()}"
+              >Git常用命令总结</a
+              >
+            </p>
+          </div>
+          <!-- 下一篇文章 -->
+          <section class="post-squares nextprev">
+            <div class="post-nepre half previous" th:if="${not #lists.isEmpty(articleItemPrev)}"
+                 th:style="${#lists.isEmpty(articleItemNext)}?'width:100%':''">
+              <a th:href="@{'/article/' + ${articleItemPrev.getArticleSlug()}}" rel="prev"
+              >
+                <div
+                        class="background"
+                        style="
                       background-image: url(http://img.zmblog.wang/blog/20201103/ced5SsoGToua.png?imageslim);
                     "
-              ></div>
-              <span class="label">Previous Post</span>
-              <div class="info">
-                <h3 th:text="${articleItemPrev.getArticleTitle()}">Js + Css3 制作一个导航条</h3>
-                <hr/>
-              </div
+                ></div>
+                <span class="label">Previous Post</span>
+                <div class="info">
+                  <h3 th:text="${articleItemPrev.getArticleTitle()}">Js + Css3 制作一个导航条</h3>
+                  <hr/>
+                </div
+                >
+              </a>
+            </div>
+            <div class="post-nepre half next" th:if="${not #lists.isEmpty(articleItemNext)}"
+                 th:style="${#lists.isEmpty(articleItemPrev)}?'width:100%':''">
+              <a th:href="@{'/article/' + ${articleItemNext.getArticleSlug()}}" rel="next"
               >
-            </a>
-          </div>
-          <div class="post-nepre half next" th:if="${not #lists.isEmpty(articleItemNext)}"
-               th:style="${#lists.isEmpty(articleItemPrev)}?'width:100%':''">
-            <a th:href="@{'/article/' + ${articleItemNext.getArticleSlug()}}" rel="next"
-            >
-              <div
-                      class="background"
-                      style="
+                <div
+                        class="background"
+                        style="
                       background-image: url(http://img.zmblog.wang/blog/20201103/Shh0YYPlQEhT.png?imageslim);
                     "
-              ></div>
-              <span class="label">Next Post</span>
-              <div class="info">
-                <h3 th:text="${articleItemNext.getArticleTitle()}"></h3>
-                <hr/>
-              </div
-              >
-            </a>
-          </div>
-        </section>
+                ></div>
+                <span class="label">Next Post</span>
+                <div class="info">
+                  <h3 th:text="${articleItemNext.getArticleTitle()}"></h3>
+                  <hr/>
+                </div
+                >
+              </a>
+            </div>
+          </section>
 
-        <div id="vcomments"></div>
-        <script>
-            new Valine({
-                el: '#vcomments',
-                appId: 'eB2Cr2KPJE7oA26v3y4lJMAw-gzGzoHsz',
-                appKey: 'aRtu4UNpNtKCyAoIp8Pvfjjl',
-                placeholder: '少侠说点什么吧',
-                path: window.location.pathname,
-                avatar: 'wavatar',
-                enableQQ: true,
-                requiredFields: ['nick', 'mail'],
-                recordIP: true,
-                visitor: true
-            })
-        </script>
+          <div class="comment-wrapper" th:if="${article.getCommentStatus()}">
+            <div id="vcomments"></div>
+            <script>
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'eB2Cr2KPJE7oA26v3y4lJMAw-gzGzoHsz',
+                    appKey: 'aRtu4UNpNtKCyAoIp8Pvfjjl',
+                    placeholder: '少侠说点什么吧',
+                    path: window.location.pathname,
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    requiredFields: ['nick', 'mail'],
+                    recordIP: true,
+                    visitor: true
+                })
+            </script>
+          </div>
+        </div>
+        <aside class="content-aside">
+          <!--PC端：目录-->
+          <div th:if="${not #strings.isEmpty(article.getArticleTocHtml())}" class="toc-container"
+               th:utext="${article.getArticleTocHtml()}">
+          </div>
+        </aside>
       </div>
 
       <!-- 底部 footer -->

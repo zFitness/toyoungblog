@@ -146,17 +146,16 @@ div, ul, li {
 
 /* 底部 footer */
 .site-footer {
-    padding: 32px;
+    height: 64px;
     background: #fff;
-    border-top: 1px solid #f7f7f7;
 }
 
 .site-footer-content {
     text-align: center;
     font-size: 13px;
     color: #9c9c9c;
-    font-family: miranafont, 'Hiragino Sans GB', STXihei, 'Microsoft YaHei',
-    SimSun, sans-serif;
+    font-family: miranafont, 'Hiragino Sans GB', STXihei, 'Microsoft YaHei', SimSun, sans-serif;
+    line-height: 64px;
 }
 
 /**/

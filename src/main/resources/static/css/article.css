@@ -2,6 +2,7 @@
 .headertop {
     position: relative;
     overflow: hidden;
+    height: 56%;
 }
 
 #centerbg {
@@ -31,12 +32,22 @@
 }
 
 /* 文章内容 */
-.content {
+.content-wrapper {
     max-width: 800px;
-    padding: 0 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 13em;
+    height: auto !important;
+    padding-top: 64px;
+    background-color: #fff;
+    margin: 0 auto -64px;
+    min-height: calc(100% - 64px);
+    display: flex;
+}
+
+.content {
+    padding: 0 8px 64px 8px;
+}
+
+.content-aside {
+    flex: 0 0 30%;
 }
 
 
@@ -349,26 +360,27 @@ li.wedonate:after {
 
 /*目录*/
 .toc-container {
-    /**! z-index: 98;*/
-    width: 200px;
-    /* height: 100%; */
-    background-color: rgba(255, 255, 255, 0);
-    transform: translateX(0);
-    right: calc((100% - 950px - 250px) / 2);
-    /* position: absolute!important; */
-    top: 65px;
-    /* bottom: 50%; */
-    position: fixed;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: none;
+    position: sticky;
+    top: 90px;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* IE 10+ */
 }
 
+.toc-container::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+}
 
 @media (max-width: 1280px) {
     .toc-container {
         display: none;
     }
+}
+
+.toc > ul {
+    padding-left: 16px;
 }
 
 @media (min-width: 1280px) {
