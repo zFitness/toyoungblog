@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <body>
-      <footer th:fragment="footer" class="site-footer" style="margin-top: 10px">
-        <div class="site-footer-content">
-          Copyright © 2020 by
-          <a
-                  href="https://zmblog.wang/"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-          >zm</a
-          >
-          . All rights reserved.
-          <div class="footertext">
-            <p>
-<!--              <a-->
-<!--                      href="http://www.beian.miit.gov.cn/"-->
-<!--                      target="_blank"-->
-<!--                      rel="nofollow noopener noreferrer"-->
-<!--              >京ICP备18053796号-1</a-->
-<!--              >-->
-            </p>
-          </div>
+    <footer th:fragment="footer" class="site-footer">
+      <div class="site-footer-content">
+        Copyright © 2020 by
+        <a
+                th:href="@{/}"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+        >zm</a
+        >
+        . All rights reserved.
+        <div class="footertext">
+          <p>
+          </p>
         </div>
-      </footer>
+      </div>
+    </footer>
   </body>
 </html>
