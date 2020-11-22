@@ -27,6 +27,7 @@ $(document).ready(function () {
 
     //目录
     $('.m-menu').click(function () {
+        console.log("sss")
         if ($('.toc-container-mob').css('display') == 'none') {
             $('.toc-container-mob').css('display', 'block');
         } else {

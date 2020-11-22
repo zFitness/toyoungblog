@@ -48,8 +48,6 @@
 }
 
 .my-page .my-page-group .my-page-cell {
-    /*border: 1px solid #ddd;*/
-    /*border-radius: 2px;*/
 }
 
 .my-page .my-page-group .my-page-cell:hover,
@@ -61,5 +59,3 @@
 .my-page .my-page-group .my-page-omit {
     pointer-events: none;
 }
-
-/*# sourceMappingURL=my-page.css.map */

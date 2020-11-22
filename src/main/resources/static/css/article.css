@@ -44,12 +44,15 @@
 
 .content {
     padding: 0 8px 64px 8px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
-.content-aside {
-    flex: 0 0 30%;
+.article {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
+    padding: 8px;
+    border-radius: 2px;
 }
-
 
 /* 文章标签，打赏 */
 .article-footer {
@@ -374,7 +377,7 @@ li.wedonate:after {
 }
 
 @media (max-width: 1280px) {
-    .toc-container {
+    .content-aside {
         display: none;
     }
 }
@@ -383,11 +386,6 @@ li.wedonate:after {
     padding-left: 16px;
 }
 
-@media (min-width: 1280px) {
-    .m-menu {
-        display: none;
-    }
-}
 
 .toc {
 

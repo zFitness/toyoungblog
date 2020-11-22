@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pers.zheng</groupId>
-    <artifactId>TooYoungblog</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>BlogBB</artifactId>
+    <version>1.0</version>
     <name>TooYoungblog</name>
     <description>my blog</description>
 
@@ -19,6 +19,12 @@
     </properties>
 
     <dependencies>
+        <!-- sitemapgen4j 生成 sitemap.xml-->
+        <dependency>
+            <groupId>com.github.dfabulich</groupId>
+            <artifactId>sitemapgen4j</artifactId>
+            <version>1.1.2</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>

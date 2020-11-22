@@ -22,3 +22,6 @@ spring:
   jackson:
     time-zone: Asia/Shanghai
     date-format: yyyy-MM-dd HH:mm:ss
+
+
+domain: http://localhost:8080

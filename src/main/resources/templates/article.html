@@ -6,12 +6,10 @@
     <link rel="stylesheet" th:href="@{/static/css/article.css}"/>
     <link rel="stylesheet" th:href="@{/static/css/markdown/markdown.css}"/>
     <script th:src="@{/static/js/table.js}"></script>
-    <script th:src="@{/static/js/base.js}"></script>
     <script th:src="@{/static/js/av-min.js}"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/styles/atom-one-light.min.css" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script>hljs.initLineNumbersOnLoad();</script>
     <script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
   </head>
 
@@ -31,7 +29,7 @@
         <div
                 id="centerbg"
                 style="
-                background-image: url(http://img.zmblog.wang/blog/20201103/AvEUhKwjsfQ4.png?imageslim);
+                background-image: url(https://img.zmblog.wang/blog/20201122/YwjseQgDmKJj.jpeg?imageslim);
               "
         >
           <div class="article-content-title">
@@ -67,13 +65,13 @@
               <div class="close-button">
                 <i class="iconfont iconclose"></i>
               </div>
-              <div style="overflow-y: auto;height: 100%" th:utext="${article.getArticleTocHtml()}"></div>
+              <div style="overflow-y: auto;height: 96%" th:utext="${article.getArticleTocHtml()}"></div>
             </div>
             <!-- markdown转html-->
             <div id="article-content" th:utext="${article.getArticleContent()}"></div>
             <div class="article-footer">
               <div class="breadcrumbs">
-                <div id="crumbs">最后更新时间：2019年10月12日</div>
+                <div id="crumbs">最后更新时间：2020年11月12日</div>
               </div>
               <div class="donate">
                 <a id="donate-btn">赏</a>
@@ -168,12 +166,12 @@
             </script>
           </div>
         </div>
-        <aside class="content-aside">
-          <!--PC端：目录-->
-          <div th:if="${not #strings.isEmpty(article.getArticleTocHtml())}" class="toc-container"
-               th:utext="${article.getArticleTocHtml()}">
-          </div>
-        </aside>
+        <!--        <aside class="content-aside">-->
+        <!--          &lt;!&ndash;PC端：目录&ndash;&gt;-->
+        <!--          <div th:if="${not #strings.isEmpty(article.getArticleTocHtml())}" class="toc-container"-->
+        <!--               th:utext="${article.getArticleTocHtml()}">-->
+        <!--          </div>-->
+        <!--        </aside>-->
       </div>
 
       <!-- 底部 footer -->
