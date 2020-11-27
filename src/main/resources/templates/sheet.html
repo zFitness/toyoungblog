@@ -12,6 +12,8 @@
     <link rel="stylesheet" th:href="@{/static/css/markdown/markdown.css}"/>
     <script th:src="@{/static/js/table.js}"></script>
     <script th:src="@{/static/js/base.js}"></script>
+    <script th:src="@{/static/js/av-min.js}"></script>
+    <script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
   </head>
   <body>
     <!-- 侧边栏 -->
@@ -30,6 +32,23 @@
           </div>
           <!-- markdown转html-->
           <div id="article-content" th:utext="${sheet.getSheetContent()}"></div>
+          <div class="comment-wrapper" th:if="${sheet.commentStatus != false}">
+            <div id="vcomments"></div>
+            <script>
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'eB2Cr2KPJE7oA26v3y4lJMAw-gzGzoHsz',
+                    appKey: 'aRtu4UNpNtKCyAoIp8Pvfjjl',
+                    placeholder: '少侠说点什么吧',
+                    path: window.location.pathname,
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    requiredFields: ['nick', 'mail'],
+                    recordIP: true,
+                    visitor: true
+                })
+            </script>
+          </div>
         </div>
       </div>
       <!-- 底部 footer -->
